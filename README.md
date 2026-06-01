@@ -75,5 +75,5 @@ The main goals of this project are:
 
 ## Author
 
-**Barbora Besedová**
+**Barbora Besedová**  
 **Pablo Mungo**
