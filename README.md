@@ -76,7 +76,4 @@ The main goals of this project are:
 ## Author
 
 **Barbora Besedová**
-
-Erasmus+ Exchange Student
-Universitat Politècnica de València
-Artificial Intelligence and Data Science course
+**Pablo Mungo**
