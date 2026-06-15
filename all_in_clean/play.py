@@ -1,0 +1,357 @@
+"""
+play.py — Hraj Othello v terminálu proti DQN agentovi (nebo jinému pravidlovému agentovi).
+
+Použití
+-------
+# Hráč (X) vs. DQN agent (O)
+python play.py --model models/dqn.pth
+
+# Hráč (O) vs. DQN agent (X)  — agent začíná
+python play.py --model models/guided_dqn.pth --human_color -1
+
+# Hráč vs. Minimax
+python play.py --opponent minimax
+
+# Hráč vs. Hráč (žádný agent)
+python play.py --opponent human
+
+# Jiná velikost desky
+python play.py --model models/dqn.pth --board_size 6
+
+Ovládání
+--------
+Tahy se zadávají jako  "row col"  (odděleno mezerou), např.  "2 3"
+Pokud musíš pasovat, zadej  "p"  nebo  "pass"
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+import sys
+
+# Uprav cestu ke svému projektu
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+import numpy as np
+
+from environment import OthelloEnv
+from agent import DQNAgent
+
+# ── Barvy pro terminál ────────────────────────────────────────────────────────
+_RESET  = "\033[0m"
+_BOLD   = "\033[1m"
+_GREEN  = "\033[92m"
+_YELLOW = "\033[93m"
+_CYAN   = "\033[96m"
+_RED    = "\033[91m"
+_GRAY   = "\033[90m"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Vykreslení desky
+# ─────────────────────────────────────────────────────────────────────────────
+
+def render_board(
+    env: OthelloEnv,
+    human_color: int,
+    highlight_legal: bool = True,
+) -> None:
+    """Vykreslí desku do terminálu s barevným zvýrazněním."""
+    n = env.board_size
+    legal = set(env.get_legal_actions(env.current_player))
+    pass_action = env.pass_action
+
+    # Legální tahy jako (row, col) množina
+    legal_cells = set()
+    for a in legal:
+        if a != pass_action:
+            legal_cells.add(divmod(a, n))
+
+    human_sym = "X" if human_color == 1 else "O"
+    agent_sym = "O" if human_color == 1 else "X"
+    cur_sym   = "X" if env.current_player == 1 else "O"
+    is_human_turn = env.current_player == human_color
+
+    print()
+    print(f"  Tah: {env.turn_count}   "
+          f"Hráč X={_GREEN}X{_RESET}  Agent={_YELLOW}O{_RESET}   "
+          f"Na tahu: {_BOLD}{cur_sym}{_RESET}"
+          f"{'  ← TY' if is_human_turn else '  ← AGENT'}")
+
+    # Počty kamenů
+    x_count = int(np.sum(env.board_abs == 1))
+    o_count = int(np.sum(env.board_abs == -1))
+    print(f"  X: {x_count} kamenů   O: {o_count} kamenů")
+    print()
+
+    # Záhlaví sloupců
+    header = "     " + "  ".join(f"{_GRAY}{c}{_RESET}" for c in range(n))
+    print(header)
+    print(f"    {'─' * (3 * n + 1)}")
+
+    for row in range(n):
+        line = f"  {_GRAY}{row}{_RESET} │"
+        for col in range(n):
+            val = int(env.board_abs[row, col])
+            if val == 1:
+                cell = f" {_GREEN}X{_RESET}"
+            elif val == -1:
+                cell = f" {_YELLOW}O{_RESET}"
+            elif highlight_legal and (row, col) in legal_cells and is_human_turn:
+                cell = f" {_CYAN}·{_RESET}"   # légální tah hráče
+            else:
+                cell = f" {_GRAY}.{_RESET}"
+            line += cell + " "
+        print(line)
+
+    print()
+    if is_human_turn and highlight_legal:
+        legal_coords = sorted(legal_cells)
+        coords_str = "  ".join(f"{r},{c}" for r, c in legal_coords)
+        if pass_action in legal and not legal_cells:
+            coords_str = "(musíš pasovat)"
+        print(f"  {_CYAN}Legální tahy: {coords_str}{_RESET}")
+    print()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Načtení tahu od hráče
+# ─────────────────────────────────────────────────────────────────────────────
+
+def get_human_action(env: OthelloEnv) -> int:
+    """Interaktivně načte tah hráče ze stdin."""
+    n = env.board_size
+    legal = env.get_legal_actions(env.current_player)
+    pass_action = env.pass_action
+
+    # Pokud je jediný legální tah pass, automaticky pasuj
+    if legal == [pass_action]:
+        print(f"  {_YELLOW}Nemáš žádný legální tah — automatický pass.{_RESET}")
+        input("  Stiskni Enter...")
+        return pass_action
+
+    while True:
+        try:
+            raw = input(f"  {_BOLD}Tvůj tah (row col) nebo 'p' pro pass:{_RESET} ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            print("\nKonec hry.")
+            sys.exit(0)
+
+        if raw in ("p", "pass"):
+            if pass_action in legal:
+                return pass_action
+            print(f"  {_RED}Pass není legální — máš normální tahy.{_RESET}")
+            continue
+
+        parts = raw.replace(",", " ").split()
+        if len(parts) != 2:
+            print(f"  {_RED}Zadej dva čísla oddělená mezerou, např. '2 3'.{_RESET}")
+            continue
+
+        try:
+            row, col = int(parts[0]), int(parts[1])
+        except ValueError:
+            print(f"  {_RED}Neplatný vstup — zadej celá čísla.{_RESET}")
+            continue
+
+        if not (0 <= row < n and 0 <= col < n):
+            print(f"  {_RED}Souřadnice mimo desku (0–{n-1}).{_RESET}")
+            continue
+
+        action = row * n + col
+        if action not in legal:
+            print(f"  {_RED}Pole ({row},{col}) není legální tah.{_RESET}")
+            continue
+
+        return action
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Hlavní herní smyčka
+# ─────────────────────────────────────────────────────────────────────────────
+
+def play_game(
+    env: OthelloEnv,
+    human_color: int,           # 1 nebo -1
+    agent,                      # DQNAgent nebo rule-based agent, nebo None (human vs human)
+    agent_epsilon: float = 0.0,
+) -> None:
+    """Odehraje jednu partii."""
+    obs = env.reset()
+    done = False
+
+    human_sym = "X" if human_color == 1 else "O"
+    agent_sym = "O" if human_color == 1 else "X"
+
+    if agent is None:
+        print(f"\n  {_BOLD}Hráč 1 (X) vs. Hráč 2 (O){_RESET}")
+    else:
+        print(f"\n  {_BOLD}Ty ({_GREEN}{human_sym}{_BOLD}) vs. Agent ({_YELLOW}{agent_sym}{_BOLD}){_RESET}")
+    print()
+
+    while not done:
+        render_board(env, human_color)
+        is_human = (env.current_player == human_color) or (agent is None)
+
+        if is_human:
+            action = get_human_action(env)
+        else:
+            print(f"  {_YELLOW}Agent přemýšlí...{_RESET}")
+            if hasattr(agent, "select_action"):
+                action = agent.select_action(obs, epsilon=agent_epsilon) \
+                    if hasattr(agent.select_action, "__code__") and \
+                       "epsilon" in agent.select_action.__code__.co_varnames \
+                    else agent.select_action(obs)
+            else:
+                action = agent.select_action(obs)
+
+            n = env.board_size
+            pass_action = env.pass_action
+            if action == pass_action:
+                print(f"  Agent pasuje.")
+            else:
+                row, col = divmod(action, n)
+                print(f"  Agent hraje: ({row}, {col})")
+            print()
+
+        obs, _, done, info = env.step(action)
+
+    # Finální stav
+    render_board(env, human_color, highlight_legal=False)
+    winner = info["winner"]
+
+    print("  " + "═" * 36)
+    if winner == 0:
+        print(f"  {_BOLD}Remíza!{_RESET}")
+    elif winner == human_color:
+        print(f"  {_BOLD}{_GREEN}Vyhrál jsi! 🎉{_RESET}")
+    elif agent is None:
+        sym = "X" if winner == 1 else "O"
+        print(f"  {_BOLD}Vyhrál hráč {sym}!{_RESET}")
+    else:
+        print(f"  {_BOLD}{_RED}Agent vyhrál.{_RESET}")
+
+    x_count = int(np.sum(env.board_abs == 1))
+    o_count = int(np.sum(env.board_abs == -1))
+    print(f"  Skóre: X={x_count}  O={o_count}")
+    print("  " + "═" * 36)
+    print()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Načtení agenta
+# ─────────────────────────────────────────────────────────────────────────────
+
+def load_agent(
+    model_path: str | None,
+    opponent_type: str,
+    board_size: int,
+):
+    """
+    Vrátí agenta podle zadání.
+    Pokud je model_path zadán, načte DQNAgent ze souboru.
+    Jinak vrátí rule-based agenta podle opponent_type, nebo None (human vs human).
+    """
+    if model_path is not None:
+        if not os.path.exists(model_path):
+            print(f"{_RED}Soubor modelu nebyl nalezen: {model_path}{_RESET}")
+            sys.exit(1)
+
+        agent = DQNAgent(board_size=board_size)
+        agent.load(model_path)
+        agent.q_net.eval()
+        print(f"  Načten DQN model: {model_path}")
+        return agent
+
+    if opponent_type == "human":
+        return None
+
+    try:
+        from agents.random_agent    import RandomAgent
+        from agents.greedy_agent    import GreedyAgent
+        from agents.heuristic_agent import HeuristicAgent
+        from agents.minimax_agent   import MinimaxAgent
+    except ImportError as e:
+        print(f"{_RED}Import agenta selhal: {e}{_RESET}")
+        sys.exit(1)
+
+    classes = {
+        "random":    RandomAgent,
+        "greedy":    GreedyAgent,
+        "heuristic": HeuristicAgent,
+        "minimax":   MinimaxAgent,
+    }
+    if opponent_type not in classes:
+        print(f"{_RED}Neznámý opponent_type '{opponent_type}'. "
+              f"Možnosti: {list(classes.keys())} nebo 'human'.{_RESET}")
+        sys.exit(1)
+
+    agent = classes[opponent_type](board_size)
+    print(f"  Soupeř: {opponent_type}")
+    return agent
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Hlavní funkce
+# ─────────────────────────────────────────────────────────────────────────────
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Hraj Othello proti DQN agentovi nebo rule-based soupeři."
+    )
+    parser.add_argument(
+        "--model", type=str, default=None,
+        help="Cesta k uloženému .pth souboru DQN agenta.",
+    )
+    parser.add_argument(
+        "--opponent", type=str, default="random",
+        choices=["random", "greedy", "heuristic", "minimax", "human"],
+        help="Typ soupeře, pokud --model není zadán. 'human' = hráč vs. hráč.",
+    )
+    parser.add_argument(
+        "--human_color", type=int, default=1, choices=[1, -1],
+        help="Barva lidského hráče: 1 = X (začíná), -1 = O (druhý).",
+    )
+    parser.add_argument(
+        "--board_size", type=int, default=5,
+        help="Velikost desky (4–8, default 5).",
+    )
+    parser.add_argument(
+        "--agent_epsilon", type=float, default=0.0,
+        help="Epsilon agenta (0 = greedy, >0 = trochu náhodný).",
+    )
+    args = parser.parse_args()
+
+    env   = OthelloEnv(board_size=args.board_size)
+    agent = load_agent(args.model, args.opponent, args.board_size)
+
+    print()
+    print(f"  {_BOLD}═══ Othello {args.board_size}×{args.board_size} ═══{_RESET}")
+    print(f"  X = hráč 1 (začíná)   O = hráč 2")
+    print(f"  {_CYAN}·{_RESET} = tvé legální tahy")
+    print()
+
+    while True:
+        play_game(
+            env=env,
+            human_color=args.human_color,
+            agent=agent,
+            agent_epsilon=args.agent_epsilon,
+        )
+
+        try:
+            again = input("  Hrát znovu? (y/n): ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            break
+
+        if again not in ("y", "yes", "a", "ano"):
+            break
+
+    print(f"\n  {_BOLD}Nashledanou!{_RESET}\n")
+
+
+if __name__ == "__main__":
+    main()
