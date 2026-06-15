@@ -61,10 +61,10 @@ from environment import OthelloEnv
 
 def play_game(agent_1, agent_2, board_size=5):
     """
-    Odehraje jednu celou partii.
+    Plays one complete game.
 
-    agent_1 vždy hraje za hráče 1.
-    agent_2 vždy hraje za hráče -1.
+    agent_1 always plays as player 1.
+    agent_2 always plays as player -1.
     """
     env = OthelloEnv(board_size=board_size)
     observation = env.reset()
@@ -88,10 +88,10 @@ def evaluate_fair(
     n_games=200,
 ):
     """
-    Vyhodnotí již existující instanci agent_a proti agent_b_class.
+    Evaluates an existing instance of agent_a against agent_b_class.
 
-    Polovinu her hraje agent_a jako hráč 1.
-    Druhou polovinu hraje agent_a jako hráč -1.
+    Half the games agent_a plays as player 1.
+    The other half agent_a plays as player -1.
     """
     if n_games <= 0:
         raise ValueError("n_games must be positive.")
@@ -103,7 +103,7 @@ def evaluate_fair(
     games_as_first = n_games // 2
     games_as_second = n_games - games_as_first
 
-    # Agent A hraje jako hráč 1.
+    # Agent A plays as player 1.
     for _ in range(games_as_first):
         agent_b = agent_b_class(board_size)
 
@@ -120,7 +120,7 @@ def evaluate_fair(
         else:
             draws += 1
 
-    # Agent A hraje jako hráč -1.
+    # Agent A plays as player -1.
     for _ in range(games_as_second):
         agent_b = agent_b_class(board_size)
 
@@ -139,7 +139,7 @@ def evaluate_fair(
 
     win_rate = a_wins / n_games
 
-    # Skóre, kde výhra = 1, remíza = 0.5, prohra = 0.
+    # Score where win = 1, draw = 0.5, loss = 0.
     score = (a_wins + 0.5 * draws) / n_games
 
     return {
