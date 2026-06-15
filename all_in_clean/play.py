@@ -199,7 +199,7 @@ def play_game(
         if is_human:
             action = get_human_action(env)
         else:
-            print(f"  {_YELLOW}Agent přemýšlí...{_RESET}")
+            print(f"  {_YELLOW}Agent is thinking...{_RESET}")
             if hasattr(agent, "select_action"):
                 action = agent.select_action(obs, epsilon=agent_epsilon) \
                     if hasattr(agent.select_action, "__code__") and \
@@ -211,7 +211,7 @@ def play_game(
             n = env.board_size
             pass_action = env.pass_action
             if action == pass_action:
-                print(f"  Agent pasuje.")
+                print(f"  Agent passes.")
             else:
                 row, col = divmod(action, n)
                 print(f"  Agent plays: ({row}, {col})")
