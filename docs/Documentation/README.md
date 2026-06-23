@@ -41,6 +41,7 @@ Build, train, evaluate, and submit an Othello AI agent that:
 │   ├── replay_buffer.py       # Uniform experience replay
 │   ├── prioritized_replay_buffer.py  # Prioritized experience replay
 │   ├── agent.py               # DQNAgent (all DQN variants)
+│   ├── diagnostics.py         # Shared diagnostics (logging, game recording)
 │   ├── evaluation.py          # Evaluation functions
 │   ├── train.py               # Unified training script
 │   ├── train_overnight.py     # Self-play-heavy overnight training
@@ -140,7 +141,7 @@ The **central agent class** `DQNAgent`. Supports all DQN variants:
 **Key components**:
 - `select_action(obs, epsilon)` — epsilon-greedy action selection.
 - `store_transition(...)` — stores experience in replay buffer.
-- `train_step()` — samples batch, computes Q-loss (or guided loss), backpropagates.
+- `train_step()` — samples batch, computes Q-loss (or guided loss), backpropagates. Returns a dict with `loss`, `mean_q` (mean predicted Q-value across batch), `grad_norm` (gradient norm before clipping), `mean_td_error`, `beta`, `mean_is_weight`.
 - `save(path)` / `load(path)` — saves/loads model weights, optimizer state, training counters.
 - `schedule_beta(step)` — anneals PER beta over training.
 
@@ -165,6 +166,32 @@ Functions to **evaluate agents against each other**:
 
 ---
 
+### Diagnostics
+
+#### `diagnostics.py` (130 lines)
+Shared utilities for **training diagnostics**, usable by any training script:
+
+- **`MetricsLogger(path, fieldnames)`** — writes scalar metrics to a CSV file. One row per `log(**kwargs)` call, auto-flushed. Used by `train_vs_minimax.py` for the comprehensive `_train.csv` log and per-eval `_eval_ep*.csv` logs.
+- **`record_game(agent, opponent, board_size, record_q, device)`** — plays a full game between two agents and returns a **transcript dict** with per-move: board state, action taken, legal actions, Q-values (if `record_q=True`), mover identity. Also returns winner, disc diff, and total moves.
+- **`save_transcript(transcript, path)`** — saves a transcript dict to a JSON file.
+
+**Example transcript (abbreviated)**:
+```python
+{
+  "moves": [
+    {"turn": 1, "mover": "agent", "player": 1,
+     "board": [[...]], "action": 19, "legal_actions": [...],
+     "q_values": [0.12, -0.34, ...]},
+    ...
+  ],
+  "winner": 1, "disc_diff": 4, "n_moves": 32, "agent_player": 1
+}
+```
+
+**Used by**: `train_vs_minimax.py` (game recording at key episodes).
+
+---
+
 ### Rule-Based Opponents
 
 All in `agents/` directory. These are the **opponents** used during training and evaluation.
@@ -182,7 +209,7 @@ Selects the move maximizing a positional heuristic: corners (highest value) > ed
 **Minimax search with alpha-beta pruning**. Default depth = 3. Evaluates leaf states with a disc-count heuristic. This is the strongest scripted opponent and the main benchmark.
 
 #### `agents/cpp_minimax_agent.py` (362 lines)
-Python wrapper around a **C++ minimax solver** (native binary in `cpp_solver/`). Much faster than the pure Python minimax. Not used in standard training.
+Python wrapper around a **C++ minimax solver** (native binary in `cpp_solver/`). Much faster than the pure Python minimax. Used as the primary opponent during `train_vs_minimax.py` runs. See `docs/cpp_minimax_solver/README.md` for build instructions.
 
 ---
 
@@ -252,12 +279,32 @@ Training with **maximum self-play focus**. The agent plays almost exclusively ag
 python train_max_selfplay.py --num_episodes 10000 --board_size 6
 ```
 
-#### `train_vs_minimax.py` (449 lines)
-Training focused on **beating the minimax opponent**. Uses a high proportion of minimax in the opponent mix.
+#### `train_vs_minimax.py` (590+ lines)
+Training focused on **beating the minimax opponent**. Uses a curriculum opponent mix that progressively introduces the fast C++ minimax. The primary training script for the `guided_per_dqn` agent used in the `against_minimax` experiments.
+
+**Key features**:
+- **Curriculum opponent schedule**: starts weak (random/greedy/heuristic), shifts to ~65% minimax by late training.
+- **ε-greedy exploration** with opponent-aware epsilon floors (minimax floor = 0.20).
+- **Periodic evaluation** every `--eval_every` episodes, with **per-color breakdown** for minimax (as black vs as white, revealing color asymmetry).
+- **Full game recording** at configurable episodes (`--record_game_eps`, default `1200,3000`), saves Q-values and board states to JSON.
+- **Comprehensive CSV logging**: `{model_path}_train.csv` (episode, epsilon, reward, win%, loss, mean_q, grad_norm, td_error) and per-eval `_eval_ep*.csv` (per-opponent, per-color).
+- **Profile mode** (`--profile`) prints timing breakdown of agent forward pass / opponent search / env step / train step.
+- **Time limit** (`--max_minutes`) for graceful stop-and-save.
 
 ```
-python train_vs_minimax.py --num_episodes 10000 --board_size 6
+python train_vs_minimax.py --use_per --heuristic_weight 0.2 \
+  --minimax_max_depth 3 --model_path models/against_minimax/minimax_trained.pth \
+  --load_model_path models/guided_per_dqn_6_best_overnight.pth \
+  --max_minutes 180 --profile
 ```
+
+**Additional CLI flags**:
+| Flag | Default | Description |
+|---|---|---|
+| `--minimax_max_depth` | `None` | Fixed search depth for minimax opponent |
+| `--profile` | `False` | Print timing breakdown % every log interval |
+| `--record_game_eps` | `1200,3000` | Comma-separated episode numbers to record full games |
+| `--n_record_games` | `3` | Games to record per checkpoint (agent as both colors) |
 
 ---
 
@@ -367,6 +414,39 @@ python train.py --board_size 6 --num_episodes 200 --use_per --heuristic_weight 0
 python train_overnight.py --num_episodes 30000
 ```
 
+### Training diagnostics (--profile)
+
+The `--profile` flag prints a **timing breakdown** every log interval:
+
+```
+prof: agent=1% opp=0% env=1% train=97% store=0%
+```
+
+This identifies the bottleneck — typically **`train` (backpropagation)** dominates at ~97%.
+
+The training CSV (`{model_path}_train.csv`) records key metrics per interval:
+- **`mean_q`** — mean predicted Q-value. A sudden spike signals **value blow-up** (divergence), pointing at a too-high learning rate.
+- **`grad_norm`** — gradient norm before clipping. Spikes indicate **instability**; flat-and-low is healthy.
+- **`mean_td_error`** — average TD error magnitude (PER priority proxy).
+
+### Interpreting per-color win rates
+
+The evaluation CSV (`{model_path}_eval_ep*.csv`) breaks minimax results by colour:
+
+```
+fast_minimax,as_black,9,2,14,0.360,0.400
+fast_minimax,as_white,6,3,16,0.240,0.300
+```
+
+A large gap (e.g. 36% as black vs 24% as white) reveals **colour asymmetry** — common in Othello DQN agents. Training with balanced colours (alternating `agent_player` each episode) mitigates this.
+
+### Analysing recorded games
+
+Full game transcripts are saved to `{model_dir}/games/ep{episode}_game{n}.json`. Each move includes board state, action, and Q-values, allowing post-hoc analysis of:
+- Does the agent lose narrowly (close disc diff) or get crushed?
+- Does it go wrong in the **opening**, **midgame**, or **endgame**?
+- Are Q-values well-calibrated (high Q for good moves, low for blunders)?
+
 ### Evaluate models
 ```bash
 python evaluate_models.py
@@ -406,6 +486,11 @@ cp models/guided_per_dqn_6_best_overnight.pth student_agents/othello_agent.pt
 | `double_dqn` | True | Enable double DQN |
 | `per_alpha` | 0.6 | Prioritization exponent |
 | `per_beta_start` | 0.4 | Initial importance-sampling weight |
+| `minimax_max_depth` | None (unlimited) | Fixed search depth for minimax |
+| `max_minutes` | None (no limit) | Graceful stop-and-save after N minutes |
+| `profile` | False | Print timing breakdown % |
+| `record_game_eps` | `1200,3000` | Episodes to record full game transcripts |
+| `n_record_games` | 3 | Games per recording checkpoint |
 
 ---
 

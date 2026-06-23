@@ -63,7 +63,7 @@ for name, path, bs, use_per, hw in MODEL_DEFS:
         agent = load_agent(path, bs, use_per, hw)
         scores = {}
         for opp_name, opp_cls in OPPONENTS.items():
-            res = evaluate_fair(agent, opp_cls, board_size=bs, n_games=100)
+            res = evaluate_fair(agent, opp_cls, board_size=bs, n_games=100, random_opening_plies=2)
             scores[opp_name] = res["score"]
         avg = np.mean(list(scores.values()))
         results.append((avg, name, bs, scores, path))

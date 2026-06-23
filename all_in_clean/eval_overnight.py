@@ -30,7 +30,7 @@ for ckpt in ckpts:
         agent.q_net.eval()
         scores = {}
         for opp_name, opp_cls in OPPONENTS.items():
-            res = evaluate_fair(agent, opp_cls, board_size=6, n_games=100)
+            res = evaluate_fair(agent, opp_cls, board_size=6, n_games=100, random_opening_plies=2)
             scores[opp_name] = res["score"]
         avg = np.mean(list(scores.values()))
         name = os.path.basename(ckpt)

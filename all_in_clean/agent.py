@@ -85,6 +85,8 @@ class DQNAgent:
         per_alpha: float = 0.6,
         per_beta_start: float = 0.4,
         per_beta_frames: int = 100_000,
+        # --- Polyak soft target update ---
+        tau: float = 0.005,
     ):
         self.board_size = board_size
         self.action_size = board_size * board_size + 1
@@ -94,6 +96,7 @@ class DQNAgent:
         self.target_update_freq = target_update_freq
         self.learning_starts = learning_starts
         self.double_dqn = double_dqn
+        self.tau = tau
 
         self.heuristic_weight = heuristic_weight
 
@@ -175,7 +178,9 @@ class DQNAgent:
         if self.heuristic_weight > 0.0:
             best_action = self._guided_argmax(observation, masked_q, legal_actions)
         else:
-            best_action = int(np.argmax(masked_q))
+            max_q = np.max(masked_q[legal_actions])
+            best_actions = [a for a in legal_actions if masked_q[a] == max_q]
+            best_action = int(random.choice(best_actions))
 
         # Safety fallback
         if best_action not in legal_actions:
@@ -189,8 +194,9 @@ class DQNAgent:
         masked_q: np.ndarray,
         legal_actions: List[int],
     ) -> int:
-        """Return the legal action maximising Q + heuristic_weight * heuristic."""
-        best_action = legal_actions[0]
+        """Return the legal action maximising Q + heuristic_weight * heuristic.
+        Ties are broken randomly to inject diversity at eval time."""
+        best_actions = []
         best_score = -float("inf")
 
         for action in legal_actions:
@@ -199,9 +205,11 @@ class DQNAgent:
             )
             if score > best_score:
                 best_score = score
-                best_action = action
+                best_actions = [action]
+            elif score == best_score:
+                best_actions.append(action)
 
-        return int(best_action)
+        return int(random.choice(best_actions))
 
     def _heuristic_score(
         self,
@@ -356,7 +364,8 @@ class DQNAgent:
 
         self.optimizer.zero_grad()
         loss.backward()
-        torch.nn.utils.clip_grad_norm_(self.q_net.parameters(), max_norm=10.0)
+        grad_norm = torch.nn.utils.clip_grad_norm_(
+            self.q_net.parameters(), max_norm=10.0)
         self.optimizer.step()
 
         # ----- PER priority update -----
@@ -366,7 +375,9 @@ class DQNAgent:
             )
 
         self.train_steps += 1
-        if self.train_steps % self.target_update_freq == 0:
+        if self.tau > 0.0:
+            self.update_target_network()
+        elif self.train_steps % self.target_update_freq == 0:
             self.update_target_network()
 
         return {
@@ -374,6 +385,8 @@ class DQNAgent:
             "beta": float(beta),
             "mean_td_error": float(td_errors.abs().mean().item()),
             "mean_is_weight": float(w.mean().item()),
+            "mean_q": float(current_q.mean().item()),
+            "grad_norm": float(grad_norm.item()),
         }
 
     # ------------------------------------------------------------------ #
@@ -381,7 +394,14 @@ class DQNAgent:
     # ------------------------------------------------------------------ #
 
     def update_target_network(self) -> None:
-        self.target_net.load_state_dict(self.q_net.state_dict())
+        if self.tau > 0.0:
+            # Polyak soft-update: θ_target ← τ·θ_online + (1−τ)·θ_target
+            with torch.no_grad():
+                for p, t in zip(self.q_net.parameters(), self.target_net.parameters()):
+                    t.data.copy_(self.tau * p.data + (1.0 - self.tau) * t.data)
+        else:
+            # Hard copy (classic DQN)
+            self.target_net.load_state_dict(self.q_net.state_dict())
 
     def save(self, path: str) -> None:
         torch.save(
@@ -397,6 +417,7 @@ class DQNAgent:
                     "per_beta_start": self.per_beta_start,
                     "per_beta_frames": self.per_beta_frames,
                     "double_dqn": self.double_dqn,
+                    "tau": self.tau,
                 },
             },
             path,

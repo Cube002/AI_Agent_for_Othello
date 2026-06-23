@@ -167,6 +167,7 @@ def train(
     eval_every: int = 250,
     save_every: int = 500,
     seed: int = 42,
+    eval_random_plies: int = 2,
 ) -> Dict:
     """
     Train a DQNAgent and return a dict with the trained agent and histories.
@@ -353,6 +354,7 @@ def train(
                     agent_b_class=opp_class,
                     board_size=board_size,
                     n_games=100,
+                    random_opening_plies=eval_random_plies,
                 )
                 print(
                     f"  {opp_name:<10} score={result['score']:.3f} "
@@ -431,6 +433,8 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--eval_every",          type=int,   default=250)
     p.add_argument("--save_every",          type=int,   default=500)
     p.add_argument("--seed",                type=int,   default=42)
+    p.add_argument("--eval_random_plies",   type=int,   default=2,
+                   help="Random opening moves per eval game (default: 2)")
     p.add_argument("--no_double_dqn",       action="store_true",
                    help="Disable Double DQN (not recommended).")
 
@@ -465,4 +469,5 @@ if __name__ == "__main__":
         eval_every=args.eval_every,
         save_every=args.save_every,
         seed=args.seed,
+        eval_random_plies=args.eval_random_plies,
     )

@@ -75,6 +75,8 @@ def _choose_opponent_from_curriculum(
 ) -> str:
     """
     Three-phase curriculum biased toward self-play for continuous improvement.
+    Minimax is kept at >=20% throughout to prevent catastrophic forgetting of
+    the minimax playing style — the main cause of late-phase oscillation.
     """
     progress = episode / num_episodes
     if progress < 0.30:
@@ -82,14 +84,20 @@ def _choose_opponent_from_curriculum(
         weights = [0.05, 0.05, 0.10, 0.20, 0.60]
     elif progress < 0.70:
         names = ["random", "greedy", "heuristic", "minimax", "self-play"]
-        weights = [0.05, 0.05, 0.05, 0.15, 0.70]
+        weights = [0.05, 0.05, 0.05, 0.20, 0.65]
     else:
         names = ["random", "greedy", "heuristic", "minimax", "self-play"]
-        weights = [0.00, 0.00, 0.05, 0.15, 0.80]
+        weights = [0.00, 0.00, 0.05, 0.25, 0.70]
     if not include_self_play:
         names = names[:-1]
         weights = weights[:-1]
     return random.choices(names, weights=weights, k=1)[0]
+
+
+def _epsilon_for_opponent(base_epsilon: float, opponent_type: str) -> float:
+    """Ensure a minimum exploration rate against strong opponents."""
+    floors = {"greedy": 0.15, "heuristic": 0.15, "minimax": 0.20}
+    return max(base_epsilon, floors.get(opponent_type, 0.0))
 
 
 def train_overnight(
@@ -116,6 +124,7 @@ def train_overnight(
     eval_every: int = 1000,
     save_every: int = 2000,
     seed: int = 42,
+    eval_random_plies: int = 2,
 ) -> Dict:
     set_seed(seed)
 
@@ -178,6 +187,8 @@ def train_overnight(
         else:
             opponent = _make_opponent(cur_opp_type, board_size, opponent_classes)
 
+        cur_epsilon = _epsilon_for_opponent(epsilon, cur_opp_type)
+
         agent_player = 1 if episode % 2 == 0 else -1
         if env.current_player != agent_player:
             obs, _, done, _ = env.step(opponent.select_action(obs))
@@ -186,7 +197,7 @@ def train_overnight(
 
         while not done:
             state_obs = obs
-            action = agent.select_action(state_obs, epsilon=epsilon)
+            action = agent.select_action(state_obs, epsilon=cur_epsilon)
             obs_after_agent, _, done, info = env.step(action)
 
             if done:
@@ -257,6 +268,7 @@ def train_overnight(
                         agent_b_class=opp_class,
                         board_size=board_size,
                         n_games=100,
+                        random_opening_plies=eval_random_plies,
                     )
                     eval_scores[opp_name] = result["score"]
                     print(
@@ -319,6 +331,8 @@ if __name__ == "__main__":
     p.add_argument("--eval_every", type=int, default=1000)
     p.add_argument("--save_every", type=int, default=5000)
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--eval_random_plies", type=int, default=2,
+                   help="Random opening moves per eval game (default: 2)")
     args = p.parse_args()
 
     train_overnight(
@@ -334,4 +348,5 @@ if __name__ == "__main__":
         eval_every=args.eval_every,
         save_every=args.save_every,
         seed=args.seed,
+        eval_random_plies=args.eval_random_plies,
     )
