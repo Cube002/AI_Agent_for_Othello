@@ -83,12 +83,15 @@ def record_game(
         if env.current_player == agent_player:
             mover = "agent"
             q_values = None
-            if record_q and device is not None:
+            if record_q and device is not None and hasattr(agent, "q_net"):
                 state = np.expand_dims(obs["board"].astype(np.float32), axis=0)
                 st = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
                 with torch.no_grad():
                     q_values = agent.q_net(st).squeeze(0).cpu().numpy().tolist()
-            action = agent.select_action(obs, epsilon=0.0)
+            try:
+                action = agent.select_action(obs, epsilon=0.0)
+            except TypeError:
+                action = agent.select_action(obs)
         else:
             mover = "opponent"
             q_values = None

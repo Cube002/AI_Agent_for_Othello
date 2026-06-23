@@ -43,7 +43,7 @@ MULTI_DIR = os.path.join(MODELS_DIR, "multi")
 if os.path.isdir(MULTI_DIR):
     for fname in os.listdir(MULTI_DIR):
         if fname.endswith(".pth"):
-            bs = 5  # multi-agent uses board_size=5 default
+            bs = 6  # multi-agent uses board_size=5 default
             MODEL_DEFS.append((f"Multi {fname.replace('.pth','')}", os.path.join(MULTI_DIR, fname), bs, False, 0.0))
 
 def load_agent(path, board_size, use_per, heuristic_weight):

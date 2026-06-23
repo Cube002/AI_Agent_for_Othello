@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import json
 import os
 import random
 import time as time_module
@@ -91,21 +92,48 @@ def _make_opponent(opponent_type: str, board_size: int,
 def _choose_opponent_from_curriculum(
     episode: int,
     num_episodes: int,
+    final_minimax_weight: float = 0.65,
+    minimax_start_progress: float = 0.25,
+    minimax_full_progress: float = 0.75,
 ) -> str:
     progress = episode / num_episodes
+    mm_mid_progress = (minimax_start_progress + minimax_full_progress) / 2
 
-    if progress < 0.25:
+    # Scale factors for each stage
+    mm_scale_lo = 0.0  # below start
+    mm_mid_fraction = (25 / 65)  # ~0.385 — midway minimax fraction
+    # Interpolate the "mid" scale so it sits proportionally along the ramp
+    # e.g., mm_scale_mid at the midpoint of the linear ramp
+    # The original mid point (0.385 of final) sat at progress 0.50.
+    # We linearly interpolate: scale goes from 0 at start to 1 at full_progress.
+    # At midpoint (start+full)/2, scale should be 0.5.
+    # But to preserve the original "one stage before full" feel, we use
+    # a 3-stage ramp with 0 → 0.385 → 1 at start/mid/full.
+    mm_scale_mid = 0.385
+    mm_scale_full = 1.0
+
+    def _stage_weights(mm_scale: float):
+        r, g, h, mm = 0.05, 0.10, 0.20, final_minimax_weight
+        mm *= mm_scale
+        leftover = (r + g + h) * (1 - mm_scale)
+        return [r + leftover * r / (r + g + h),
+                g + leftover * g / (r + g + h),
+                h + leftover * h / (r + g + h),
+                mm]
+
+    if progress < minimax_start_progress:
         names =   ["random", "greedy", "heuristic"]
-        weights = [0.50,     0.35,     0.15]
-    elif progress < 0.50:
+        w = _stage_weights(mm_scale_lo)
+        weights = [w[0] + w[3] / 3, w[1] + w[3] / 3, w[2] + w[3] / 3]
+    elif progress < mm_mid_progress:
         names =   ["random", "greedy", "heuristic", "fast_minimax"]
-        weights = [0.20,     0.25,     0.30,        0.25]
-    elif progress < 0.75:
+        weights = _stage_weights(mm_scale_mid)
+    elif progress < minimax_full_progress:
         names =   ["random", "greedy", "heuristic", "fast_minimax"]
-        weights = [0.10,     0.15,     0.30,        0.45]
+        weights = _stage_weights(0.45 / 0.65)
     else:
         names =   ["random", "greedy", "heuristic", "fast_minimax"]
-        weights = [0.05,     0.10,     0.20,        0.65]
+        weights = [0.05, 0.10, 0.20, final_minimax_weight]
 
     return random.choices(names, weights=weights, k=1)[0]
 
@@ -131,6 +159,7 @@ def train(
     board_size: int = 6,
     # --- episodes ---
     num_episodes: int = 3_000,
+    start_episode: int = 1,
     # --- epsilon schedule ---
     epsilon_start: float = 1.0,
     epsilon_end: float = 0.05,
@@ -139,6 +168,9 @@ def train(
     opponent_type: str = "curriculum",
     minimax_time_limit: float = 1.0,
     minimax_max_depth: int | None = None,
+    final_minimax_weight: float = 0.65,
+    minimax_start_progress: float = 0.25,
+    minimax_full_progress: float = 0.75,
     # --- agent hyper-parameters ---
     learning_rate: float = 1e-3,
     gamma: float = 0.99,
@@ -152,9 +184,12 @@ def train(
     per_alpha: float = 0.6,
     per_beta_start: float = 0.4,
     per_beta_frames: int = 100_000,
+    tau: float = 0.005,
     # --- I/O ---
     model_path: str = "models/minimax_trained.pth",
     load_model_path: Optional[str] = None,
+    checkpoint_dir: Optional[str] = None,
+    best_model_path: Optional[str] = None,
     # --- time limit ---
     max_minutes: Optional[float] = None,
     # --- logging ---
@@ -213,6 +248,7 @@ def train(
         per_alpha=per_alpha,
         per_beta_start=per_beta_start,
         per_beta_frames=per_beta_frames,
+        tau=tau,
     )
 
     if load_model_path is not None:
@@ -240,13 +276,18 @@ def train(
         for name in opponent_classes
     }
 
+    best_minimax_score = -1.0
+
     total_game_time = 0.0
     total_games = 0
+
+    if start_episode > 1:
+        print(f"Resuming from episode {start_episode} (epsilon={epsilon:.4f})")
 
     # ============================================================== #
     #  Episode loop                                                    #
     # ============================================================== #
-    for episode in range(1, num_episodes + 1):
+    for episode in range(start_episode, num_episodes + 1):
         # --- time limit check (graceful exit) ---
         if max_minutes is not None:
             elapsed = (time_module.perf_counter() - start_wall) / 60.0
@@ -262,7 +303,8 @@ def train(
 
         if opponent_type == "curriculum":
             cur_opp_type = _choose_opponent_from_curriculum(
-                episode, num_episodes)
+                episode, num_episodes, final_minimax_weight,
+                minimax_start_progress, minimax_full_progress)
         else:
             cur_opp_type = opponent_type
 
@@ -491,7 +533,14 @@ def train(
                     comb_d = draws1 + draws2
                     comb_l = losses1 + losses2
                     comb_n = comb_w + comb_d + comb_l
+                    comb_score = (comb_w + 0.5 * comb_d) / comb_n
                     print(f"    combined: win={comb_w/comb_n:.3f} W/D/L={comb_w}/{comb_d}/{comb_l}")
+
+                    # best model tracking (based on minimax combined score)
+                    if best_model_path is not None and comb_score > best_minimax_score:
+                        best_minimax_score = comb_score
+                        agent.save(best_model_path)
+                        print(f"  [new best model -> {best_model_path}] (score={comb_score:.3f})")
                 else:
                     n_games = 100
                     result = evaluate_fair(
@@ -541,6 +590,21 @@ def train(
         if episode % save_every == 0:
             agent.save(model_path)
             print(f"  [saved -> {model_path}]")
+            if checkpoint_dir is not None:
+                cp_path = os.path.join(checkpoint_dir, f"model_ep{episode}.pth")
+                agent.save(cp_path)
+                print(f"  [checkpoint -> {cp_path}]")
+
+            # resume state (episode + epsilon for continuing later)
+            resume_state = {
+                "episode": episode,
+                "epsilon": epsilon,
+                "model_path": model_path,
+            }
+            resume_path = os.path.join(
+                os.path.dirname(model_path) or ".", "resume_state.json")
+            with open(resume_path, "w", encoding="utf-8") as f:
+                json.dump(resume_state, f, indent=2)
 
     # --- close log ---
     train_log.close()
@@ -587,6 +651,12 @@ def _parse_args() -> argparse.Namespace:
                    help="Seconds per move for FastMinimaxAgent.")
     p.add_argument("--minimax_max_depth",   type=int,   default=None,
                    help="Max search depth for minimax (None = no limit).")
+    p.add_argument("--final_minimax_weight", type=float, default=0.65,
+                   help="Minimax proportion in final curriculum stage (default 0.65).")
+    p.add_argument("--minimax_start_progress", type=float, default=0.25,
+                   help="Progress fraction where minimax first appears (default 0.25).")
+    p.add_argument("--minimax_full_progress", type=float, default=0.75,
+                   help="Progress fraction where minimax reaches full weight (default 0.75).")
     p.add_argument("--learning_rate",       type=float, default=1e-3)
     p.add_argument("--gamma",               type=float, default=0.99)
     p.add_argument("--batch_size",          type=int,   default=64)
@@ -603,6 +673,10 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--model_path",          type=str,
                    default="models/minimax_trained.pth")
     p.add_argument("--load_model_path",     type=str,   default=None)
+    p.add_argument("--checkpoint_dir",      type=str,   default=None,
+                   help="Dir for episode-numbered checkpoints.")
+    p.add_argument("--best_model_path",     type=str,   default=None,
+                   help="Path to save best model (by minimax eval score).")
     p.add_argument("--max_minutes",         type=float, default=None,
                    help="Stop training after this many minutes (graceful save).")
     p.add_argument("--print_every",         type=int,   default=50)
@@ -632,6 +706,9 @@ if __name__ == "__main__":
         opponent_type=args.opponent_type,
         minimax_time_limit=args.minimax_time_limit,
         minimax_max_depth=args.minimax_max_depth,
+        final_minimax_weight=args.final_minimax_weight,
+        minimax_start_progress=args.minimax_start_progress,
+        minimax_full_progress=args.minimax_full_progress,
         learning_rate=args.learning_rate,
         gamma=args.gamma,
         batch_size=args.batch_size,
@@ -646,6 +723,8 @@ if __name__ == "__main__":
         per_beta_frames=args.per_beta_frames,
         model_path=args.model_path,
         load_model_path=args.load_model_path,
+        checkpoint_dir=args.checkpoint_dir,
+        best_model_path=args.best_model_path,
         max_minutes=args.max_minutes,
         print_every=args.print_every,
         eval_every=args.eval_every,

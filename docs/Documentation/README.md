@@ -219,7 +219,7 @@ Python wrapper around a **C++ minimax solver** (native binary in `cpp_solver/`).
 The **competition submission wrapper**. Satisfies the exact interface required by the tournament:
 
 ```python
-agent = StudentAgent(board_size=5, checkpoint_path="othello_agent.pt")
+agent = StudentAgent(board_size=6, checkpoint_path="othello_agent.pt")
 action = agent.select_action(observation)
 ```
 

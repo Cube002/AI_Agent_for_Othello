@@ -1,7 +1,7 @@
 """
 from environments.environment import OthelloEnv
 
-def play_game(agent_1, agent_2, board_size=5):
+def play_game(agent_1, agent_2, board_size=6):
     env = OthelloEnv(board_size=board_size)
     obs = env.reset()
     done = False
@@ -17,7 +17,7 @@ def play_game(agent_1, agent_2, board_size=5):
     return info["winner"], info["disc_diff"]
 
 
-def evaluate_fair(agent_a_class, agent_b_class, board_size=5, n_games=200):
+def evaluate_fair(agent_a_class, agent_b_class, board_size=6, n_games=200):
     a_wins = 0
     b_wins = 0
     draws = 0
@@ -61,7 +61,7 @@ import random
 from environment import OthelloEnv
 
 
-def play_game(agent_1, agent_2, board_size=5, random_opening_plies=2):
+def play_game(agent_1, agent_2, board_size=6, random_opening_plies=2):
     """
     Plays one complete game.
 
@@ -98,7 +98,7 @@ def play_game(agent_1, agent_2, board_size=5, random_opening_plies=2):
 def evaluate_fair(
     agent_a,
     agent_b_class,
-    board_size=5,
+    board_size=6,
     n_games=200,
     random_opening_plies=2,
 ):
