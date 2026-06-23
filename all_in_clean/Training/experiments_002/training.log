@@ -21,3 +21,4 @@ Resuming from episode 30001 (epsilon=0.0100)
 [30500/200000] opp=heuristic     eps=0.010 | avg_r=-0.240 win%=0.380 | loss=0.0018 q=0.502 gn=0.01 | beta=1.000 | td=0.2636 | W/D/L=219/8/273 | time=0.6s/game
 [30550/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.190 win%=0.400 | loss=0.0016 q=0.365 gn=0.01 | beta=1.000 | td=0.2421 | W/D/L=240/9/301 | time=0.6s/game
 [30600/200000] opp=fast_minimax  eps=0.010 | avg_r=0.010 win%=0.500 | loss=0.0017 q=0.339 gn=0.01 | beta=1.000 | td=0.2390 | W/D/L=269/9/322 | time=0.6s/game
+[30650/200000] opp=greedy        eps=0.010 | avg_r=0.180 win%=0.580 | loss=0.0010 q=0.378 gn=0.01 | beta=1.000 | td=0.1719 | W/D/L=298/11/341 | time=0.6s/game
