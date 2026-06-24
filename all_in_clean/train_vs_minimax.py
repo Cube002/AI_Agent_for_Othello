@@ -28,6 +28,7 @@ import torch
 
 from environment import OthelloEnv
 from evaluation import evaluate_fair, play_game
+from adv_evaluate import plot_from_csv
 from agent import DQNAgent
 from diagnostics import MetricsLogger, record_game, save_transcript
 
@@ -588,6 +589,13 @@ def train(
                                  win_rate=f"{win_rate:.3f}",
                                  score=f"{result['score']:.3f}")
             eval_log.close()
+
+            results_dir = os.path.dirname(model_path)
+            if os.path.isdir(results_dir):
+                try:
+                    plot_from_csv(results_dir)
+                except Exception as e:
+                    print(f"  [auto-plot warning: {e}]")
 
             # --- record full games at specified episodes ---
             if episode in record_eps_set:
