@@ -17,11 +17,11 @@ from evaluation import evaluate_fair
 
 DEFAULT_RESULTS_DIR = os.path.join(
     os.path.dirname(__file__),
-    "Training", "experiments_002", "results",
+    "Training", "experiments_014", "results",
 )
 DEFAULT_MODELS_DIR = os.path.join(
     os.path.dirname(__file__),
-    "Training", "experiments_002", "model_checkpoints",
+    "Training", "experiments_014", "model_checkpoints",
 )
 
 

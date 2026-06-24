@@ -120,7 +120,7 @@ def _parse_args() -> argparse.Namespace:
     tg.add_argument("--load_model_path",     type=str,   default=None)
     tg.add_argument("--board_size",          type=int,   default=6)
     tg.add_argument("--num_episodes",        type=int,   default=200_000)
-    tg.add_argument("--minimax_max_depth",   type=int,   default=5)
+    tg.add_argument("--minimax_max_depth",   type=int,   default=3)
     tg.add_argument("--minimax_time_limit",  type=float, default=1.0)
     tg.add_argument("--final_minimax_weight", type=float, default=0.60)
     tg.add_argument("--minimax_start_progress", type=float, default=0.05)
@@ -144,6 +144,9 @@ def _parse_args() -> argparse.Namespace:
     tg.add_argument("--no_double_dqn",       action="store_true")
     tg.add_argument("--max_minutes",         type=float, default=1000000)
 
+    tg.add_argument("--max-random-training-plies", type=int, default=4,
+                    help="Max random opening plies per player per episode. "
+                         "0 disables random openings. (default: 4)")
     tg.add_argument("--eval_every",          type=int,   default=1000)
     tg.add_argument("--save_every",          type=int,   default=1000)
     tg.add_argument("--print_every",         type=int,   default=50)
@@ -239,6 +242,7 @@ def main() -> None:
             checkpoint_dir=model_checkpoints_dir,
             best_model_path=best_model_path,
             max_minutes=args.max_minutes,
+            max_random_training_plies=args.max_random_training_plies,
             print_every=args.print_every,
             eval_every=args.eval_every,
             save_every=args.save_every,
@@ -312,6 +316,7 @@ def main() -> None:
             checkpoint_dir=model_checkpoints_dir,
             best_model_path=best_model_path,
             max_minutes=args.max_minutes,
+            max_random_training_plies=args.max_random_training_plies,
             print_every=args.print_every,
             eval_every=args.eval_every,
             save_every=args.save_every,
