@@ -279,15 +279,17 @@ Training with **maximum self-play focus**. The agent plays almost exclusively ag
 python train_max_selfplay.py --num_episodes 10000 --board_size 6
 ```
 
-#### `train_vs_minimax.py` (590+ lines)
-Training focused on **beating the minimax opponent**. Uses a curriculum opponent mix that progressively introduces the fast C++ minimax. The primary training script for the `guided_per_dqn` agent used in the `against_minimax` experiments.
+#### `train_vs_minimax.py` (782 lines)
+Training focused on **beating the minimax opponent**. Uses a curriculum opponent mix that progressively introduces the fast C++ minimax. The primary training script for the `guided_per_dqn` agent used in advanced training experiments.
 
 **Key features**:
-- **Curriculum opponent schedule**: starts weak (random/greedy/heuristic), shifts to ~65% minimax by late training.
+- **Curriculum opponent schedule**: starts weak (random/greedy/heuristic), shifts to ~65% minimax by late training. The minimax ramp-up is controlled by `minimax_start_progress` (default 0.25) and `minimax_full_progress` (default 0.75).
+- **Random training openings**: when `--max-random-training-plies > 0`, each episode picks N random plies (1..max) and plays 2×N random legal moves before the real game starts, forcing the agent to learn from diverse board positions.
 - **ε-greedy exploration** with opponent-aware epsilon floors (minimax floor = 0.20).
 - **Periodic evaluation** every `--eval_every` episodes, with **per-color breakdown** for minimax (as black vs as white, revealing color asymmetry).
-- **Full game recording** at configurable episodes (`--record_game_eps`, default `1200,3000`), saves Q-values and board states to JSON.
-- **Comprehensive CSV logging**: `{model_path}_train.csv` (episode, epsilon, reward, win%, loss, mean_q, grad_norm, td_error) and per-eval `_eval_ep*.csv` (per-opponent, per-color).
+- **Auto-plotting**: after each evaluation, `plot_from_csv()` generates `eval_winrate_vs_episodes.png` in the experiment root.
+- **Full game recording** at configurable episodes (`--record_game_eps`, default `5000,10000,20000,30000,40000,50000,100000,150000`), saves Q-values and board states to JSON.
+- **Comprehensive CSV logging**: `{model_path}_train.csv` (episode, epsilon, reward, per-opponent win rates, loss, mean_q, grad_norm, td_error) and per-eval `_eval_ep*.csv` (per-opponent, per-color).
 - **Profile mode** (`--profile`) prints timing breakdown of agent forward pass / opponent search / env step / train step.
 - **Time limit** (`--max_minutes`) for graceful stop-and-save.
 
@@ -303,8 +305,11 @@ python train_vs_minimax.py --use_per --heuristic_weight 0.2 \
 |---|---|---|
 | `--minimax_max_depth` | `None` | Fixed search depth for minimax opponent |
 | `--profile` | `False` | Print timing breakdown % every log interval |
-| `--record_game_eps` | `1200,3000` | Comma-separated episode numbers to record full games |
+| `--record_game_eps` | `5000,10000,...` | Comma-separated episode numbers to record full games |
 | `--n_record_games` | `3` | Games to record per checkpoint (agent as both colors) |
+| `--max-random-training-plies` | `4` | Max random opening plies per player (0 = disable) |
+| `--minimax_start_progress` | `0.25` | Progress fraction where minimax first appears |
+| `--minimax_full_progress` | `0.75` | Progress fraction where minimax reaches full weight |
 
 ---
 
@@ -487,9 +492,12 @@ cp models/guided_per_dqn_6_best_overnight.pth student_agents/othello_agent.pt
 | `per_alpha` | 0.6 | Prioritization exponent |
 | `per_beta_start` | 0.4 | Initial importance-sampling weight |
 | `minimax_max_depth` | None (unlimited) | Fixed search depth for minimax |
+| `minimax_start_progress` | 0.25 | Progress fraction where minimax first appears |
+| `minimax_full_progress` | 0.75 | Progress fraction where minimax reaches full weight |
 | `max_minutes` | None (no limit) | Graceful stop-and-save after N minutes |
+| `max_random_training_plies` | 4 | Max random opening plies per player (0=disable) |
 | `profile` | False | Print timing breakdown % |
-| `record_game_eps` | `1200,3000` | Episodes to record full game transcripts |
+| `record_game_eps` | `5000,10000,...` | Episodes to record full game transcripts |
 | `n_record_games` | 3 | Games per recording checkpoint |
 
 ---

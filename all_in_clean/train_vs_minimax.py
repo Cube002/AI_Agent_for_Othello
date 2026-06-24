@@ -212,7 +212,8 @@ def train(
 
     log_path = os.path.splitext(model_path)[0] + "_train.csv"
     train_log = MetricsLogger(log_path, [
-        "episode", "epsilon", "avg_reward", "win_rate",
+        "episode", "epsilon", "avg_reward",
+        "wr_random", "wr_greedy", "wr_heuristic", "wr_fast_minimax",
         "loss", "mean_q", "grad_norm", "mean_td_error", "beta",
     ])
 
@@ -471,11 +472,19 @@ def train(
 
             print(extra_line)
 
+            def _opp_wr(name):
+                s = opponent_stats[name]
+                total = s["wins"] + s["draws"] + s["losses"]
+                return f"{(s['wins'] + 0.5 * s['draws']) / total:.3f}" if total > 0 else ""
+
             train_log.log(
                 episode=episode,
                 epsilon=f"{epsilon:.4f}",
                 avg_reward=f"{avg_r:.3f}",
-                win_rate=f"{avg_w:.3f}",
+                wr_random=_opp_wr("random"),
+                wr_greedy=_opp_wr("greedy"),
+                wr_heuristic=_opp_wr("heuristic"),
+                wr_fast_minimax=_opp_wr("fast_minimax"),
                 loss=last_train_info["loss"] if last_train_info else "",
                 mean_q=last_train_info["mean_q"] if last_train_info else "",
                 grad_norm=last_train_info["grad_norm"] if last_train_info else "",
