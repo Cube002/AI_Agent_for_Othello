@@ -6,8 +6,7 @@ checkpoint management, best-model tracking, and resume support.
 
 Usage:
     # New experiment
-    uv run python advanced_training.py \\
-        --load_model_path models/guided_per_dqn_6_best_overnight.pth
+    uv run python advanced_training.py --load_model_path models/guided_per_dqn_6_best_overnight.pth
 
     # Resume existing experiment
     uv run python advanced_training.py --experiment_dir experiments_001

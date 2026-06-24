@@ -55,11 +55,15 @@ class DQNAgent:
 
         heuristic_weight:    Weight of the heuristic bonus added to Q-values
                              during action selection. 0.0 disables guided mode.
+        heuristic_weight_end:      Final heuristic weight after annealing.
+        heuristic_decay_episodes:  Episodes over which heuristic weight anneals.
 
         use_per:             Use Prioritized Experience Replay.
         per_alpha:           PER priority exponent (0 = uniform, 1 = full).
         per_beta_start:      Initial IS-correction exponent.
         per_beta_frames:     Frames over which beta anneals to 1.0.
+
+        tau:                 Polyak soft-update coefficient. 0.0 = hard update.
     """
 
     # ------------------------------------------------------------------ #
@@ -80,6 +84,8 @@ class DQNAgent:
         double_dqn: bool = True,
         # --- guided / heuristic ---
         heuristic_weight: float = 0.0,
+        heuristic_weight_end: float = 0.0,
+        heuristic_decay_episodes: int = 50_000,
         # --- prioritized replay ---
         use_per: bool = False,
         per_alpha: float = 0.6,
@@ -99,6 +105,9 @@ class DQNAgent:
         self.tau = tau
 
         self.heuristic_weight = heuristic_weight
+        self.heuristic_weight_start = heuristic_weight
+        self.heuristic_weight_end = heuristic_weight_end
+        self.heuristic_decay_episodes = heuristic_decay_episodes
 
         self.use_per = use_per
         self.per_beta_start = per_beta_start
@@ -133,6 +142,7 @@ class DQNAgent:
             self.replay_buffer = ReplayBuffer(capacity=buffer_capacity)
 
         self.train_steps = 0
+        self.episodes_seen = 0
 
     # ------------------------------------------------------------------ #
     #  State encoding                                                      #
@@ -142,6 +152,24 @@ class DQNAgent:
         """Board (H, W) → (1, H, W) float32 array."""
         board = observation["board"].astype(np.float32)
         return np.expand_dims(board, axis=0)
+
+    # ------------------------------------------------------------------ #
+    #  Heuristic-weight annealing                                          #
+    # ------------------------------------------------------------------ #
+
+    def current_heuristic_weight(self) -> float:
+        """Linearly anneal heuristic_weight from start to end over training."""
+        if self.heuristic_decay_episodes <= 0:
+            return self.heuristic_weight_end
+        progress = min(1.0, self.episodes_seen / self.heuristic_decay_episodes)
+        return (
+            self.heuristic_weight_start
+            + progress * (self.heuristic_weight_end - self.heuristic_weight_start)
+        )
+
+    def notify_episode_done(self) -> None:
+        """Called by the training loop at the end of each episode."""
+        self.episodes_seen += 1
 
     # ------------------------------------------------------------------ #
     #  Action selection                                                    #
@@ -175,8 +203,9 @@ class DQNAgent:
         masked_q[legal_actions] = q_values[legal_actions]
 
         # Optional heuristic bonus (guided mode)
-        if self.heuristic_weight > 0.0:
-            best_action = self._guided_argmax(observation, masked_q, legal_actions)
+        hw = self.current_heuristic_weight()
+        if hw > 0.0:
+            best_action = self._guided_argmax(observation, masked_q, legal_actions, hw)
         else:
             max_q = np.max(masked_q[legal_actions])
             best_actions = [a for a in legal_actions if masked_q[a] == max_q]
@@ -193,14 +222,15 @@ class DQNAgent:
         observation: Dict[str, Any],
         masked_q: np.ndarray,
         legal_actions: List[int],
+        hw: float,
     ) -> int:
-        """Return the legal action maximising Q + heuristic_weight * heuristic.
-        Ties are broken randomly to inject diversity at eval time."""
+        """Return the legal action maximising Q + hw * heuristic.
+        Ties are broken randomly to inject diversity."""
         best_actions = []
         best_score = -float("inf")
 
         for action in legal_actions:
-            score = masked_q[action] + self.heuristic_weight * self._heuristic_score(
+            score = masked_q[action] + hw * self._heuristic_score(
                 observation, action
             )
             if score > best_score:
@@ -411,8 +441,11 @@ class DQNAgent:
                 "target_state_dict": self.target_net.state_dict(),
                 "optimizer_state_dict": self.optimizer.state_dict(),
                 "train_steps": self.train_steps,
+                "episodes_seen": self.episodes_seen,
                 "config": {
                     "heuristic_weight": self.heuristic_weight,
+                    "heuristic_weight_end": self.heuristic_weight_end,
+                    "heuristic_decay_episodes": self.heuristic_decay_episodes,
                     "use_per": self.use_per,
                     "per_beta_start": self.per_beta_start,
                     "per_beta_frames": self.per_beta_frames,
@@ -442,6 +475,7 @@ class DQNAgent:
             self.optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
 
         self.train_steps = checkpoint.get("train_steps", 0)
+        self.episodes_seen = checkpoint.get("episodes_seen", 0)
 
         if "replay_buffer" in checkpoint:
             self.replay_buffer.set_state(checkpoint["replay_buffer"])
