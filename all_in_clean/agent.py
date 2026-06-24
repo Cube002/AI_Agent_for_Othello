@@ -458,7 +458,7 @@ class DQNAgent:
         )
 
     def load(self, path: str, load_optimizer: bool = False) -> None:
-        checkpoint = torch.load(path, map_location=self.device)
+        checkpoint = torch.load(path, map_location=self.device, weights_only=False)
 
         if checkpoint["board_size"] != self.board_size:
             raise ValueError(

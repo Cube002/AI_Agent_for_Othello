@@ -198,6 +198,8 @@ def train(
     save_every: int = 500,
     seed: int = 42,
     profile: bool = False,
+    # --- random opening plies (training diversity) ---
+    max_random_training_plies: int = 4,
     # --- diagnostics ---
     record_game_eps: str = "1200,3000",
     n_record_games: int = 3,
@@ -305,6 +307,20 @@ def train(
 
         obs = env.reset()
         done = False
+
+        # Random opening plies: pick N in [1, max_random_training_plies]
+        # and play 2*N random moves (one per player per ply) so both the
+        # agent and the opponent start from a diverse board position.
+        if max_random_training_plies > 0:
+            n_plies = random.randint(1, max_random_training_plies)
+            for _ in range(2 * n_plies):
+                if done:
+                    break
+                legal = obs["legal_actions"]
+                pass_action = obs.get("pass_action", board_size * board_size)
+                non_pass = [a for a in legal if a != pass_action]
+                action = random.choice(non_pass if non_pass else legal)
+                obs, _, done, _ = env.step(action)
 
         if opponent_type == "curriculum":
             cur_opp_type = _choose_opponent_from_curriculum(
@@ -540,6 +556,14 @@ def train(
                     comb_n = comb_w + comb_d + comb_l
                     comb_score = (comb_w + 0.5 * comb_d) / comb_n
                     print(f"    combined: win={comb_w/comb_n:.3f} W/D/L={comb_w}/{comb_d}/{comb_l}")
+
+                    # sanity check: aggregate vs per-color should be similar
+                    if abs(result['wins'] - comb_w) > 3:
+                        print(f"  *** DISCREPANCY: aggregate={result['wins']}W/"
+                              f"{result['losses']}L vs per-color={comb_w}W/"
+                              f"{comb_l}L (diff={result['wins'] - comb_w}) ***")
+                        print(f"      per-color black games: {wins1}W/{draws1}D/{losses1}L")
+                        print(f"      per-color white games: {wins2}W/{draws2}D/{losses2}L")
 
                     # best model tracking (based on minimax combined score)
                     if best_model_path is not None and comb_score > best_minimax_score:
