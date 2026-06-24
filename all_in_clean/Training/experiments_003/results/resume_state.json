@@ -1,0 +1,5 @@
+{
+  "episode": 2000,
+  "epsilon": 0.018389372607300565,
+  "model_path": "Training/experiments_003/results/latest.pth"
+}

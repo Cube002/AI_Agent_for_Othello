@@ -541,6 +541,14 @@ def train(
                     comb_score = (comb_w + 0.5 * comb_d) / comb_n
                     print(f"    combined: win={comb_w/comb_n:.3f} W/D/L={comb_w}/{comb_d}/{comb_l}")
 
+                    # sanity check: aggregate vs per-color should be similar
+                    if abs(result['wins'] - comb_w) > 3:
+                        print(f"  *** DISCREPANCY: aggregate={result['wins']}W/"
+                              f"{result['losses']}L vs per-color={comb_w}W/"
+                              f"{comb_l}L (diff={result['wins'] - comb_w}) ***")
+                        print(f"      per-color black games: {wins1}W/{draws1}D/{losses1}L")
+                        print(f"      per-color white games: {wins2}W/{draws2}D/{losses2}L")
+
                     # best model tracking (based on minimax combined score)
                     if best_model_path is not None and comb_score > best_minimax_score:
                         best_minimax_score = comb_score

@@ -1,0 +1,622 @@
+Setup saved -> Training/experiments_006/setup.json
+Results           -> Training/experiments_006/results/
+Model checkpoints -> Training/experiments_006/model_checkpoints/
+Best model        -> Training/experiments_006/best_model.pth
+
+Loaded weights + optimizer from: models/fork_experiment002_latest.pth
+  replay buffer size: 50000
+  train steps: 1378983
+Training: guided_per_dqn | board=6x6 | opponent=curriculum | episodes=200000 | minimax_time_limit=1.0s | minimax_max_depth=5
+[    1/200000] opp=heuristic     eps=0.050 | avg_r=-1.000 win%=0.000 | loss=0.0024 q=0.441 gn=0.04 | beta=1.000 | td=0.2514 | W/D/L=0/0/1 | time=3.3s/game
+[   50/200000] opp=heuristic     eps=0.049 | avg_r=0.200 win%=0.580 | loss=0.0030 q=0.388 gn=0.04 | beta=1.000 | td=0.3086 | W/D/L=29/2/19 | time=1.6s/game
+[  100/200000] opp=heuristic     eps=0.048 | avg_r=0.240 win%=0.600 | loss=0.0113 q=0.347 gn=0.07 | beta=1.000 | td=0.3184 | W/D/L=60/4/36 | time=1.7s/game
+[  150/200000] opp=greedy        eps=0.046 | avg_r=0.350 win%=0.660 | loss=0.0021 q=0.149 gn=0.05 | beta=1.000 | td=0.1880 | W/D/L=95/5/50 | time=1.7s/game
+[  200/200000] opp=greedy        eps=0.045 | avg_r=0.510 win%=0.740 | loss=0.0013 q=0.357 gn=0.04 | beta=1.000 | td=0.2464 | W/D/L=134/7/59 | time=1.6s/game
+[  250/200000] opp=heuristic     eps=0.044 | avg_r=0.490 win%=0.730 | loss=0.0030 q=0.375 gn=0.04 | beta=1.000 | td=0.2456 | W/D/L=168/8/74 | time=1.6s/game
+[  300/200000] opp=greedy        eps=0.043 | avg_r=0.510 win%=0.740 | loss=0.0009 q=0.373 gn=0.01 | beta=1.000 | td=0.2028 | W/D/L=208/10/82 | time=1.6s/game
+[  350/200000] opp=heuristic     eps=0.042 | avg_r=0.330 win%=0.650 | loss=0.0015 q=0.381 gn=0.02 | beta=1.000 | td=0.2228 | W/D/L=233/11/106 | time=1.6s/game
+[  400/200000] opp=heuristic     eps=0.041 | avg_r=0.100 win%=0.540 | loss=0.0008 q=0.322 gn=0.01 | beta=1.000 | td=0.2611 | W/D/L=262/12/126 | time=1.6s/game
+[  450/200000] opp=heuristic     eps=0.040 | avg_r=0.190 win%=0.590 | loss=0.0091 q=0.337 gn=0.06 | beta=1.000 | td=0.3250 | W/D/L=292/12/146 | time=1.6s/game
+[  500/200000] opp=greedy        eps=0.039 | avg_r=0.230 win%=0.610 | loss=0.0005 q=0.227 gn=0.01 | beta=1.000 | td=0.2448 | W/D/L=323/13/164 | time=1.6s/game
+[  550/200000] opp=heuristic     eps=0.038 | avg_r=0.260 win%=0.620 | loss=0.0036 q=0.439 gn=0.03 | beta=1.000 | td=0.2533 | W/D/L=354/14/182 | time=1.5s/game
+[  600/200000] opp=heuristic     eps=0.037 | avg_r=0.420 win%=0.700 | loss=0.0010 q=0.399 gn=0.02 | beta=1.000 | td=0.2064 | W/D/L=393/15/192 | time=1.5s/game
+[  650/200000] opp=heuristic     eps=0.036 | avg_r=0.460 win%=0.720 | loss=0.0031 q=0.454 gn=0.03 | beta=1.000 | td=0.3161 | W/D/L=426/16/208 | time=1.5s/game
+[  700/200000] opp=greedy        eps=0.035 | avg_r=0.330 win%=0.650 | loss=0.0032 q=0.525 gn=0.08 | beta=1.000 | td=0.3252 | W/D/L=458/18/224 | time=1.5s/game
+[  750/200000] opp=heuristic     eps=0.034 | avg_r=0.300 win%=0.630 | loss=0.0037 q=0.340 gn=0.09 | beta=1.000 | td=0.2157 | W/D/L=489/20/241 | time=1.5s/game
+[  800/200000] opp=heuristic     eps=0.034 | avg_r=0.390 win%=0.660 | loss=0.0041 q=0.569 gn=0.03 | beta=1.000 | td=0.2790 | W/D/L=524/25/251 | time=1.5s/game
+[  850/200000] opp=heuristic     eps=0.033 | avg_r=0.370 win%=0.660 | loss=0.0027 q=0.384 gn=0.02 | beta=1.000 | td=0.2577 | W/D/L=555/25/270 | time=1.5s/game
+[  900/200000] opp=heuristic     eps=0.032 | avg_r=0.300 win%=0.640 | loss=0.0013 q=0.100 gn=0.01 | beta=1.000 | td=0.2517 | W/D/L=588/27/285 | time=1.5s/game
+[  950/200000] opp=random        eps=0.031 | avg_r=0.350 win%=0.660 | loss=0.0035 q=0.360 gn=0.05 | beta=1.000 | td=0.3167 | W/D/L=621/28/301 | time=1.5s/game
+[ 1000/200000] opp=greedy        eps=0.030 | avg_r=0.370 win%=0.680 | loss=0.0074 q=0.375 gn=0.06 | beta=1.000 | td=0.3005 | W/D/L=656/28/316 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.940 win=0.920 W/D/L=92/4/4
+  greedy        score=0.850 win=0.850 W/D/L=85/0/15
+  heuristic     score=0.630 win=0.600 W/D/L=60/6/34
+  fast_minimax  score=0.220 win=0.220 W/D/L=11/0/39
+    as black:  win=0.200 W/D/L=5/0/20
+    as white:  win=0.440 W/D/L=11/0/14
+    combined: win=0.320 W/D/L=16/0/34
+  *** DISCREPANCY: aggregate=11W/39L vs per-color=16W/34L (diff=-5) ***
+      per-color black games: 5W/0D/20L
+      per-color white games: 11W/0D/14L
+  [new best model -> Training/experiments_006/best_model.pth] (score=0.320)
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep1000.pth]
+[ 1050/200000] opp=greedy        eps=0.030 | avg_r=0.380 win%=0.670 | loss=0.0017 q=0.448 gn=0.03 | beta=1.000 | td=0.1700 | W/D/L=688/32/330 | time=1.5s/game
+[ 1100/200000] opp=heuristic     eps=0.029 | avg_r=0.350 win%=0.650 | loss=0.0053 q=0.484 gn=0.06 | beta=1.000 | td=0.3237 | W/D/L=721/33/346 | time=1.5s/game
+[ 1150/200000] opp=heuristic     eps=0.028 | avg_r=0.210 win%=0.590 | loss=0.0027 q=0.144 gn=0.07 | beta=1.000 | td=0.2761 | W/D/L=747/35/368 | time=1.5s/game
+[ 1200/200000] opp=random        eps=0.027 | avg_r=0.220 win%=0.600 | loss=0.0013 q=0.442 gn=0.04 | beta=1.000 | td=0.2289 | W/D/L=781/35/384 | time=1.5s/game
+[ 1250/200000] opp=greedy        eps=0.027 | avg_r=0.330 win%=0.660 | loss=0.0032 q=0.388 gn=0.03 | beta=1.000 | td=0.2644 | W/D/L=813/36/401 | time=1.5s/game
+[ 1300/200000] opp=random        eps=0.026 | avg_r=0.340 win%=0.660 | loss=0.0058 q=0.558 gn=0.05 | beta=1.000 | td=0.3374 | W/D/L=847/37/416 | time=1.5s/game
+[ 1350/200000] opp=random        eps=0.025 | avg_r=0.280 win%=0.620 | loss=0.0032 q=0.494 gn=0.04 | beta=1.000 | td=0.2146 | W/D/L=875/40/435 | time=1.5s/game
+[ 1400/200000] opp=heuristic     eps=0.025 | avg_r=0.320 win%=0.640 | loss=0.0007 q=0.686 gn=0.01 | beta=1.000 | td=0.2998 | W/D/L=911/41/448 | time=1.5s/game
+[ 1450/200000] opp=heuristic     eps=0.024 | avg_r=0.340 win%=0.660 | loss=0.0095 q=0.767 gn=0.07 | beta=1.000 | td=0.2940 | W/D/L=941/42/467 | time=1.5s/game
+[ 1500/200000] opp=heuristic     eps=0.024 | avg_r=0.330 win%=0.640 | loss=0.0034 q=0.703 gn=0.04 | beta=1.000 | td=0.2712 | W/D/L=975/46/479 | time=1.5s/game
+[ 1550/200000] opp=heuristic     eps=0.023 | avg_r=0.450 win%=0.700 | loss=0.0034 q=0.418 gn=0.10 | beta=1.000 | td=0.2210 | W/D/L=1011/47/492 | time=1.5s/game
+[ 1600/200000] opp=greedy        eps=0.022 | avg_r=0.360 win%=0.660 | loss=0.0011 q=0.678 gn=0.01 | beta=1.000 | td=0.2323 | W/D/L=1041/50/509 | time=1.5s/game
+[ 1650/200000] opp=greedy        eps=0.022 | avg_r=0.270 win%=0.610 | loss=0.0040 q=0.547 gn=0.04 | beta=1.000 | td=0.2668 | W/D/L=1072/52/526 | time=1.5s/game
+[ 1700/200000] opp=random        eps=0.021 | avg_r=0.170 win%=0.570 | loss=0.0033 q=0.439 gn=0.03 | beta=1.000 | td=0.2939 | W/D/L=1098/53/549 | time=1.5s/game
+[ 1750/200000] opp=greedy        eps=0.021 | avg_r=0.080 win%=0.530 | loss=0.0032 q=0.471 gn=0.04 | beta=1.000 | td=0.2344 | W/D/L=1125/54/571 | time=1.5s/game
+[ 1800/200000] opp=heuristic     eps=0.020 | avg_r=0.140 win%=0.560 | loss=0.0040 q=0.475 gn=0.22 | beta=1.000 | td=0.3023 | W/D/L=1154/55/591 | time=1.5s/game
+[ 1850/200000] opp=heuristic     eps=0.020 | avg_r=0.200 win%=0.580 | loss=0.0042 q=0.597 gn=0.08 | beta=1.000 | td=0.2555 | W/D/L=1183/58/609 | time=1.5s/game
+[ 1900/200000] opp=random        eps=0.019 | avg_r=0.330 win%=0.650 | loss=0.0014 q=0.486 gn=0.04 | beta=1.000 | td=0.2620 | W/D/L=1219/58/623 | time=1.5s/game
+[ 1950/200000] opp=greedy        eps=0.019 | avg_r=0.470 win%=0.720 | loss=0.0032 q=0.668 gn=0.04 | beta=1.000 | td=0.2007 | W/D/L=1255/61/634 | time=1.5s/game
+[ 2000/200000] opp=heuristic     eps=0.018 | avg_r=0.410 win%=0.690 | loss=0.0012 q=0.710 gn=0.01 | beta=1.000 | td=0.2506 | W/D/L=1288/61/651 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.910 win=0.890 W/D/L=89/4/7
+  greedy        score=0.925 win=0.910 W/D/L=91/3/6
+  heuristic     score=0.630 win=0.630 W/D/L=63/0/37
+  fast_minimax  score=0.180 win=0.180 W/D/L=9/0/41
+    as black:  win=0.120 W/D/L=3/0/22
+    as white:  win=0.200 W/D/L=5/0/20
+    combined: win=0.160 W/D/L=8/0/42
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep2000.pth]
+[ 2050/200000] opp=heuristic     eps=0.018 | avg_r=0.310 win%=0.640 | loss=0.0046 q=0.597 gn=0.03 | beta=1.000 | td=0.2677 | W/D/L=1319/64/667 | time=1.5s/game
+[ 2100/200000] opp=greedy        eps=0.017 | avg_r=0.210 win%=0.580 | loss=0.0058 q=0.478 gn=0.05 | beta=1.000 | td=0.3074 | W/D/L=1346/66/688 | time=1.5s/game
+[ 2150/200000] opp=heuristic     eps=0.017 | avg_r=0.120 win%=0.550 | loss=0.0025 q=0.698 gn=0.02 | beta=1.000 | td=0.2828 | W/D/L=1374/66/710 | time=1.5s/game
+[ 2200/200000] opp=random        eps=0.017 | avg_r=0.220 win%=0.610 | loss=0.0041 q=0.508 gn=0.03 | beta=1.000 | td=0.3601 | W/D/L=1407/66/727 | time=1.5s/game
+[ 2250/200000] opp=heuristic     eps=0.016 | avg_r=0.360 win%=0.670 | loss=0.0045 q=0.671 gn=0.03 | beta=1.000 | td=0.2780 | W/D/L=1441/68/741 | time=1.5s/game
+[ 2300/200000] opp=random        eps=0.016 | avg_r=0.430 win%=0.700 | loss=0.0028 q=0.632 gn=0.04 | beta=1.000 | td=0.1889 | W/D/L=1477/69/754 | time=1.5s/game
+[ 2350/200000] opp=heuristic     eps=0.015 | avg_r=0.440 win%=0.710 | loss=0.0010 q=0.674 gn=0.01 | beta=1.000 | td=0.2462 | W/D/L=1512/70/768 | time=1.5s/game
+[ 2400/200000] opp=greedy        eps=0.015 | avg_r=0.340 win%=0.650 | loss=0.0016 q=0.561 gn=0.02 | beta=1.000 | td=0.2374 | W/D/L=1542/73/785 | time=1.5s/game
+[ 2450/200000] opp=random        eps=0.015 | avg_r=0.200 win%=0.580 | loss=0.0026 q=0.419 gn=0.03 | beta=1.000 | td=0.2444 | W/D/L=1570/74/806 | time=1.5s/game
+[ 2500/200000] opp=heuristic     eps=0.014 | avg_r=0.230 win%=0.600 | loss=0.0020 q=0.575 gn=0.01 | beta=1.000 | td=0.2729 | W/D/L=1602/76/822 | time=1.5s/game
+[ 2550/200000] opp=random        eps=0.014 | avg_r=0.450 win%=0.710 | loss=0.0010 q=0.700 gn=0.01 | beta=1.000 | td=0.3259 | W/D/L=1641/77/832 | time=1.5s/game
+[ 2600/200000] opp=heuristic     eps=0.014 | avg_r=0.420 win%=0.700 | loss=0.0085 q=0.562 gn=0.05 | beta=1.000 | td=0.4283 | W/D/L=1672/78/850 | time=1.5s/game
+[ 2650/200000] opp=random        eps=0.013 | avg_r=0.250 win%=0.620 | loss=0.0032 q=0.701 gn=0.02 | beta=1.000 | td=0.3524 | W/D/L=1703/78/869 | time=1.5s/game
+[ 2700/200000] opp=heuristic     eps=0.013 | avg_r=0.350 win%=0.670 | loss=0.0004 q=0.462 gn=0.02 | beta=1.000 | td=0.1917 | W/D/L=1739/79/882 | time=1.5s/game
+[ 2750/200000] opp=random        eps=0.013 | avg_r=0.410 win%=0.690 | loss=0.0015 q=0.634 gn=0.01 | beta=1.000 | td=0.3257 | W/D/L=1772/81/897 | time=1.5s/game
+[ 2800/200000] opp=greedy        eps=0.012 | avg_r=0.310 win%=0.640 | loss=0.0040 q=0.523 gn=0.06 | beta=1.000 | td=0.2558 | W/D/L=1803/82/915 | time=1.5s/game
+[ 2850/200000] opp=heuristic     eps=0.012 | avg_r=0.330 win%=0.660 | loss=0.0022 q=0.460 gn=0.03 | beta=1.000 | td=0.2164 | W/D/L=1838/82/930 | time=1.5s/game
+[ 2900/200000] opp=random        eps=0.012 | avg_r=0.420 win%=0.700 | loss=0.0065 q=0.664 gn=0.04 | beta=1.000 | td=0.2994 | W/D/L=1873/84/943 | time=1.5s/game
+[ 2950/200000] opp=heuristic     eps=0.011 | avg_r=0.360 win%=0.660 | loss=0.0032 q=0.561 gn=0.02 | beta=1.000 | td=0.3081 | W/D/L=1904/86/960 | time=1.5s/game
+[ 3000/200000] opp=heuristic     eps=0.011 | avg_r=0.360 win%=0.660 | loss=0.0011 q=0.522 gn=0.02 | beta=1.000 | td=0.2527 | W/D/L=1939/88/973 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.955 win=0.950 W/D/L=95/1/4
+  greedy        score=0.740 win=0.740 W/D/L=74/0/26
+  heuristic     score=0.510 win=0.490 W/D/L=49/4/47
+  fast_minimax  score=0.040 win=0.040 W/D/L=2/0/48
+    as black:  win=0.120 W/D/L=3/0/22
+    as white:  win=0.080 W/D/L=2/0/23
+    combined: win=0.100 W/D/L=5/0/45
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep3000.pth]
+[ 3050/200000] opp=heuristic     eps=0.011 | avg_r=0.310 win%=0.640 | loss=0.0018 q=0.620 gn=0.02 | beta=1.000 | td=0.2495 | W/D/L=1968/89/993 | time=1.5s/game
+[ 3100/200000] opp=greedy        eps=0.011 | avg_r=0.200 win%=0.590 | loss=0.0009 q=0.700 gn=0.01 | beta=1.000 | td=0.2756 | W/D/L=1998/90/1012 | time=1.5s/game
+[ 3150/200000] opp=heuristic     eps=0.010 | avg_r=0.360 win%=0.660 | loss=0.0010 q=0.480 gn=0.02 | beta=1.000 | td=0.2779 | W/D/L=2034/93/1023 | time=1.5s/game
+[ 3200/200000] opp=greedy        eps=0.010 | avg_r=0.410 win%=0.670 | loss=0.0022 q=0.643 gn=0.03 | beta=1.000 | td=0.2309 | W/D/L=2065/97/1038 | time=1.5s/game
+[ 3250/200000] opp=heuristic     eps=0.010 | avg_r=0.330 win%=0.640 | loss=0.0025 q=0.530 gn=0.04 | beta=1.000 | td=0.2346 | W/D/L=2098/98/1054 | time=1.5s/game
+[ 3300/200000] opp=heuristic     eps=0.010 | avg_r=0.370 win%=0.670 | loss=0.0020 q=0.488 gn=0.02 | beta=1.000 | td=0.2605 | W/D/L=2132/100/1068 | time=1.5s/game
+[ 3350/200000] opp=greedy        eps=0.010 | avg_r=0.390 win%=0.670 | loss=0.0048 q=0.624 gn=0.07 | beta=1.000 | td=0.2417 | W/D/L=2165/103/1082 | time=1.5s/game
+[ 3400/200000] opp=random        eps=0.010 | avg_r=0.430 win%=0.700 | loss=0.0053 q=0.546 gn=0.05 | beta=1.000 | td=0.2971 | W/D/L=2202/103/1095 | time=1.5s/game
+[ 3450/200000] opp=heuristic     eps=0.010 | avg_r=0.370 win%=0.680 | loss=0.0022 q=0.449 gn=0.08 | beta=1.000 | td=0.1724 | W/D/L=2233/104/1113 | time=1.5s/game
+[ 3500/200000] opp=greedy        eps=0.010 | avg_r=0.230 win%=0.600 | loss=0.0030 q=0.612 gn=0.02 | beta=1.000 | td=0.2721 | W/D/L=2262/106/1132 | time=1.5s/game
+[ 3550/200000] opp=heuristic     eps=0.010 | avg_r=0.230 win%=0.600 | loss=0.0021 q=0.579 gn=0.03 | beta=1.000 | td=0.2790 | W/D/L=2293/107/1150 | time=1.5s/game
+[ 3600/200000] opp=greedy        eps=0.010 | avg_r=0.210 win%=0.590 | loss=0.0019 q=0.828 gn=0.03 | beta=1.000 | td=0.2173 | W/D/L=2321/109/1170 | time=1.5s/game
+[ 3650/200000] opp=heuristic     eps=0.010 | avg_r=0.140 win%=0.550 | loss=0.0017 q=0.578 gn=0.01 | beta=1.000 | td=0.2527 | W/D/L=2348/111/1191 | time=1.5s/game
+[ 3700/200000] opp=heuristic     eps=0.010 | avg_r=0.150 win%=0.560 | loss=0.0052 q=0.572 gn=0.04 | beta=1.000 | td=0.2372 | W/D/L=2377/112/1211 | time=1.5s/game
+[ 3750/200000] opp=greedy        eps=0.010 | avg_r=0.110 win%=0.540 | loss=0.0040 q=0.673 gn=0.06 | beta=1.000 | td=0.2416 | W/D/L=2402/114/1234 | time=1.5s/game
+[ 3800/200000] opp=greedy        eps=0.010 | avg_r=0.120 win%=0.550 | loss=0.0058 q=0.654 gn=0.06 | beta=1.000 | td=0.2625 | W/D/L=2432/114/1254 | time=1.5s/game
+[ 3850/200000] opp=greedy        eps=0.010 | avg_r=0.230 win%=0.610 | loss=0.0042 q=0.468 gn=0.03 | beta=1.000 | td=0.2303 | W/D/L=2463/115/1272 | time=1.5s/game
+[ 3900/200000] opp=greedy        eps=0.010 | avg_r=0.360 win%=0.670 | loss=0.0012 q=0.653 gn=0.01 | beta=1.000 | td=0.2645 | W/D/L=2499/116/1285 | time=1.5s/game
+[ 3950/200000] opp=heuristic     eps=0.010 | avg_r=0.400 win%=0.690 | loss=0.0006 q=0.393 gn=0.01 | beta=1.000 | td=0.1869 | W/D/L=2532/117/1301 | time=1.5s/game
+[ 4000/200000] opp=heuristic     eps=0.010 | avg_r=0.370 win%=0.670 | loss=0.0038 q=0.672 gn=0.03 | beta=1.000 | td=0.2284 | W/D/L=2566/119/1315 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.915 win=0.910 W/D/L=91/1/8
+  greedy        score=0.760 win=0.760 W/D/L=76/0/24
+  heuristic     score=0.700 win=0.680 W/D/L=68/4/28
+  fast_minimax  score=0.240 win=0.220 W/D/L=11/2/37
+    as black:  win=0.080 W/D/L=2/3/20
+    as white:  win=0.160 W/D/L=4/0/21
+    combined: win=0.120 W/D/L=6/3/41
+  *** DISCREPANCY: aggregate=11W/37L vs per-color=6W/41L (diff=5) ***
+      per-color black games: 2W/3D/20L
+      per-color white games: 4W/0D/21L
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep4000.pth]
+[ 4050/200000] opp=heuristic     eps=0.010 | avg_r=0.340 win%=0.650 | loss=0.0015 q=0.594 gn=0.06 | beta=1.000 | td=0.2554 | W/D/L=2597/121/1332 | time=1.5s/game
+[ 4100/200000] opp=greedy        eps=0.010 | avg_r=0.300 win%=0.620 | loss=0.0031 q=0.663 gn=0.05 | beta=1.000 | td=0.1712 | W/D/L=2628/125/1347 | time=1.5s/game
+[ 4150/200000] opp=greedy        eps=0.010 | avg_r=0.380 win%=0.650 | loss=0.0007 q=0.639 gn=0.01 | beta=1.000 | td=0.1786 | W/D/L=2662/129/1359 | time=1.5s/game
+[ 4200/200000] opp=random        eps=0.010 | avg_r=0.410 win%=0.680 | loss=0.0012 q=0.525 gn=0.01 | beta=1.000 | td=0.2331 | W/D/L=2696/130/1374 | time=1.5s/game
+[ 4250/200000] opp=heuristic     eps=0.010 | avg_r=0.390 win%=0.690 | loss=0.0044 q=0.733 gn=0.04 | beta=1.000 | td=0.3831 | W/D/L=2731/130/1389 | time=1.5s/game
+[ 4300/200000] opp=heuristic     eps=0.010 | avg_r=0.260 win%=0.620 | loss=0.0016 q=0.564 gn=0.02 | beta=1.000 | td=0.2117 | W/D/L=2758/132/1410 | time=1.5s/game
+[ 4350/200000] opp=random        eps=0.010 | avg_r=0.300 win%=0.630 | loss=0.0024 q=0.473 gn=0.05 | beta=1.000 | td=0.2410 | W/D/L=2794/134/1422 | time=1.5s/game
+[ 4400/200000] opp=heuristic     eps=0.010 | avg_r=0.350 win%=0.660 | loss=0.0036 q=0.522 gn=0.04 | beta=1.000 | td=0.2984 | W/D/L=2824/135/1441 | time=1.5s/game
+[ 4450/200000] opp=heuristic     eps=0.010 | avg_r=0.310 win%=0.640 | loss=0.0015 q=0.604 gn=0.01 | beta=1.000 | td=0.3240 | W/D/L=2858/137/1455 | time=1.5s/game
+[ 4500/200000] opp=greedy        eps=0.010 | avg_r=0.250 win%=0.610 | loss=0.0089 q=0.535 gn=0.07 | beta=1.000 | td=0.3192 | W/D/L=2885/138/1477 | time=1.5s/game
+[ 4550/200000] opp=heuristic     eps=0.010 | avg_r=0.180 win%=0.580 | loss=0.0041 q=0.694 gn=0.03 | beta=1.000 | td=0.3861 | W/D/L=2916/139/1495 | time=1.5s/game
+[ 4600/200000] opp=heuristic     eps=0.010 | avg_r=0.280 win%=0.620 | loss=0.0037 q=0.526 gn=0.05 | beta=1.000 | td=0.2062 | W/D/L=2947/142/1511 | time=1.5s/game
+[ 4650/200000] opp=heuristic     eps=0.010 | avg_r=0.270 win%=0.610 | loss=0.0043 q=0.668 gn=0.13 | beta=1.000 | td=0.2062 | W/D/L=2977/144/1529 | time=1.5s/game
+[ 4700/200000] opp=heuristic     eps=0.010 | avg_r=0.370 win%=0.660 | loss=0.0014 q=0.661 gn=0.01 | beta=1.000 | td=0.2511 | W/D/L=3013/147/1540 | time=1.5s/game
+[ 4750/200000] opp=random        eps=0.010 | avg_r=0.370 win%=0.670 | loss=0.0010 q=0.636 gn=0.01 | beta=1.000 | td=0.2311 | W/D/L=3044/147/1559 | time=1.5s/game
+[ 4800/200000] opp=greedy        eps=0.010 | avg_r=0.130 win%=0.560 | loss=0.0063 q=0.760 gn=0.06 | beta=1.000 | td=0.2774 | W/D/L=3069/148/1583 | time=1.5s/game
+[ 4850/200000] opp=heuristic     eps=0.010 | avg_r=0.090 win%=0.530 | loss=0.0028 q=0.590 gn=0.02 | beta=1.000 | td=0.3045 | W/D/L=3097/150/1603 | time=1.5s/game
+[ 4900/200000] opp=heuristic     eps=0.010 | avg_r=0.210 win%=0.580 | loss=0.0012 q=0.554 gn=0.03 | beta=1.000 | td=0.2425 | W/D/L=3127/153/1620 | time=1.5s/game
+[ 4950/200000] opp=random        eps=0.010 | avg_r=0.270 win%=0.610 | loss=0.0012 q=0.587 gn=0.01 | beta=1.000 | td=0.2070 | W/D/L=3158/155/1637 | time=1.5s/game
+[ 5000/200000] opp=greedy        eps=0.010 | avg_r=0.250 win%=0.600 | loss=0.0058 q=0.372 gn=0.18 | beta=1.000 | td=0.2657 | W/D/L=3187/158/1655 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.870 win=0.850 W/D/L=85/4/11
+  greedy        score=0.880 win=0.880 W/D/L=88/0/12
+  heuristic     score=0.700 win=0.700 W/D/L=70/0/30
+  fast_minimax  score=0.080 win=0.080 W/D/L=4/0/46
+    as black:  win=0.000 W/D/L=0/0/25
+    as white:  win=0.200 W/D/L=5/0/20
+    combined: win=0.100 W/D/L=5/0/45
+  Recording 3 games vs minimax to Training/experiments_006/results/games/ ...
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep5000.pth]
+[ 5050/200000] opp=greedy        eps=0.010 | avg_r=0.340 win%=0.650 | loss=0.0029 q=0.566 gn=0.07 | beta=1.000 | td=0.2193 | W/D/L=3223/159/1668 | time=1.5s/game
+[ 5100/200000] opp=heuristic     eps=0.010 | avg_r=0.470 win%=0.730 | loss=0.0023 q=0.685 gn=0.02 | beta=1.000 | td=0.2171 | W/D/L=3260/159/1681 | time=1.5s/game
+[ 5150/200000] opp=random        eps=0.010 | avg_r=0.380 win%=0.670 | loss=0.0022 q=0.813 gn=0.04 | beta=1.000 | td=0.2449 | W/D/L=3290/163/1697 | time=1.5s/game
+[ 5200/200000] opp=heuristic     eps=0.010 | avg_r=0.330 win%=0.630 | loss=0.0018 q=0.738 gn=0.04 | beta=1.000 | td=0.2275 | W/D/L=3323/166/1711 | time=1.5s/game
+[ 5250/200000] opp=heuristic     eps=0.010 | avg_r=0.260 win%=0.600 | loss=0.0153 q=0.812 gn=0.06 | beta=1.000 | td=0.3335 | W/D/L=3350/169/1731 | time=1.5s/game
+[ 5300/200000] opp=random        eps=0.010 | avg_r=0.130 win%=0.540 | loss=0.0039 q=0.624 gn=0.04 | beta=1.000 | td=0.2943 | W/D/L=3377/171/1752 | time=1.5s/game
+[ 5350/200000] opp=greedy        eps=0.010 | avg_r=0.200 win%=0.580 | loss=0.0057 q=0.727 gn=0.07 | beta=1.000 | td=0.3041 | W/D/L=3408/173/1769 | time=1.5s/game
+[ 5400/200000] opp=random        eps=0.010 | avg_r=0.430 win%=0.690 | loss=0.0033 q=0.710 gn=0.03 | beta=1.000 | td=0.3208 | W/D/L=3446/176/1778 | time=1.5s/game
+[ 5450/200000] opp=heuristic     eps=0.010 | avg_r=0.430 win%=0.680 | loss=0.0021 q=0.607 gn=0.03 | beta=1.000 | td=0.1884 | W/D/L=3476/180/1794 | time=1.5s/game
+[ 5500/200000] opp=greedy        eps=0.010 | avg_r=0.320 win%=0.630 | loss=0.0017 q=0.759 gn=0.03 | beta=1.000 | td=0.2287 | W/D/L=3509/182/1809 | time=1.5s/game
+[ 5550/200000] opp=heuristic     eps=0.010 | avg_r=0.460 win%=0.710 | loss=0.0019 q=0.715 gn=0.01 | beta=1.000 | td=0.2720 | W/D/L=3547/184/1819 | time=1.5s/game
+[ 5600/200000] opp=heuristic     eps=0.010 | avg_r=0.490 win%=0.730 | loss=0.0064 q=0.778 gn=0.07 | beta=1.000 | td=0.2947 | W/D/L=3582/185/1833 | time=1.5s/game
+[ 5650/200000] opp=heuristic     eps=0.010 | avg_r=0.320 win%=0.640 | loss=0.0028 q=0.764 gn=0.02 | beta=1.000 | td=0.2401 | W/D/L=3611/188/1851 | time=1.5s/game
+[ 5700/200000] opp=random        eps=0.010 | avg_r=0.290 win%=0.620 | loss=0.0014 q=0.763 gn=0.01 | beta=1.000 | td=0.2929 | W/D/L=3644/190/1866 | time=1.5s/game
+[ 5750/200000] opp=greedy        eps=0.010 | avg_r=0.350 win%=0.660 | loss=0.0020 q=0.707 gn=0.04 | beta=1.000 | td=0.3153 | W/D/L=3677/191/1882 | time=1.5s/game
+[ 5800/200000] opp=heuristic     eps=0.010 | avg_r=0.390 win%=0.680 | loss=0.0039 q=0.881 gn=0.03 | beta=1.000 | td=0.2664 | W/D/L=3712/193/1895 | time=1.5s/game
+[ 5850/200000] opp=heuristic     eps=0.010 | avg_r=0.350 win%=0.650 | loss=0.0023 q=0.641 gn=0.02 | beta=1.000 | td=0.3071 | W/D/L=3742/196/1912 | time=1.5s/game
+[ 5900/200000] opp=random        eps=0.010 | avg_r=0.310 win%=0.630 | loss=0.0037 q=0.759 gn=0.02 | beta=1.000 | td=0.3697 | W/D/L=3775/198/1927 | time=1.5s/game
+[ 5950/200000] opp=random        eps=0.010 | avg_r=0.300 win%=0.630 | loss=0.0076 q=0.424 gn=0.06 | beta=1.000 | td=0.3579 | W/D/L=3805/200/1945 | time=1.5s/game
+[ 6000/200000] opp=heuristic     eps=0.010 | avg_r=0.240 win%=0.600 | loss=0.0061 q=0.608 gn=0.05 | beta=1.000 | td=0.3032 | W/D/L=3835/202/1963 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.930 win=0.930 W/D/L=93/0/7
+  greedy        score=0.640 win=0.640 W/D/L=64/0/36
+  heuristic     score=0.780 win=0.780 W/D/L=78/0/22
+  fast_minimax  score=0.130 win=0.120 W/D/L=6/1/43
+    as black:  win=0.080 W/D/L=2/0/23
+    as white:  win=0.160 W/D/L=4/2/19
+    combined: win=0.120 W/D/L=6/2/42
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep6000.pth]
+[ 6050/200000] opp=random        eps=0.010 | avg_r=0.260 win%=0.620 | loss=0.0097 q=0.761 gn=0.07 | beta=1.000 | td=0.4016 | W/D/L=3867/202/1981 | time=1.5s/game
+[ 6100/200000] opp=greedy        eps=0.010 | avg_r=0.220 win%=0.600 | loss=0.0058 q=1.010 gn=0.05 | beta=1.000 | td=0.3060 | W/D/L=3895/204/2001 | time=1.5s/game
+[ 6150/200000] opp=random        eps=0.010 | avg_r=0.230 win%=0.590 | loss=0.0045 q=0.628 gn=0.05 | beta=1.000 | td=0.2954 | W/D/L=3926/207/2017 | time=1.5s/game
+[ 6200/200000] opp=heuristic     eps=0.010 | avg_r=0.300 win%=0.630 | loss=0.0017 q=0.582 gn=0.02 | beta=1.000 | td=0.2687 | W/D/L=3958/208/2034 | time=1.5s/game
+[ 6250/200000] opp=heuristic     eps=0.010 | avg_r=0.260 win%=0.620 | loss=0.0037 q=0.670 gn=0.03 | beta=1.000 | td=0.3117 | W/D/L=3988/209/2053 | time=1.5s/game
+[ 6300/200000] opp=greedy        eps=0.010 | avg_r=0.170 win%=0.570 | loss=0.0028 q=0.637 gn=0.02 | beta=1.000 | td=0.3194 | W/D/L=4015/211/2074 | time=1.5s/game
+[ 6350/200000] opp=heuristic     eps=0.010 | avg_r=0.220 win%=0.600 | loss=0.0054 q=0.745 gn=0.11 | beta=1.000 | td=0.2470 | W/D/L=4048/211/2091 | time=1.5s/game
+[ 6400/200000] opp=random        eps=0.010 | avg_r=0.360 win%=0.680 | loss=0.0014 q=0.739 gn=0.02 | beta=1.000 | td=0.2637 | W/D/L=4083/211/2106 | time=1.5s/game
+[ 6450/200000] opp=heuristic     eps=0.010 | avg_r=0.350 win%=0.670 | loss=0.0020 q=0.715 gn=0.02 | beta=1.000 | td=0.2398 | W/D/L=4115/212/2123 | time=1.5s/game
+[ 6500/200000] opp=greedy        eps=0.010 | avg_r=0.190 win%=0.590 | loss=0.0021 q=0.612 gn=0.02 | beta=1.000 | td=0.2642 | W/D/L=4142/212/2146 | time=1.5s/game
+[ 6550/200000] opp=random        eps=0.010 | avg_r=0.280 win%=0.630 | loss=0.0033 q=0.659 gn=0.03 | beta=1.000 | td=0.3401 | W/D/L=4178/214/2158 | time=1.5s/game
+[ 6600/200000] opp=heuristic     eps=0.010 | avg_r=0.410 win%=0.690 | loss=0.0039 q=0.568 gn=0.04 | beta=1.000 | td=0.2357 | W/D/L=4211/215/2174 | time=1.5s/game
+[ 6650/200000] opp=heuristic     eps=0.010 | avg_r=0.350 win%=0.670 | loss=0.0049 q=0.747 gn=0.04 | beta=1.000 | td=0.3141 | W/D/L=4245/215/2190 | time=1.5s/game
+[ 6700/200000] opp=heuristic     eps=0.010 | avg_r=0.290 win%=0.630 | loss=0.0014 q=0.638 gn=0.02 | beta=1.000 | td=0.2741 | W/D/L=4274/218/2208 | time=1.5s/game
+[ 6750/200000] opp=random        eps=0.010 | avg_r=0.390 win%=0.670 | loss=0.0029 q=0.664 gn=0.03 | beta=1.000 | td=0.3016 | W/D/L=4312/220/2218 | time=1.5s/game
+[ 6800/200000] opp=greedy        eps=0.010 | avg_r=0.430 win%=0.680 | loss=0.0043 q=0.598 gn=0.04 | beta=1.000 | td=0.2701 | W/D/L=4342/225/2233 | time=1.5s/game
+[ 6850/200000] opp=random        eps=0.010 | avg_r=0.410 win%=0.680 | loss=0.0029 q=0.523 gn=0.10 | beta=1.000 | td=0.2502 | W/D/L=4380/225/2245 | time=1.5s/game
+[ 6900/200000] opp=heuristic     eps=0.010 | avg_r=0.420 win%=0.680 | loss=0.0033 q=0.617 gn=0.04 | beta=1.000 | td=0.2767 | W/D/L=4410/231/2259 | time=1.5s/game
+[ 6950/200000] opp=heuristic     eps=0.010 | avg_r=0.310 win%=0.610 | loss=0.0011 q=0.586 gn=0.01 | beta=1.000 | td=0.1861 | W/D/L=4441/234/2275 | time=1.5s/game
+[ 7000/200000] opp=random        eps=0.010 | avg_r=0.330 win%=0.640 | loss=0.0026 q=0.576 gn=0.02 | beta=1.000 | td=0.2569 | W/D/L=4474/236/2290 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.935 win=0.930 W/D/L=93/1/6
+  greedy        score=0.780 win=0.760 W/D/L=76/4/20
+  heuristic     score=0.690 win=0.690 W/D/L=69/0/31
+  fast_minimax  score=0.020 win=0.020 W/D/L=1/0/49
+    as black:  win=0.000 W/D/L=0/0/25
+    as white:  win=0.160 W/D/L=4/0/21
+    combined: win=0.080 W/D/L=4/0/46
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep7000.pth]
+[ 7050/200000] opp=heuristic     eps=0.010 | avg_r=0.400 win%=0.680 | loss=0.0020 q=0.719 gn=0.02 | beta=1.000 | td=0.2804 | W/D/L=4509/238/2303 | time=1.5s/game
+[ 7100/200000] opp=greedy        eps=0.010 | avg_r=0.400 win%=0.680 | loss=0.0013 q=0.556 gn=0.02 | beta=1.000 | td=0.2691 | W/D/L=4542/240/2318 | time=1.5s/game
+[ 7150/200000] opp=heuristic     eps=0.010 | avg_r=0.320 win%=0.640 | loss=0.0015 q=0.661 gn=0.01 | beta=1.000 | td=0.2254 | W/D/L=4573/242/2335 | time=1.5s/game
+[ 7200/200000] opp=random        eps=0.010 | avg_r=0.310 win%=0.640 | loss=0.0120 q=0.497 gn=0.12 | beta=1.000 | td=0.3136 | W/D/L=4606/243/2351 | time=1.5s/game
+[ 7250/200000] opp=heuristic     eps=0.010 | avg_r=0.240 win%=0.600 | loss=0.0009 q=0.667 gn=0.02 | beta=1.000 | td=0.2101 | W/D/L=4633/246/2371 | time=1.5s/game
+[ 7300/200000] opp=heuristic     eps=0.010 | avg_r=0.210 win%=0.590 | loss=0.0057 q=0.675 gn=0.03 | beta=1.000 | td=0.3363 | W/D/L=4665/246/2389 | time=1.5s/game
+[ 7350/200000] opp=greedy        eps=0.010 | avg_r=0.300 win%=0.640 | loss=0.0019 q=0.422 gn=0.02 | beta=1.000 | td=0.3529 | W/D/L=4697/248/2405 | time=1.5s/game
+[ 7400/200000] opp=random        eps=0.010 | avg_r=0.390 win%=0.680 | loss=0.0018 q=0.440 gn=0.02 | beta=1.000 | td=0.2434 | W/D/L=4733/249/2418 | time=1.5s/game
+[ 7450/200000] opp=greedy        eps=0.010 | avg_r=0.460 win%=0.720 | loss=0.0027 q=0.505 gn=0.04 | beta=1.000 | td=0.2585 | W/D/L=4769/250/2431 | time=1.5s/game
+[ 7500/200000] opp=greedy        eps=0.010 | avg_r=0.420 win%=0.700 | loss=0.0037 q=0.607 gn=0.08 | beta=1.000 | td=0.2269 | W/D/L=4803/251/2446 | time=1.5s/game
+[ 7550/200000] opp=greedy        eps=0.010 | avg_r=0.400 win%=0.680 | loss=0.0009 q=0.608 gn=0.02 | beta=1.000 | td=0.2470 | W/D/L=4837/254/2459 | time=1.5s/game
+[ 7600/200000] opp=greedy        eps=0.010 | avg_r=0.430 win%=0.690 | loss=0.0024 q=0.668 gn=0.03 | beta=1.000 | td=0.2274 | W/D/L=4872/256/2472 | time=1.5s/game
+[ 7650/200000] opp=greedy        eps=0.010 | avg_r=0.520 win%=0.750 | loss=0.0021 q=0.489 gn=0.04 | beta=1.000 | td=0.2628 | W/D/L=4912/256/2482 | time=1.5s/game
+[ 7700/200000] opp=heuristic     eps=0.010 | avg_r=0.470 win%=0.730 | loss=0.0033 q=0.611 gn=0.03 | beta=1.000 | td=0.2555 | W/D/L=4945/257/2498 | time=1.5s/game
+[ 7750/200000] opp=heuristic     eps=0.010 | avg_r=0.260 win%=0.620 | loss=0.0030 q=0.801 gn=0.03 | beta=1.000 | td=0.2020 | W/D/L=4974/258/2518 | time=1.5s/game
+[ 7800/200000] opp=heuristic     eps=0.010 | avg_r=0.320 win%=0.650 | loss=0.0022 q=0.622 gn=0.02 | beta=1.000 | td=0.2303 | W/D/L=5010/259/2531 | time=1.5s/game
+[ 7850/200000] opp=random        eps=0.010 | avg_r=0.350 win%=0.660 | loss=0.0068 q=0.526 gn=0.06 | beta=1.000 | td=0.3035 | W/D/L=5040/261/2549 | time=1.5s/game
+[ 7900/200000] opp=heuristic     eps=0.010 | avg_r=0.240 win%=0.600 | loss=0.0021 q=0.493 gn=0.03 | beta=1.000 | td=0.2648 | W/D/L=5070/263/2567 | time=1.5s/game
+[ 7950/200000] opp=heuristic     eps=0.010 | avg_r=0.330 win%=0.650 | loss=0.0030 q=0.496 gn=0.04 | beta=1.000 | td=0.2415 | W/D/L=5105/264/2581 | time=1.5s/game
+[ 8000/200000] opp=random        eps=0.010 | avg_r=0.400 win%=0.680 | loss=0.0032 q=0.615 gn=0.05 | beta=1.000 | td=0.1870 | W/D/L=5138/267/2595 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.900 win=0.890 W/D/L=89/2/9
+  greedy        score=0.775 win=0.720 W/D/L=72/11/17
+  heuristic     score=0.550 win=0.550 W/D/L=55/0/45
+  fast_minimax  score=0.000 win=0.000 W/D/L=0/0/50
+    as black:  win=0.000 W/D/L=0/0/25
+    as white:  win=0.000 W/D/L=0/0/25
+    combined: win=0.000 W/D/L=0/0/50
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep8000.pth]
+[ 8050/200000] opp=greedy        eps=0.010 | avg_r=0.330 win%=0.650 | loss=0.0040 q=0.590 gn=0.05 | beta=1.000 | td=0.2496 | W/D/L=5170/267/2613 | time=1.5s/game
+[ 8100/200000] opp=heuristic     eps=0.010 | avg_r=0.320 win%=0.660 | loss=0.0010 q=0.691 gn=0.01 | beta=1.000 | td=0.2054 | W/D/L=5204/267/2629 | time=1.5s/game
+[ 8150/200000] opp=heuristic     eps=0.010 | avg_r=0.340 win%=0.650 | loss=0.0045 q=0.593 gn=0.08 | beta=1.000 | td=0.2412 | W/D/L=5235/271/2644 | time=1.5s/game
+[ 8200/200000] opp=heuristic     eps=0.010 | avg_r=0.380 win%=0.670 | loss=0.0019 q=0.614 gn=0.04 | beta=1.000 | td=0.1821 | W/D/L=5271/271/2658 | time=1.5s/game
+[ 8250/200000] opp=greedy        eps=0.010 | avg_r=0.360 win%=0.670 | loss=0.0012 q=0.429 gn=0.04 | beta=1.000 | td=0.2801 | W/D/L=5302/273/2675 | time=1.5s/game
+[ 8300/200000] opp=greedy        eps=0.010 | avg_r=0.350 win%=0.660 | loss=0.0050 q=0.604 gn=0.06 | beta=1.000 | td=0.2778 | W/D/L=5337/274/2689 | time=1.5s/game
+[ 8350/200000] opp=greedy        eps=0.010 | avg_r=0.370 win%=0.680 | loss=0.0022 q=0.530 gn=0.03 | beta=1.000 | td=0.1757 | W/D/L=5370/274/2706 | time=1.5s/game
+[ 8400/200000] opp=greedy        eps=0.010 | avg_r=0.390 win%=0.680 | loss=0.0042 q=0.747 gn=0.03 | beta=1.000 | td=0.2556 | W/D/L=5405/277/2718 | time=1.5s/game
+[ 8450/200000] opp=heuristic     eps=0.010 | avg_r=0.370 win%=0.660 | loss=0.0005 q=0.569 gn=0.01 | beta=1.000 | td=0.1891 | W/D/L=5436/279/2735 | time=1.5s/game
+[ 8500/200000] opp=heuristic     eps=0.010 | avg_r=0.180 win%=0.580 | loss=0.0028 q=0.620 gn=0.03 | beta=1.000 | td=0.2176 | W/D/L=5463/279/2758 | time=1.5s/game
+[ 8550/200000] opp=heuristic     eps=0.010 | avg_r=0.170 win%=0.580 | loss=0.0048 q=0.526 gn=0.11 | beta=1.000 | td=0.1894 | W/D/L=5494/280/2776 | time=1.5s/game
+[ 8600/200000] opp=heuristic     eps=0.010 | avg_r=0.250 win%=0.610 | loss=0.0022 q=0.671 gn=0.05 | beta=1.000 | td=0.2940 | W/D/L=5524/282/2794 | time=1.5s/game
+[ 8650/200000] opp=heuristic     eps=0.010 | avg_r=0.300 win%=0.630 | loss=0.0022 q=0.665 gn=0.03 | beta=1.000 | td=0.1946 | W/D/L=5557/284/2809 | time=1.5s/game
+[ 8700/200000] opp=heuristic     eps=0.010 | avg_r=0.370 win%=0.670 | loss=0.0013 q=0.514 gn=0.02 | beta=1.000 | td=0.2152 | W/D/L=5591/285/2824 | time=1.5s/game
+[ 8750/200000] opp=heuristic     eps=0.010 | avg_r=0.280 win%=0.630 | loss=0.0047 q=0.559 gn=0.06 | beta=1.000 | td=0.2883 | W/D/L=5620/286/2844 | time=1.5s/game
+[ 8800/200000] opp=heuristic     eps=0.010 | avg_r=0.310 win%=0.650 | loss=0.0051 q=0.592 gn=0.10 | beta=1.000 | td=0.2685 | W/D/L=5656/286/2858 | time=1.5s/game
+[ 8850/200000] opp=greedy        eps=0.010 | avg_r=0.390 win%=0.680 | loss=0.0027 q=0.447 gn=0.03 | beta=1.000 | td=0.2639 | W/D/L=5688/289/2873 | time=1.5s/game
+[ 8900/200000] opp=greedy        eps=0.010 | avg_r=0.210 win%=0.580 | loss=0.0027 q=0.669 gn=0.03 | beta=1.000 | td=0.2377 | W/D/L=5714/291/2895 | time=1.5s/game
+[ 8950/200000] opp=greedy        eps=0.010 | avg_r=0.230 win%=0.600 | loss=0.0032 q=0.555 gn=0.04 | beta=1.000 | td=0.2652 | W/D/L=5748/292/2910 | time=1.5s/game
+[ 9000/200000] opp=greedy        eps=0.010 | avg_r=0.370 win%=0.660 | loss=0.0028 q=0.676 gn=0.04 | beta=1.000 | td=0.2699 | W/D/L=5780/296/2924 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.930 win=0.920 W/D/L=92/2/6
+  greedy        score=0.700 win=0.700 W/D/L=70/0/30
+  heuristic     score=0.430 win=0.430 W/D/L=43/0/57
+  fast_minimax  score=0.020 win=0.000 W/D/L=0/2/48
+    as black:  win=0.000 W/D/L=0/5/20
+    as white:  win=0.000 W/D/L=0/0/25
+    combined: win=0.000 W/D/L=0/5/45
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep9000.pth]
+[ 9050/200000] opp=greedy        eps=0.010 | avg_r=0.380 win%=0.660 | loss=0.0039 q=0.636 gn=0.06 | beta=1.000 | td=0.2429 | W/D/L=5814/298/2938 | time=1.5s/game
+[ 9100/200000] opp=greedy        eps=0.010 | avg_r=0.260 win%=0.620 | loss=0.0025 q=0.524 gn=0.03 | beta=1.000 | td=0.2927 | W/D/L=5842/298/2960 | time=1.5s/game
+[ 9150/200000] opp=random        eps=0.010 | avg_r=0.070 win%=0.530 | loss=0.0027 q=0.812 gn=0.03 | beta=1.000 | td=0.2351 | W/D/L=5867/299/2984 | time=1.5s/game
+[ 9200/200000] opp=greedy        eps=0.010 | avg_r=0.250 win%=0.620 | loss=0.0026 q=0.633 gn=0.02 | beta=1.000 | td=0.2944 | W/D/L=5904/299/2997 | time=1.5s/game
+[ 9250/200000] opp=heuristic     eps=0.010 | avg_r=0.360 win%=0.680 | loss=0.0007 q=0.543 gn=0.01 | beta=1.000 | td=0.2565 | W/D/L=5935/299/3016 | time=1.5s/game
+[ 9300/200000] opp=random        eps=0.010 | avg_r=0.190 win%=0.590 | loss=0.0008 q=0.569 gn=0.01 | beta=1.000 | td=0.2100 | W/D/L=5963/300/3037 | time=1.5s/game
+[ 9350/200000] opp=heuristic     eps=0.010 | avg_r=0.260 win%=0.620 | loss=0.0061 q=0.524 gn=0.08 | beta=1.000 | td=0.2910 | W/D/L=5997/301/3052 | time=1.5s/game
+[ 9400/200000] opp=greedy        eps=0.010 | avg_r=0.260 win%=0.610 | loss=0.0026 q=0.604 gn=0.02 | beta=1.000 | td=0.2490 | W/D/L=6024/304/3072 | time=1.5s/game
+[ 9450/200000] opp=heuristic     eps=0.010 | avg_r=0.150 win%=0.550 | loss=0.0007 q=0.670 gn=0.01 | beta=1.000 | td=0.2143 | W/D/L=6052/306/3092 | time=1.5s/game
+[ 9500/200000] opp=random        eps=0.010 | avg_r=0.280 win%=0.630 | loss=0.0014 q=0.428 gn=0.01 | beta=1.000 | td=0.2454 | W/D/L=6087/306/3107 | time=1.5s/game
+[ 9550/200000] opp=greedy        eps=0.010 | avg_r=0.280 win%=0.620 | loss=0.0014 q=0.520 gn=0.03 | beta=1.000 | td=0.1367 | W/D/L=6114/310/3126 | time=1.5s/game
+[ 9600/200000] opp=heuristic     eps=0.010 | avg_r=0.160 win%=0.540 | loss=0.0047 q=0.453 gn=0.09 | beta=1.000 | td=0.2618 | W/D/L=6141/314/3145 | time=1.5s/game
+[ 9650/200000] opp=heuristic     eps=0.010 | avg_r=0.290 win%=0.620 | loss=0.0050 q=0.349 gn=0.04 | beta=1.000 | td=0.2356 | W/D/L=6176/315/3159 | time=1.5s/game
+[ 9700/200000] opp=heuristic     eps=0.010 | avg_r=0.440 win%=0.710 | loss=0.0020 q=0.584 gn=0.03 | beta=1.000 | td=0.2167 | W/D/L=6212/316/3172 | time=1.5s/game
+[ 9750/200000] opp=heuristic     eps=0.010 | avg_r=0.370 win%=0.680 | loss=0.0010 q=0.529 gn=0.01 | beta=1.000 | td=0.2389 | W/D/L=6244/316/3190 | time=1.5s/game
+[ 9800/200000] opp=heuristic     eps=0.010 | avg_r=0.290 win%=0.630 | loss=0.0010 q=0.530 gn=0.03 | beta=1.000 | td=0.2523 | W/D/L=6275/319/3206 | time=1.5s/game
+[ 9850/200000] opp=heuristic     eps=0.010 | avg_r=0.300 win%=0.630 | loss=0.0011 q=0.458 gn=0.03 | beta=1.000 | td=0.2868 | W/D/L=6307/320/3223 | time=1.5s/game
+[ 9900/200000] opp=greedy        eps=0.010 | avg_r=0.190 win%=0.570 | loss=0.0022 q=0.597 gn=0.01 | beta=1.000 | td=0.3182 | W/D/L=6332/324/3244 | time=1.5s/game
+[ 9950/200000] opp=random        eps=0.010 | avg_r=0.160 win%=0.560 | loss=0.0030 q=0.508 gn=0.07 | beta=1.000 | td=0.2555 | W/D/L=6363/324/3263 | time=1.5s/game
+[10000/200000] opp=random        eps=0.010 | avg_r=0.140 win%=0.560 | loss=0.0026 q=0.497 gn=0.04 | beta=1.000 | td=0.2038 | W/D/L=6388/326/3286 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.865 win=0.860 W/D/L=86/1/13
+  greedy        score=0.685 win=0.670 W/D/L=67/3/30
+  heuristic     score=0.520 win=0.520 W/D/L=52/0/48
+  fast_minimax  score=0.000 win=0.000 W/D/L=0/0/50
+    as black:  win=0.000 W/D/L=0/0/25
+    as white:  win=0.000 W/D/L=0/0/25
+    combined: win=0.000 W/D/L=0/0/50
+  Recording 3 games vs minimax to Training/experiments_006/results/games/ ...
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep10000.pth]
+[10050/200000] opp=random        eps=0.010 | avg_r=-0.070 win%=0.450 | loss=0.0063 q=0.679 gn=0.13 | beta=1.000 | td=0.2711 | W/D/L=6408/327/3315 | time=1.5s/game
+[10100/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.210 win%=0.390 | loss=0.0047 q=0.434 gn=0.12 | beta=1.000 | td=0.2975 | W/D/L=6427/327/3346 | time=1.5s/game
+[10150/200000] opp=heuristic     eps=0.010 | avg_r=-0.120 win%=0.430 | loss=0.0036 q=0.613 gn=0.02 | beta=1.000 | td=0.3913 | W/D/L=6451/329/3370 | time=1.5s/game
+[10200/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.080 win%=0.450 | loss=0.0017 q=0.578 gn=0.05 | beta=1.000 | td=0.2205 | W/D/L=6472/329/3399 | time=1.5s/game
+[10250/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.090 win%=0.450 | loss=0.0041 q=0.514 gn=0.03 | beta=1.000 | td=0.2591 | W/D/L=6496/330/3424 | time=1.5s/game
+[10300/200000] opp=heuristic     eps=0.010 | avg_r=-0.030 win%=0.480 | loss=0.0003 q=0.628 gn=0.01 | beta=1.000 | td=0.1909 | W/D/L=6520/330/3450 | time=1.5s/game
+[10350/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.100 win%=0.440 | loss=0.0046 q=0.488 gn=0.06 | beta=1.000 | td=0.2267 | W/D/L=6540/332/3478 | time=1.5s/game
+[10400/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.130 win%=0.420 | loss=0.0013 q=0.514 gn=0.01 | beta=1.000 | td=0.3445 | W/D/L=6562/333/3505 | time=1.5s/game
+[10450/200000] opp=greedy        eps=0.010 | avg_r=-0.010 win%=0.490 | loss=0.0047 q=0.759 gn=0.03 | beta=1.000 | td=0.2659 | W/D/L=6589/333/3528 | time=1.5s/game
+[10500/200000] opp=greedy        eps=0.010 | avg_r=0.020 win%=0.500 | loss=0.0033 q=0.521 gn=0.04 | beta=1.000 | td=0.2783 | W/D/L=6612/335/3553 | time=1.5s/game
+[10550/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.150 win%=0.410 | loss=0.0021 q=0.357 gn=0.02 | beta=1.000 | td=0.2951 | W/D/L=6630/336/3584 | time=1.5s/game
+[10600/200000] opp=greedy        eps=0.010 | avg_r=-0.130 win%=0.430 | loss=0.0104 q=0.510 gn=0.06 | beta=1.000 | td=0.2946 | W/D/L=6655/336/3609 | time=1.5s/game
+[10650/200000] opp=heuristic     eps=0.010 | avg_r=-0.210 win%=0.390 | loss=0.0020 q=0.604 gn=0.01 | beta=1.000 | td=0.3074 | W/D/L=6669/337/3644 | time=1.5s/game
+[10700/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.110 win%=0.440 | loss=0.0026 q=0.478 gn=0.03 | beta=1.000 | td=0.2551 | W/D/L=6699/337/3664 | time=1.5s/game
+[10750/200000] opp=heuristic     eps=0.010 | avg_r=0.140 win%=0.570 | loss=0.0002 q=0.458 gn=0.00 | beta=1.000 | td=0.2276 | W/D/L=6726/337/3687 | time=1.5s/game
+[10800/200000] opp=heuristic     eps=0.010 | avg_r=0.010 win%=0.500 | loss=0.0040 q=0.645 gn=0.05 | beta=1.000 | td=0.3181 | W/D/L=6749/338/3713 | time=1.5s/game
+[10850/200000] opp=random        eps=0.010 | avg_r=-0.030 win%=0.470 | loss=0.0017 q=0.680 gn=0.01 | beta=1.000 | td=0.2948 | W/D/L=6773/340/3737 | time=1.5s/game
+[10900/200000] opp=greedy        eps=0.010 | avg_r=0.120 win%=0.550 | loss=0.0032 q=0.521 gn=0.05 | beta=1.000 | td=0.3010 | W/D/L=6804/340/3756 | time=1.5s/game
+[10950/200000] opp=heuristic     eps=0.010 | avg_r=0.120 win%=0.550 | loss=0.0018 q=0.631 gn=0.06 | beta=1.000 | td=0.2692 | W/D/L=6828/342/3780 | time=1.5s/game
+[11000/200000] opp=random        eps=0.010 | avg_r=0.130 win%=0.550 | loss=0.0018 q=0.405 gn=0.02 | beta=1.000 | td=0.2854 | W/D/L=6859/343/3798 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.980 win=0.980 W/D/L=98/0/2
+  greedy        score=0.820 win=0.820 W/D/L=82/0/18
+  heuristic     score=0.695 win=0.650 W/D/L=65/9/26
+  fast_minimax  score=0.180 win=0.180 W/D/L=9/0/41
+    as black:  win=0.000 W/D/L=0/0/25
+    as white:  win=0.040 W/D/L=1/0/24
+    combined: win=0.020 W/D/L=1/0/49
+  *** DISCREPANCY: aggregate=9W/41L vs per-color=1W/49L (diff=8) ***
+      per-color black games: 0W/0D/25L
+      per-color white games: 1W/0D/24L
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep11000.pth]
+[11050/200000] opp=heuristic     eps=0.010 | avg_r=0.140 win%=0.560 | loss=0.0027 q=0.554 gn=0.02 | beta=1.000 | td=0.3325 | W/D/L=6884/344/3822 | time=1.5s/game
+[11100/200000] opp=heuristic     eps=0.010 | avg_r=0.010 win%=0.490 | loss=0.0016 q=0.720 gn=0.01 | beta=1.000 | td=0.3253 | W/D/L=6908/346/3846 | time=1.5s/game
+[11150/200000] opp=random        eps=0.010 | avg_r=0.030 win%=0.500 | loss=0.0041 q=0.377 gn=0.08 | beta=1.000 | td=0.3461 | W/D/L=6934/347/3869 | time=1.5s/game
+[11200/200000] opp=heuristic     eps=0.010 | avg_r=0.080 win%=0.530 | loss=0.0036 q=0.682 gn=0.03 | beta=1.000 | td=0.2668 | W/D/L=6961/348/3891 | time=1.5s/game
+[11250/200000] opp=greedy        eps=0.010 | avg_r=0.040 win%=0.510 | loss=0.0046 q=0.594 gn=0.05 | beta=1.000 | td=0.3908 | W/D/L=6985/349/3916 | time=1.5s/game
+[11300/200000] opp=heuristic     eps=0.010 | avg_r=0.030 win%=0.510 | loss=0.0051 q=0.711 gn=0.05 | beta=1.000 | td=0.3325 | W/D/L=7012/349/3939 | time=1.5s/game
+[11350/200000] opp=random        eps=0.010 | avg_r=-0.040 win%=0.470 | loss=0.0010 q=0.544 gn=0.01 | beta=1.000 | td=0.2903 | W/D/L=7032/351/3967 | time=1.5s/game
+[11400/200000] opp=greedy        eps=0.010 | avg_r=-0.150 win%=0.410 | loss=0.0026 q=0.651 gn=0.02 | beta=1.000 | td=0.3092 | W/D/L=7053/352/3995 | time=1.5s/game
+[11450/200000] opp=random        eps=0.010 | avg_r=-0.040 win%=0.470 | loss=0.0036 q=0.791 gn=0.03 | beta=1.000 | td=0.3334 | W/D/L=7079/353/4018 | time=1.5s/game
+[11500/200000] opp=greedy        eps=0.010 | avg_r=-0.030 win%=0.480 | loss=0.0042 q=0.499 gn=0.04 | beta=1.000 | td=0.3418 | W/D/L=7101/353/4046 | time=1.5s/game
+[11550/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.210 win%=0.390 | loss=0.0017 q=0.439 gn=0.05 | beta=1.000 | td=0.1891 | W/D/L=7118/354/4078 | time=1.5s/game
+[11600/200000] opp=random        eps=0.010 | avg_r=-0.190 win%=0.390 | loss=0.0091 q=0.615 gn=0.10 | beta=1.000 | td=0.3090 | W/D/L=7140/356/4104 | time=1.5s/game
+[11650/200000] opp=heuristic     eps=0.010 | avg_r=0.040 win%=0.500 | loss=0.0018 q=0.477 gn=0.01 | beta=1.000 | td=0.2784 | W/D/L=7168/358/4124 | time=1.5s/game
+[11700/200000] opp=heuristic     eps=0.010 | avg_r=0.030 win%=0.500 | loss=0.0003 q=0.491 gn=0.00 | beta=1.000 | td=0.2286 | W/D/L=7190/359/4151 | time=1.5s/game
+[11750/200000] opp=heuristic     eps=0.010 | avg_r=-0.050 win%=0.470 | loss=0.0060 q=0.569 gn=0.08 | beta=1.000 | td=0.2628 | W/D/L=7215/359/4176 | time=1.5s/game
+[11800/200000] opp=heuristic     eps=0.010 | avg_r=0.090 win%=0.540 | loss=0.0013 q=0.418 gn=0.02 | beta=1.000 | td=0.2635 | W/D/L=7244/360/4196 | time=1.5s/game
+[11850/200000] opp=greedy        eps=0.010 | avg_r=-0.030 win%=0.470 | loss=0.0044 q=0.381 gn=0.04 | beta=1.000 | td=0.2933 | W/D/L=7262/362/4226 | time=1.5s/game
+[11900/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.160 win%=0.400 | loss=0.0047 q=0.373 gn=0.05 | beta=1.000 | td=0.2532 | W/D/L=7284/364/4252 | time=1.5s/game
+[11950/200000] opp=greedy        eps=0.010 | avg_r=0.020 win%=0.500 | loss=0.0008 q=0.448 gn=0.01 | beta=1.000 | td=0.2676 | W/D/L=7312/364/4274 | time=1.5s/game
+[12000/200000] opp=heuristic     eps=0.010 | avg_r=0.130 win%=0.560 | loss=0.0032 q=0.490 gn=0.05 | beta=1.000 | td=0.2138 | W/D/L=7340/365/4295 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.900 win=0.880 W/D/L=88/4/8
+  greedy        score=0.840 win=0.840 W/D/L=84/0/16
+  heuristic     score=0.690 win=0.690 W/D/L=69/0/31
+  fast_minimax  score=0.200 win=0.200 W/D/L=10/0/40
+    as black:  win=0.360 W/D/L=9/0/16
+    as white:  win=0.080 W/D/L=2/0/23
+    combined: win=0.220 W/D/L=11/0/39
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep12000.pth]
+[12050/200000] opp=greedy        eps=0.010 | avg_r=-0.020 win%=0.480 | loss=0.0037 q=0.327 gn=0.07 | beta=1.000 | td=0.2112 | W/D/L=7360/366/4324 | time=1.5s/game
+[12100/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.160 win%=0.410 | loss=0.0036 q=0.339 gn=0.04 | beta=1.000 | td=0.2842 | W/D/L=7381/367/4352 | time=1.5s/game
+[12150/200000] opp=heuristic     eps=0.010 | avg_r=-0.070 win%=0.460 | loss=0.0033 q=0.387 gn=0.04 | beta=1.000 | td=0.2256 | W/D/L=7406/367/4377 | time=1.5s/game
+[12200/200000] opp=heuristic     eps=0.010 | avg_r=-0.060 win%=0.470 | loss=0.0104 q=0.393 gn=0.11 | beta=1.000 | td=0.3265 | W/D/L=7428/367/4405 | time=1.5s/game
+[12250/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.060 win%=0.460 | loss=0.0013 q=0.479 gn=0.01 | beta=1.000 | td=0.2285 | W/D/L=7452/369/4429 | time=1.5s/game
+[12300/200000] opp=greedy        eps=0.010 | avg_r=-0.200 win%=0.380 | loss=0.0052 q=0.346 gn=0.07 | beta=1.000 | td=0.2363 | W/D/L=7466/371/4463 | time=1.5s/game
+[12350/200000] opp=heuristic     eps=0.010 | avg_r=-0.350 win%=0.310 | loss=0.0056 q=0.303 gn=0.04 | beta=1.000 | td=0.2734 | W/D/L=7483/372/4495 | time=1.5s/game
+[12400/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.160 win%=0.410 | loss=0.0017 q=0.367 gn=0.02 | beta=1.000 | td=0.2680 | W/D/L=7507/373/4520 | time=1.5s/game
+[12450/200000] opp=heuristic     eps=0.010 | avg_r=-0.030 win%=0.480 | loss=0.0027 q=0.323 gn=0.03 | beta=1.000 | td=0.2217 | W/D/L=7531/373/4546 | time=1.5s/game
+[12500/200000] opp=heuristic     eps=0.010 | avg_r=0.030 win%=0.510 | loss=0.0049 q=0.256 gn=0.03 | beta=1.000 | td=0.3420 | W/D/L=7558/374/4568 | time=1.5s/game
+[12550/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.030 win%=0.480 | loss=0.0038 q=0.241 gn=0.04 | beta=1.000 | td=0.2437 | W/D/L=7579/374/4597 | time=1.5s/game
+[12600/200000] opp=greedy        eps=0.010 | avg_r=0.020 win%=0.500 | loss=0.0035 q=0.457 gn=0.05 | beta=1.000 | td=0.2391 | W/D/L=7608/376/4616 | time=1.5s/game
+[12650/200000] opp=greedy        eps=0.010 | avg_r=0.190 win%=0.580 | loss=0.0045 q=0.369 gn=0.04 | beta=1.000 | td=0.3017 | W/D/L=7637/377/4636 | time=1.5s/game
+[12700/200000] opp=heuristic     eps=0.010 | avg_r=0.020 win%=0.500 | loss=0.0043 q=0.174 gn=0.12 | beta=1.000 | td=0.3000 | W/D/L=7658/378/4664 | time=1.5s/game
+[12750/200000] opp=heuristic     eps=0.010 | avg_r=-0.060 win%=0.460 | loss=0.0066 q=0.402 gn=0.03 | beta=1.000 | td=0.3592 | W/D/L=7683/379/4688 | time=1.5s/game
+[12800/200000] opp=greedy        eps=0.010 | avg_r=0.020 win%=0.500 | loss=0.0045 q=0.331 gn=0.04 | beta=1.000 | td=0.2880 | W/D/L=7708/380/4712 | time=1.5s/game
+[12850/200000] opp=fast_minimax  eps=0.010 | avg_r=0.070 win%=0.520 | loss=0.0009 q=0.186 gn=0.01 | beta=1.000 | td=0.2518 | W/D/L=7735/382/4733 | time=1.5s/game
+[12900/200000] opp=fast_minimax  eps=0.010 | avg_r=0.040 win%=0.510 | loss=0.0043 q=0.263 gn=0.03 | beta=1.000 | td=0.3047 | W/D/L=7759/382/4759 | time=1.5s/game
+[12950/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.130 win%=0.430 | loss=0.0027 q=0.215 gn=0.05 | beta=1.000 | td=0.2405 | W/D/L=7778/383/4789 | time=1.5s/game
+[13000/200000] opp=heuristic     eps=0.010 | avg_r=-0.060 win%=0.460 | loss=0.0023 q=0.064 gn=0.03 | beta=1.000 | td=0.2604 | W/D/L=7805/384/4811 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.905 win=0.900 W/D/L=90/1/9
+  greedy        score=0.880 win=0.870 W/D/L=87/2/11
+  heuristic     score=0.785 win=0.760 W/D/L=76/5/19
+  fast_minimax  score=0.160 win=0.160 W/D/L=8/0/42
+    as black:  win=0.120 W/D/L=3/0/22
+    as white:  win=0.200 W/D/L=5/0/20
+    combined: win=0.160 W/D/L=8/0/42
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep13000.pth]
+[13050/200000] opp=heuristic     eps=0.010 | avg_r=0.030 win%=0.500 | loss=0.0069 q=0.442 gn=0.20 | beta=1.000 | td=0.2952 | W/D/L=7828/386/4836 | time=1.5s/game
+[13100/200000] opp=random        eps=0.010 | avg_r=0.000 win%=0.490 | loss=0.0038 q=0.348 gn=0.04 | beta=1.000 | td=0.2349 | W/D/L=7854/386/4860 | time=1.5s/game
+[13150/200000] opp=fast_minimax  eps=0.010 | avg_r=0.130 win%=0.550 | loss=0.0077 q=0.485 gn=0.07 | beta=1.000 | td=0.2541 | W/D/L=7883/389/4878 | time=1.5s/game
+[13200/200000] opp=greedy        eps=0.010 | avg_r=0.240 win%=0.600 | loss=0.0057 q=0.213 gn=0.08 | beta=1.000 | td=0.2713 | W/D/L=7914/390/4896 | time=1.5s/game
+[13250/200000] opp=random        eps=0.010 | avg_r=0.230 win%=0.610 | loss=0.0025 q=0.227 gn=0.03 | beta=1.000 | td=0.2249 | W/D/L=7944/390/4916 | time=1.5s/game
+[13300/200000] opp=heuristic     eps=0.010 | avg_r=0.150 win%=0.560 | loss=0.0025 q=0.217 gn=0.03 | beta=1.000 | td=0.2099 | W/D/L=7970/393/4937 | time=1.5s/game
+[13350/200000] opp=heuristic     eps=0.010 | avg_r=0.020 win%=0.480 | loss=0.0030 q=0.334 gn=0.03 | beta=1.000 | td=0.2749 | W/D/L=7992/396/4962 | time=1.5s/game
+[13400/200000] opp=heuristic     eps=0.010 | avg_r=-0.070 win%=0.440 | loss=0.0048 q=0.263 gn=0.04 | beta=1.000 | td=0.2135 | W/D/L=8014/398/4988 | time=1.5s/game
+[13450/200000] opp=heuristic     eps=0.010 | avg_r=0.110 win%=0.540 | loss=0.0030 q=0.410 gn=0.07 | beta=1.000 | td=0.2104 | W/D/L=8046/399/5005 | time=1.5s/game
+[13500/200000] opp=heuristic     eps=0.010 | avg_r=0.160 win%=0.570 | loss=0.0002 q=0.283 gn=0.00 | beta=1.000 | td=0.2186 | W/D/L=8071/400/5029 | time=1.5s/game
+[13550/200000] opp=random        eps=0.010 | avg_r=0.070 win%=0.520 | loss=0.0021 q=0.291 gn=0.02 | beta=1.000 | td=0.2457 | W/D/L=8098/402/5050 | time=1.5s/game
+[13600/200000] opp=heuristic     eps=0.010 | avg_r=0.100 win%=0.540 | loss=0.0005 q=0.340 gn=0.02 | beta=1.000 | td=0.2925 | W/D/L=8125/402/5073 | time=1.5s/game
+[13650/200000] opp=fast_minimax  eps=0.010 | avg_r=0.090 win%=0.540 | loss=0.0043 q=0.321 gn=0.05 | beta=1.000 | td=0.2223 | W/D/L=8152/403/5095 | time=1.5s/game
+[13700/200000] opp=heuristic     eps=0.010 | avg_r=0.160 win%=0.570 | loss=0.0044 q=0.184 gn=0.08 | beta=1.000 | td=0.2008 | W/D/L=8182/404/5114 | time=1.5s/game
+[13750/200000] opp=heuristic     eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0009 q=0.342 gn=0.01 | beta=1.000 | td=0.2521 | W/D/L=8204/407/5139 | time=1.5s/game
+[13800/200000] opp=fast_minimax  eps=0.010 | avg_r=0.010 win%=0.490 | loss=0.0015 q=0.330 gn=0.02 | beta=1.000 | td=0.2552 | W/D/L=8231/407/5162 | time=1.5s/game
+[13850/200000] opp=fast_minimax  eps=0.010 | avg_r=0.080 win%=0.540 | loss=0.0026 q=0.332 gn=0.05 | beta=1.000 | td=0.2453 | W/D/L=8258/407/5185 | time=1.5s/game
+[13900/200000] opp=heuristic     eps=0.010 | avg_r=-0.110 win%=0.440 | loss=0.0009 q=0.386 gn=0.01 | beta=1.000 | td=0.2644 | W/D/L=8275/408/5217 | time=1.5s/game
+[13950/200000] opp=heuristic     eps=0.010 | avg_r=-0.090 win%=0.450 | loss=0.0047 q=0.411 gn=0.09 | beta=1.000 | td=0.3284 | W/D/L=8303/408/5239 | time=1.5s/game
+[14000/200000] opp=random        eps=0.010 | avg_r=0.140 win%=0.570 | loss=0.0035 q=0.264 gn=0.07 | beta=1.000 | td=0.2827 | W/D/L=8332/408/5260 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.935 win=0.930 W/D/L=93/1/6
+  greedy        score=0.860 win=0.850 W/D/L=85/2/13
+  heuristic     score=0.650 win=0.650 W/D/L=65/0/35
+  fast_minimax  score=0.280 win=0.280 W/D/L=14/0/36
+    as black:  win=0.280 W/D/L=7/0/18
+    as white:  win=0.200 W/D/L=5/0/20
+    combined: win=0.240 W/D/L=12/0/38
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep14000.pth]
+[14050/200000] opp=heuristic     eps=0.010 | avg_r=0.130 win%=0.560 | loss=0.0045 q=0.261 gn=0.08 | beta=1.000 | td=0.2680 | W/D/L=8359/409/5282 | time=1.5s/game
+[14100/200000] opp=greedy        eps=0.010 | avg_r=0.090 win%=0.530 | loss=0.0015 q=0.243 gn=0.02 | beta=1.000 | td=0.2249 | W/D/L=8385/411/5304 | time=1.5s/game
+[14150/200000] opp=heuristic     eps=0.010 | avg_r=0.070 win%=0.520 | loss=0.0044 q=0.295 gn=0.05 | beta=1.000 | td=0.2464 | W/D/L=8411/412/5327 | time=1.5s/game
+[14200/200000] opp=greedy        eps=0.010 | avg_r=0.010 win%=0.490 | loss=0.0032 q=0.237 gn=0.03 | beta=1.000 | td=0.3018 | W/D/L=8434/414/5352 | time=1.5s/game
+[14250/200000] opp=fast_minimax  eps=0.010 | avg_r=0.030 win%=0.490 | loss=0.0014 q=0.395 gn=0.01 | beta=1.000 | td=0.2923 | W/D/L=8460/417/5373 | time=1.5s/game
+[14300/200000] opp=heuristic     eps=0.010 | avg_r=0.010 win%=0.480 | loss=0.0007 q=0.242 gn=0.02 | beta=1.000 | td=0.2708 | W/D/L=8482/419/5399 | time=1.5s/game
+[14350/200000] opp=random        eps=0.010 | avg_r=-0.030 win%=0.460 | loss=0.0010 q=0.299 gn=0.01 | beta=1.000 | td=0.2576 | W/D/L=8506/422/5422 | time=1.5s/game
+[14400/200000] opp=random        eps=0.010 | avg_r=0.070 win%=0.520 | loss=0.0015 q=0.326 gn=0.02 | beta=1.000 | td=0.2052 | W/D/L=8534/422/5444 | time=1.5s/game
+[14450/200000] opp=heuristic     eps=0.010 | avg_r=0.090 win%=0.540 | loss=0.0017 q=0.316 gn=0.02 | beta=1.000 | td=0.2945 | W/D/L=8560/423/5467 | time=1.5s/game
+[14500/200000] opp=random        eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0059 q=0.365 gn=0.04 | beta=1.000 | td=0.2872 | W/D/L=8586/426/5488 | time=1.5s/game
+[14550/200000] opp=greedy        eps=0.010 | avg_r=0.070 win%=0.510 | loss=0.0017 q=0.255 gn=0.02 | beta=1.000 | td=0.2022 | W/D/L=8611/428/5511 | time=1.5s/game
+[14600/200000] opp=greedy        eps=0.010 | avg_r=0.110 win%=0.530 | loss=0.0008 q=0.430 gn=0.02 | beta=1.000 | td=0.2329 | W/D/L=8639/431/5530 | time=1.5s/game
+[14650/200000] opp=greedy        eps=0.010 | avg_r=0.140 win%=0.550 | loss=0.0017 q=0.378 gn=0.03 | beta=1.000 | td=0.1888 | W/D/L=8666/432/5552 | time=1.5s/game
+[14700/200000] opp=fast_minimax  eps=0.010 | avg_r=0.160 win%=0.560 | loss=0.0034 q=0.500 gn=0.05 | beta=1.000 | td=0.2447 | W/D/L=8695/435/5570 | time=1.5s/game
+[14750/200000] opp=fast_minimax  eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0021 q=0.204 gn=0.03 | beta=1.000 | td=0.2261 | W/D/L=8718/436/5596 | time=1.5s/game
+[14800/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.090 win%=0.430 | loss=0.0039 q=0.411 gn=0.03 | beta=1.000 | td=0.2211 | W/D/L=8738/440/5622 | time=1.5s/game
+[14850/200000] opp=greedy        eps=0.010 | avg_r=0.020 win%=0.480 | loss=0.0038 q=0.335 gn=0.04 | beta=1.000 | td=0.3129 | W/D/L=8766/442/5642 | time=1.5s/game
+[14900/200000] opp=heuristic     eps=0.010 | avg_r=0.050 win%=0.500 | loss=0.0010 q=0.343 gn=0.01 | beta=1.000 | td=0.1997 | W/D/L=8788/445/5667 | time=1.5s/game
+[14950/200000] opp=heuristic     eps=0.010 | avg_r=-0.090 win%=0.420 | loss=0.0026 q=0.477 gn=0.04 | beta=1.000 | td=0.2395 | W/D/L=8808/449/5693 | time=1.5s/game
+[15000/200000] opp=greedy        eps=0.010 | avg_r=-0.050 win%=0.440 | loss=0.0028 q=0.358 gn=0.05 | beta=1.000 | td=0.2312 | W/D/L=8832/452/5716 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.960 win=0.940 W/D/L=94/4/2
+  greedy        score=0.900 win=0.900 W/D/L=90/0/10
+  heuristic     score=0.690 win=0.680 W/D/L=68/2/30
+  fast_minimax  score=0.240 win=0.240 W/D/L=12/0/38
+    as black:  win=0.160 W/D/L=4/0/21
+    as white:  win=0.280 W/D/L=7/0/18
+    combined: win=0.220 W/D/L=11/0/39
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep15000.pth]
+[15050/200000] opp=heuristic     eps=0.010 | avg_r=-0.040 win%=0.460 | loss=0.0047 q=0.335 gn=0.05 | beta=1.000 | td=0.2368 | W/D/L=8854/453/5743 | time=1.5s/game
+[15100/200000] opp=greedy        eps=0.010 | avg_r=-0.070 win%=0.460 | loss=0.0053 q=0.380 gn=0.19 | beta=1.000 | td=0.3093 | W/D/L=8878/453/5769 | time=1.5s/game
+[15150/200000] opp=fast_minimax  eps=0.010 | avg_r=0.020 win%=0.480 | loss=0.0019 q=0.419 gn=0.02 | beta=1.000 | td=0.2588 | W/D/L=8902/459/5789 | time=1.5s/game
+[15200/200000] opp=random        eps=0.010 | avg_r=0.090 win%=0.500 | loss=0.0068 q=0.421 gn=0.04 | beta=1.000 | td=0.2695 | W/D/L=8928/462/5810 | time=1.5s/game
+[15250/200000] opp=heuristic     eps=0.010 | avg_r=0.040 win%=0.500 | loss=0.0027 q=0.395 gn=0.02 | beta=1.000 | td=0.2491 | W/D/L=8952/463/5835 | time=1.5s/game
+[15300/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.030 win%=0.460 | loss=0.0017 q=0.437 gn=0.03 | beta=1.000 | td=0.2974 | W/D/L=8974/467/5859 | time=1.5s/game
+[15350/200000] opp=fast_minimax  eps=0.010 | avg_r=0.040 win%=0.480 | loss=0.0045 q=0.247 gn=0.03 | beta=1.000 | td=0.2673 | W/D/L=9000/471/5879 | time=1.5s/game
+[15400/200000] opp=heuristic     eps=0.010 | avg_r=0.140 win%=0.540 | loss=0.0032 q=0.293 gn=0.03 | beta=1.000 | td=0.3186 | W/D/L=9028/473/5899 | time=1.5s/game
+[15450/200000] opp=random        eps=0.010 | avg_r=0.000 win%=0.490 | loss=0.0042 q=0.262 gn=0.13 | beta=1.000 | td=0.2003 | W/D/L=9049/473/5928 | time=1.5s/game
+[15500/200000] opp=greedy        eps=0.010 | avg_r=0.000 win%=0.470 | loss=0.0007 q=0.300 gn=0.01 | beta=1.000 | td=0.2021 | W/D/L=9075/479/5946 | time=1.5s/game
+[15550/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.030 win%=0.440 | loss=0.0065 q=0.184 gn=0.07 | beta=1.000 | td=0.2978 | W/D/L=9093/482/5975 | time=1.5s/game
+[15600/200000] opp=heuristic     eps=0.010 | avg_r=-0.130 win%=0.420 | loss=0.0011 q=0.223 gn=0.04 | beta=1.000 | td=0.2172 | W/D/L=9117/482/6001 | time=1.5s/game
+[15650/200000] opp=heuristic     eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0022 q=0.307 gn=0.06 | beta=1.000 | td=0.2022 | W/D/L=9145/486/6019 | time=1.5s/game
+[15700/200000] opp=random        eps=0.010 | avg_r=0.090 win%=0.520 | loss=0.0020 q=0.288 gn=0.02 | beta=1.000 | td=0.2561 | W/D/L=9169/487/6044 | time=1.5s/game
+[15750/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.030 win%=0.480 | loss=0.0066 q=0.255 gn=0.07 | beta=1.000 | td=0.2737 | W/D/L=9193/487/6070 | time=1.5s/game
+[15800/200000] opp=heuristic     eps=0.010 | avg_r=-0.090 win%=0.440 | loss=0.0011 q=0.332 gn=0.02 | beta=1.000 | td=0.2011 | W/D/L=9213/490/6097 | time=1.5s/game
+[15850/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.050 win%=0.460 | loss=0.0017 q=0.357 gn=0.01 | beta=1.000 | td=0.2405 | W/D/L=9239/490/6121 | time=1.5s/game
+[15900/200000] opp=heuristic     eps=0.010 | avg_r=-0.030 win%=0.480 | loss=0.0048 q=0.160 gn=0.04 | beta=1.000 | td=0.2536 | W/D/L=9261/491/6148 | time=1.5s/game
+[15950/200000] opp=heuristic     eps=0.010 | avg_r=-0.140 win%=0.420 | loss=0.0029 q=0.344 gn=0.06 | beta=1.000 | td=0.2063 | W/D/L=9281/492/6177 | time=1.5s/game
+[16000/200000] opp=heuristic     eps=0.010 | avg_r=-0.090 win%=0.450 | loss=0.0010 q=0.311 gn=0.03 | beta=1.000 | td=0.1829 | W/D/L=9306/492/6202 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.950 win=0.950 W/D/L=95/0/5
+  greedy        score=0.840 win=0.840 W/D/L=84/0/16
+  heuristic     score=0.360 win=0.350 W/D/L=35/2/63
+  fast_minimax  score=0.120 win=0.120 W/D/L=6/0/44
+    as black:  win=0.320 W/D/L=8/0/17
+    as white:  win=0.080 W/D/L=2/0/23
+    combined: win=0.200 W/D/L=10/0/40
+  *** DISCREPANCY: aggregate=6W/44L vs per-color=10W/40L (diff=-4) ***
+      per-color black games: 8W/0D/17L
+      per-color white games: 2W/0D/23L
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep16000.pth]
+[16050/200000] opp=greedy        eps=0.010 | avg_r=-0.070 win%=0.450 | loss=0.0031 q=0.246 gn=0.06 | beta=1.000 | td=0.2072 | W/D/L=9326/495/6229 | time=1.5s/game
+[16100/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.110 win%=0.420 | loss=0.0052 q=0.284 gn=0.09 | beta=1.000 | td=0.2185 | W/D/L=9348/497/6255 | time=1.5s/game
+[16150/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.020 win%=0.480 | loss=0.0031 q=0.244 gn=0.10 | beta=1.000 | td=0.2742 | W/D/L=9374/497/6279 | time=1.5s/game
+[16200/200000] opp=heuristic     eps=0.010 | avg_r=0.080 win%=0.540 | loss=0.0031 q=0.337 gn=0.05 | beta=1.000 | td=0.2216 | W/D/L=9402/497/6301 | time=1.5s/game
+[16250/200000] opp=greedy        eps=0.010 | avg_r=0.030 win%=0.510 | loss=0.0044 q=0.469 gn=0.05 | beta=1.000 | td=0.2455 | W/D/L=9425/498/6327 | time=1.5s/game
+[16300/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.030 win%=0.480 | loss=0.0035 q=0.306 gn=0.04 | beta=1.000 | td=0.2150 | W/D/L=9450/498/6352 | time=1.5s/game
+[16350/200000] opp=heuristic     eps=0.010 | avg_r=0.050 win%=0.520 | loss=0.0024 q=0.433 gn=0.03 | beta=1.000 | td=0.2360 | W/D/L=9477/499/6374 | time=1.5s/game
+[16400/200000] opp=greedy        eps=0.010 | avg_r=0.090 win%=0.540 | loss=0.0026 q=0.273 gn=0.03 | beta=1.000 | td=0.2161 | W/D/L=9504/499/6397 | time=1.5s/game
+[16450/200000] opp=greedy        eps=0.010 | avg_r=0.030 win%=0.500 | loss=0.0019 q=0.283 gn=0.03 | beta=1.000 | td=0.2752 | W/D/L=9527/502/6421 | time=1.5s/game
+[16500/200000] opp=heuristic     eps=0.010 | avg_r=0.040 win%=0.500 | loss=0.0008 q=0.325 gn=0.01 | beta=1.000 | td=0.2389 | W/D/L=9554/503/6443 | time=1.5s/game
+[16550/200000] opp=heuristic     eps=0.010 | avg_r=0.060 win%=0.500 | loss=0.0026 q=0.342 gn=0.04 | beta=1.000 | td=0.2335 | W/D/L=9577/508/6465 | time=1.5s/game
+[16600/200000] opp=heuristic     eps=0.010 | avg_r=-0.070 win%=0.440 | loss=0.0057 q=0.294 gn=0.07 | beta=1.000 | td=0.2608 | W/D/L=9598/508/6494 | time=1.5s/game
+[16650/200000] opp=random        eps=0.010 | avg_r=0.010 win%=0.490 | loss=0.0040 q=0.146 gn=0.06 | beta=1.000 | td=0.2169 | W/D/L=9626/511/6513 | time=1.5s/game
+[16700/200000] opp=random        eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0032 q=0.280 gn=0.03 | beta=1.000 | td=0.2462 | W/D/L=9650/512/6538 | time=1.5s/game
+[16750/200000] opp=random        eps=0.010 | avg_r=0.130 win%=0.560 | loss=0.0040 q=0.163 gn=0.04 | beta=1.000 | td=0.2591 | W/D/L=9682/512/6556 | time=1.5s/game
+[16800/200000] opp=fast_minimax  eps=0.010 | avg_r=0.010 win%=0.490 | loss=0.0020 q=0.351 gn=0.03 | beta=1.000 | td=0.2941 | W/D/L=9699/515/6586 | time=1.5s/game
+[16850/200000] opp=heuristic     eps=0.010 | avg_r=-0.110 win%=0.420 | loss=0.0011 q=0.294 gn=0.01 | beta=1.000 | td=0.2368 | W/D/L=9724/517/6609 | time=1.5s/game
+[16900/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.060 win%=0.450 | loss=0.0015 q=0.158 gn=0.05 | beta=1.000 | td=0.2136 | W/D/L=9744/519/6637 | time=1.5s/game
+[16950/200000] opp=greedy        eps=0.010 | avg_r=0.000 win%=0.480 | loss=0.0060 q=0.216 gn=0.05 | beta=1.000 | td=0.2736 | W/D/L=9772/521/6657 | time=1.5s/game
+[17000/200000] opp=greedy        eps=0.010 | avg_r=0.060 win%=0.520 | loss=0.0050 q=0.160 gn=0.08 | beta=1.000 | td=0.2648 | W/D/L=9796/521/6683 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.930 win=0.920 W/D/L=92/2/6
+  greedy        score=0.875 win=0.830 W/D/L=83/9/8
+  heuristic     score=0.500 win=0.500 W/D/L=50/0/50
+  fast_minimax  score=0.120 win=0.120 W/D/L=6/0/44
+    as black:  win=0.160 W/D/L=4/0/21
+    as white:  win=0.040 W/D/L=1/0/24
+    combined: win=0.100 W/D/L=5/0/45
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep17000.pth]
+[17050/200000] opp=fast_minimax  eps=0.010 | avg_r=0.010 win%=0.490 | loss=0.0013 q=0.257 gn=0.01 | beta=1.000 | td=0.2686 | W/D/L=9821/524/6705 | time=1.5s/game
+[17100/200000] opp=fast_minimax  eps=0.010 | avg_r=0.140 win%=0.540 | loss=0.0037 q=0.247 gn=0.05 | beta=1.000 | td=0.2921 | W/D/L=9850/527/6723 | time=1.5s/game
+[17150/200000] opp=heuristic     eps=0.010 | avg_r=0.140 win%=0.550 | loss=0.0023 q=0.323 gn=0.04 | beta=1.000 | td=0.2089 | W/D/L=9876/528/6746 | time=1.5s/game
+[17200/200000] opp=heuristic     eps=0.010 | avg_r=0.010 win%=0.500 | loss=0.0008 q=0.348 gn=0.01 | beta=1.000 | td=0.2487 | W/D/L=9900/528/6772 | time=1.5s/game
+[17250/200000] opp=greedy        eps=0.010 | avg_r=0.060 win%=0.530 | loss=0.0032 q=0.343 gn=0.05 | beta=1.000 | td=0.2523 | W/D/L=9929/528/6793 | time=1.5s/game
+[17300/200000] opp=random        eps=0.010 | avg_r=0.030 win%=0.510 | loss=0.0048 q=0.275 gn=0.05 | beta=1.000 | td=0.2668 | W/D/L=9951/529/6820 | time=1.5s/game
+[17350/200000] opp=heuristic     eps=0.010 | avg_r=-0.070 win%=0.450 | loss=0.0066 q=0.284 gn=0.06 | beta=1.000 | td=0.3126 | W/D/L=9974/531/6845 | time=1.5s/game
+[17400/200000] opp=greedy        eps=0.010 | avg_r=-0.070 win%=0.450 | loss=0.0045 q=0.412 gn=0.19 | beta=1.000 | td=0.3006 | W/D/L=9996/532/6872 | time=1.5s/game
+[17450/200000] opp=heuristic     eps=0.010 | avg_r=-0.010 win%=0.490 | loss=0.0009 q=0.356 gn=0.01 | beta=1.000 | td=0.1920 | W/D/L=10023/532/6895 | time=1.5s/game
+[17500/200000] opp=fast_minimax  eps=0.010 | avg_r=0.220 win%=0.600 | loss=0.0026 q=0.539 gn=0.04 | beta=1.000 | td=0.2968 | W/D/L=10056/534/6910 | time=1.5s/game
+[17550/200000] opp=greedy        eps=0.010 | avg_r=0.330 win%=0.650 | loss=0.0027 q=0.145 gn=0.03 | beta=1.000 | td=0.2535 | W/D/L=10088/535/6927 | time=1.5s/game
+[17600/200000] opp=heuristic     eps=0.010 | avg_r=0.110 win%=0.540 | loss=0.0030 q=0.215 gn=0.10 | beta=1.000 | td=0.2528 | W/D/L=10110/537/6953 | time=1.5s/game
+[17650/200000] opp=fast_minimax  eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0048 q=0.374 gn=0.04 | beta=1.000 | td=0.3063 | W/D/L=10140/539/6971 | time=1.5s/game
+[17700/200000] opp=fast_minimax  eps=0.010 | avg_r=0.150 win%=0.560 | loss=0.0036 q=0.496 gn=0.04 | beta=1.000 | td=0.2202 | W/D/L=10166/540/6994 | time=1.5s/game
+[17750/200000] opp=greedy        eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0034 q=0.453 gn=0.08 | beta=1.000 | td=0.2117 | W/D/L=10192/543/7015 | time=1.5s/game
+[17800/200000] opp=heuristic     eps=0.010 | avg_r=0.000 win%=0.470 | loss=0.0016 q=0.460 gn=0.02 | beta=1.000 | td=0.2565 | W/D/L=10213/546/7041 | time=1.5s/game
+[17850/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.050 win%=0.460 | loss=0.0006 q=0.187 gn=0.01 | beta=1.000 | td=0.2689 | W/D/L=10238/546/7066 | time=1.5s/game
+[17900/200000] opp=fast_minimax  eps=0.010 | avg_r=0.000 win%=0.500 | loss=0.0046 q=0.342 gn=0.04 | beta=1.000 | td=0.2556 | W/D/L=10263/546/7091 | time=1.5s/game
+[17950/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.010 win%=0.490 | loss=0.0024 q=0.308 gn=0.03 | beta=1.000 | td=0.1957 | W/D/L=10287/547/7116 | time=1.5s/game
+[18000/200000] opp=heuristic     eps=0.010 | avg_r=0.000 win%=0.480 | loss=0.0049 q=0.233 gn=0.07 | beta=1.000 | td=0.2498 | W/D/L=10311/550/7139 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.915 win=0.910 W/D/L=91/1/8
+  greedy        score=0.910 win=0.910 W/D/L=91/0/9
+  heuristic     score=0.590 win=0.560 W/D/L=56/6/38
+  fast_minimax  score=0.160 win=0.160 W/D/L=8/0/42
+    as black:  win=0.400 W/D/L=10/0/15
+    as white:  win=0.080 W/D/L=2/0/23
+    combined: win=0.240 W/D/L=12/0/38
+  *** DISCREPANCY: aggregate=8W/42L vs per-color=12W/38L (diff=-4) ***
+      per-color black games: 10W/0D/15L
+      per-color white games: 2W/0D/23L
+
+  [saved -> Training/experiments_006/results/latest.pth]
+  [checkpoint -> Training/experiments_006/model_checkpoints/model_ep18000.pth]
+[18050/200000] opp=heuristic     eps=0.010 | avg_r=-0.050 win%=0.460 | loss=0.0013 q=0.265 gn=0.03 | beta=1.000 | td=0.2244 | W/D/L=10333/550/7167 | time=1.5s/game
+[18100/200000] opp=heuristic     eps=0.010 | avg_r=-0.060 win%=0.470 | loss=0.0015 q=0.170 gn=0.02 | beta=1.000 | td=0.2255 | W/D/L=10358/550/7192 | time=1.5s/game
+[18150/200000] opp=fast_minimax  eps=0.010 | avg_r=0.070 win%=0.530 | loss=0.0032 q=0.388 gn=0.04 | beta=1.000 | td=0.2096 | W/D/L=10386/551/7213 | time=1.5s/game
+[18200/200000] opp=greedy        eps=0.010 | avg_r=-0.020 win%=0.480 | loss=0.0025 q=0.315 gn=0.03 | beta=1.000 | td=0.2754 | W/D/L=10406/552/7242 | time=1.5s/game
+[18250/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.060 win%=0.460 | loss=0.0009 q=0.400 gn=0.01 | beta=1.000 | td=0.1937 | W/D/L=10432/553/7265 | time=1.5s/game
+[18300/200000] opp=greedy        eps=0.010 | avg_r=0.110 win%=0.540 | loss=0.0030 q=0.324 gn=0.04 | beta=1.000 | td=0.2247 | W/D/L=10460/555/7285 | time=1.5s/game
+[18350/200000] opp=greedy        eps=0.010 | avg_r=0.050 win%=0.510 | loss=0.0033 q=0.191 gn=0.03 | beta=1.000 | td=0.3252 | W/D/L=10483/556/7311 | time=1.5s/game
+[18400/200000] opp=heuristic     eps=0.010 | avg_r=0.050 win%=0.520 | loss=0.0009 q=0.293 gn=0.03 | beta=1.000 | td=0.2229 | W/D/L=10512/556/7332 | time=1.5s/game
+[18450/200000] opp=greedy        eps=0.010 | avg_r=0.090 win%=0.530 | loss=0.0052 q=0.423 gn=0.04 | beta=1.000 | td=0.2880 | W/D/L=10536/559/7355 | time=1.5s/game
+[18500/200000] opp=greedy        eps=0.010 | avg_r=0.030 win%=0.490 | loss=0.0019 q=0.580 gn=0.02 | beta=1.000 | td=0.3138 | W/D/L=10561/561/7378 | time=1.5s/game
+[18550/200000] opp=fast_minimax  eps=0.010 | avg_r=0.020 win%=0.490 | loss=0.0031 q=0.344 gn=0.02 | beta=1.000 | td=0.2885 | W/D/L=10585/563/7402 | time=1.5s/game
+[18600/200000] opp=random        eps=0.010 | avg_r=0.080 win%=0.520 | loss=0.0047 q=0.218 gn=0.05 | beta=1.000 | td=0.2829 | W/D/L=10613/565/7422 | time=1.5s/game
+[18650/200000] opp=heuristic     eps=0.010 | avg_r=0.090 win%=0.530 | loss=0.0035 q=0.254 gn=0.02 | beta=1.000 | td=0.3172 | W/D/L=10638/566/7446 | time=1.5s/game
+[18700/200000] opp=random        eps=0.010 | avg_r=-0.090 win%=0.450 | loss=0.0025 q=0.365 gn=0.03 | beta=1.000 | td=0.2640 | W/D/L=10658/566/7476 | time=1.5s/game
+[18750/200000] opp=fast_minimax  eps=0.010 | avg_r=-0.140 win%=0.430 | loss=0.0083 q=0.453 gn=0.14 | beta=1.000 | td=0.2310 | W/D/L=10681/566/7503 | time=1.5s/game
+[18800/200000] opp=heuristic     eps=0.010 | avg_r=0.020 win%=0.500 | loss=0.0027 q=0.335 gn=0.03 | beta=1.000 | td=0.2942 | W/D/L=10708/568/7524 | time=1.5s/game
+[18850/200000] opp=fast_minimax  eps=0.010 | avg_r=0.110 win%=0.540 | loss=0.0018 q=0.290 gn=0.02 | beta=1.000 | td=0.2484 | W/D/L=10735/569/7546 | time=1.5s/game
+[18900/200000] opp=fast_minimax  eps=0.010 | avg_r=0.020 win%=0.500 | loss=0.0068 q=0.366 gn=0.05 | beta=1.000 | td=0.2652 | W/D/L=10758/570/7572 | time=1.5s/game
