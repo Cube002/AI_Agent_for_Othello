@@ -1,0 +1,21 @@
+Setup saved -> Training/experiments_011\setup.json
+Results           -> Training/experiments_011\results/
+Model checkpoints -> Training/experiments_011\model_checkpoints/
+Best model        -> Training/experiments_011\best_model.pth
+
+Loaded weights + optimizer from: models/guided_dqn_epsilon_50k/guided_dqn_50k.pth
+  replay buffer size: 0
+  train steps: 815837
+Training: guided_per_dqn | board=6x6 | opponent=curriculum | episodes=200000 | minimax_time_limit=1.0s | minimax_max_depth=3
+[    1/200000] opp=greedy        eps=0.050 | avg_r=1.000 win%=1.000 | learning not started | W/D/L=1/0/0 | time=0.2s/game
+[   50/200000] opp=greedy        eps=0.049 | avg_r=0.280 win%=0.640 | learning not started | W/D/L=32/0/18 | time=0.1s/game
+[  100/200000] opp=heuristic     eps=0.048 | avg_r=0.370 win%=0.680 | loss=0.0089 q=1.305 gn=0.08 | beta=1.000 | td=0.6657 | W/D/L=68/1/31 | time=0.4s/game
+[  150/200000] opp=heuristic     eps=0.046 | avg_r=0.340 win%=0.640 | loss=0.0152 q=1.037 gn=0.06 | beta=1.000 | td=0.5610 | W/D/L=96/6/48 | time=0.8s/game
+[  200/200000] opp=heuristic     eps=0.045 | avg_r=0.180 win%=0.540 | loss=0.0129 q=0.954 gn=0.06 | beta=1.000 | td=0.5103 | W/D/L=122/11/67 | time=1.0s/game
+[  250/200000] opp=heuristic     eps=0.044 | avg_r=0.070 win%=0.500 | loss=0.0043 q=1.061 gn=0.03 | beta=1.000 | td=0.4427 | W/D/L=146/13/91 | time=1.1s/game
+[  300/200000] opp=heuristic     eps=0.043 | avg_r=0.000 win%=0.480 | loss=0.0085 q=0.804 gn=0.07 | beta=1.000 | td=0.3746 | W/D/L=170/15/115 | time=1.2s/game
+[  350/200000] opp=heuristic     eps=0.042 | avg_r=0.110 win%=0.530 | loss=0.0077 q=1.016 gn=0.04 | beta=1.000 | td=0.4096 | W/D/L=199/18/133 | time=1.3s/game
+[  400/200000] opp=heuristic     eps=0.041 | avg_r=0.310 win%=0.640 | loss=0.0031 q=0.878 gn=0.01 | beta=1.000 | td=0.3685 | W/D/L=234/18/148 | time=1.4s/game
+[  450/200000] opp=heuristic     eps=0.040 | avg_r=0.180 win%=0.570 | loss=0.0038 q=0.565 gn=0.05 | beta=1.000 | td=0.3447 | W/D/L=256/22/172 | time=1.4s/game
+[  500/200000] opp=heuristic     eps=0.039 | avg_r=0.140 win%=0.550 | loss=0.0036 q=0.755 gn=0.02 | beta=1.000 | td=0.2994 | W/D/L=289/22/189 | time=1.5s/game
+[  550/200000] opp=heuristic     eps=0.038 | avg_r=0.320 win%=0.650 | loss=0.0052 q=0.759 gn=0.04 | beta=1.000 | td=0.2913 | W/D/L=321/24/205 | time=1.5s/game

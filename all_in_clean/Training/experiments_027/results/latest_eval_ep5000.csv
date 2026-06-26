@@ -1,0 +1,7 @@
+opponent,role,wins,draws,losses,win_rate,score
+random,aggregate,88,3,9,0.880,0.895
+greedy,aggregate,80,1,19,0.800,0.805
+heuristic,aggregate,41,1,58,0.410,0.415
+fast_minimax,aggregate,12,5,33,0.240,0.290
+fast_minimax,as_black,6,4,15,0.240,0.320
+fast_minimax,as_white,1,4,20,0.040,0.120
