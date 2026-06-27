@@ -62,22 +62,53 @@ experiments_001/
 ### Default Parameters
 
 | Argument | Default | Description |
-|---|---|---|
-| `--num_episodes` | 30 000 | Total training episodes |
+|---|---|---|---|
+| `--num_episodes` | 200 000 | Total training episodes |
 | `--board_size` | 6 | Board size (4–8) |
-| `--minimax_max_depth` | 5 | Minimax search depth cap |
+| `--minimax_max_depth` | 3 | Minimax search depth cap |
 | `--minimax_time_limit` | 1.0 s | Fallback time limit per move |
 | `--heuristic_weight` | 0.2 | Guided DQN bonus weight |
 | `--use_per` | True | Prioritized Experience Replay |
-| `--batch_size` | 64 | Mini-batch size |
-| `--learning_rate` | 1e-3 | Adam learning rate |
+| `--batch_size` | 128 | Mini-batch size |
+| `--learning_rate` | 5e-4 | Adam learning rate |
 | `--epsilon_start` | 0.05 | Exploration rate start |
 | `--epsilon_end` | 0.01 | Exploration rate floor |
 | `--epsilon_decay` | 0.9995 | Per-episode decay multiplier |
 | `--eval_every` | 1000 | Evaluation + checkpoint frequency |
 | `--save_every` | 1000 | Model save frequency |
-| `--max_minutes` | 148 | Graceful stop after N minutes |
+| `--max_minutes` | 1000000 | Graceful stop after N minutes |
 | `--double_dqn` | True | Double DQN target |
+| `--max-random-training-plies` | 4 | Max random opening plies per player (0=disable) |
+| `--minimax_start_progress` | 0.05 | Progress fraction where minimax first appears |
+| `--minimax_full_progress` | 0.30 | Progress fraction where minimax reaches full weight |
+
+### Recent Additions
+
+#### Random Training Openings (`--max-random-training-plies`)
+Introduced to prevent the agent from overfitting to the initial 4-move opening.
+Each training episode picks N ∈ [1, max_random_training_plies], plays 2×N random
+legal moves (non-pass preferred), and discards those transitions. The actual
+game starts from a diverse board position. Set to 0 to disable.
+
+#### Per-Opponent Win Rate CSV Columns
+The training CSV (`latest_train.csv`) now logs per-opponent win rates
+(`wr_random`, `wr_greedy`, `wr_heuristic`, `wr_fast_minimax`) instead of a
+single combined `win_rate`. These are cumulative percentages computed from
+`opponent_stats`.
+
+#### Auto-Plot After Evaluation
+After each evaluation cycle, `plot_from_csv()` is called automatically to
+generate `eval_winrate_vs_episodes.png` in the experiment root directory.
+
+#### Faster Minimax Curriculum
+The `--minimax_start_progress` and `--minimax_full_progress` parameters control
+how quickly the minimax opponent enters the training pool. For example:
+- Defaults: start=0.05, full=0.30 (minimax appears early, ramps up fast)
+- Conservative: start=0.25, full=0.75 (original slow ramp — minimax only appears in mid-to-late training)
+
+#### Experiments 007 and 008
+- **007**: Started from `guided_dqn_50k.pth` with all modifications active, default minimax curriculum (0.05/0.30). Interrupted.
+- **008**: Same starting model, accelerated minimax schedule (`--minimax_start_progress 0.01 --minimax_full_progress 0.1`) so minimax training begins almost immediately.
 
 All arguments from `train_vs_minimax.py` are forwardable and override the
 defaults above.
