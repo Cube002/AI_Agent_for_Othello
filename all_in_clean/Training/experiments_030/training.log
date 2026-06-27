@@ -1,0 +1,626 @@
+Setup saved -> Training/experiments_015\setup.json
+Results           -> Training/experiments_015\results/
+Model checkpoints -> Training/experiments_015\model_checkpoints/
+Best model        -> Training/experiments_015\best_model.pth
+
+Training: guided_per_dqn | board=6x6 | opponent=curriculum | episodes=15000 | minimax_time_limit=1.0s | minimax_max_depth=3
+[    1/15000] opp=greedy        eps=1.000 | avg_r=-1.000 win%=0.000 | learning not started | W/D/L=0/0/1 | time=0.0s/game
+[  100/15000] opp=heuristic     eps=0.951 | avg_r=-0.480 win%=0.230 | loss=0.0008 q=-0.002 gn=0.02 | beta=0.402 | td=0.0458 | W/D/L=23/6/71 | time=0.2s/game
+[  200/15000] opp=greedy        eps=0.905 | avg_r=-0.470 win%=0.250 | loss=0.0009 q=0.166 gn=0.01 | beta=0.410 | td=0.0516 | W/D/L=48/9/143 | time=0.4s/game
+[  300/15000] opp=greedy        eps=0.861 | avg_r=-0.440 win%=0.260 | loss=0.0005 q=0.415 gn=0.01 | beta=0.419 | td=0.0401 | W/D/L=74/13/213 | time=0.5s/game
+[  400/15000] opp=heuristic     eps=0.819 | avg_r=-0.260 win%=0.340 | loss=0.0010 q=0.566 gn=0.02 | beta=0.427 | td=0.0539 | W/D/L=108/19/273 | time=0.5s/game
+[  500/15000] opp=greedy        eps=0.779 | avg_r=-0.260 win%=0.330 | loss=0.0010 q=0.640 gn=0.02 | beta=0.435 | td=0.0580 | W/D/L=141/27/332 | time=0.6s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.940 win=0.930 W/D/L=93/2/5
+  greedy        score=0.960 win=0.960 W/D/L=96/0/4
+  heuristic     score=0.495 win=0.480 W/D/L=48/3/49
+  fast_minimax  score=0.400 win=0.400 W/D/L=20/0/30
+    as black:  win=0.360 W/D/L=9/0/16
+    as white:  win=0.240 W/D/L=6/0/19
+    combined: win=0.300 W/D/L=15/0/35
+  *** DISCREPANCY: aggregate=20W/30L vs per-color=15W/35L (diff=5) ***
+      per-color black games: 9W/0D/16L
+      per-color white games: 6W/0D/19L
+  [new best model -> Training/experiments_015\best_model.pth] (score=0.300)
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[  600/15000] opp=random        eps=0.741 | avg_r=-0.370 win%=0.290 | loss=0.0015 q=0.675 gn=0.03 | beta=0.443 | td=0.0584 | W/D/L=170/32/398 | time=0.6s/game
+[  700/15000] opp=heuristic     eps=0.705 | avg_r=-0.310 win%=0.320 | loss=0.0011 q=0.620 gn=0.01 | beta=0.451 | td=0.0785 | W/D/L=202/37/461 | time=0.8s/game
+[  800/15000] opp=greedy        eps=0.670 | avg_r=-0.210 win%=0.380 | loss=0.0011 q=0.811 gn=0.02 | beta=0.460 | td=0.0628 | W/D/L=240/40/520 | time=0.9s/game
+[  900/15000] opp=greedy        eps=0.638 | avg_r=-0.520 win%=0.230 | loss=0.0013 q=0.865 gn=0.02 | beta=0.468 | td=0.0720 | W/D/L=263/42/595 | time=1.0s/game
+[ 1000/15000] opp=fast_minimax  eps=0.606 | avg_r=-0.540 win%=0.220 | loss=0.0014 q=0.791 gn=0.03 | beta=0.476 | td=0.0626 | W/D/L=285/44/671 | time=1.1s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.915 win=0.890 W/D/L=89/5/6
+  greedy        score=0.850 win=0.850 W/D/L=85/0/15
+  heuristic     score=0.550 win=0.540 W/D/L=54/2/44
+  fast_minimax  score=0.470 win=0.460 W/D/L=23/1/26
+    as black:  win=0.400 W/D/L=10/0/15
+    as white:  win=0.360 W/D/L=9/1/15
+    combined: win=0.380 W/D/L=19/1/30
+  *** DISCREPANCY: aggregate=23W/26L vs per-color=19W/30L (diff=4) ***
+      per-color black games: 10W/0D/15L
+      per-color white games: 9W/1D/15L
+  [new best model -> Training/experiments_015\best_model.pth] (score=0.390)
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep1000.pth]
+[ 1100/15000] opp=greedy        eps=0.577 | avg_r=-0.300 win%=0.330 | loss=0.0024 q=0.755 gn=0.03 | beta=0.484 | td=0.0697 | W/D/L=318/48/734 | time=1.1s/game
+[ 1200/15000] opp=greedy        eps=0.549 | avg_r=-0.230 win%=0.370 | loss=0.0014 q=0.718 gn=0.02 | beta=0.493 | td=0.0769 | W/D/L=355/51/794 | time=1.2s/game
+[ 1300/15000] opp=heuristic     eps=0.522 | avg_r=-0.260 win%=0.360 | loss=0.0016 q=0.683 gn=0.03 | beta=0.501 | td=0.0735 | W/D/L=391/53/856 | time=1.2s/game
+[ 1400/15000] opp=heuristic     eps=0.496 | avg_r=-0.290 win%=0.320 | loss=0.0035 q=0.912 gn=0.04 | beta=0.509 | td=0.0909 | W/D/L=423/60/917 | time=1.3s/game
+[ 1500/15000] opp=greedy        eps=0.472 | avg_r=-0.540 win%=0.210 | loss=0.0016 q=0.698 gn=0.02 | beta=0.517 | td=0.0766 | W/D/L=444/64/992 | time=1.3s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.925 win=0.920 W/D/L=92/1/7
+  greedy        score=0.875 win=0.860 W/D/L=86/3/11
+  heuristic     score=0.480 win=0.460 W/D/L=46/4/50
+  fast_minimax  score=0.130 win=0.120 W/D/L=6/1/43
+    as black:  win=0.200 W/D/L=5/5/15
+    as white:  win=0.000 W/D/L=0/0/25
+    combined: win=0.100 W/D/L=5/5/40
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 1600/15000] opp=heuristic     eps=0.449 | avg_r=-0.190 win%=0.380 | loss=0.0022 q=0.769 gn=0.03 | beta=0.525 | td=0.0887 | W/D/L=482/69/1049 | time=1.3s/game
+[ 1700/15000] opp=heuristic     eps=0.427 | avg_r=-0.200 win%=0.390 | loss=0.0018 q=1.051 gn=0.03 | beta=0.533 | td=0.0873 | W/D/L=521/71/1108 | time=1.3s/game
+[ 1800/15000] opp=fast_minimax  eps=0.406 | avg_r=-0.420 win%=0.270 | loss=0.0026 q=0.809 gn=0.04 | beta=0.541 | td=0.0875 | W/D/L=548/75/1177 | time=1.4s/game
+[ 1900/15000] opp=heuristic     eps=0.387 | avg_r=-0.260 win%=0.350 | loss=0.0013 q=0.981 gn=0.02 | beta=0.550 | td=0.0998 | W/D/L=583/79/1238 | time=1.4s/game
+[ 2000/15000] opp=heuristic     eps=0.368 | avg_r=-0.160 win%=0.400 | loss=0.0018 q=1.019 gn=0.02 | beta=0.558 | td=0.1041 | W/D/L=623/83/1294 | time=1.4s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.945 win=0.930 W/D/L=93/3/4
+  greedy        score=0.980 win=0.970 W/D/L=97/2/1
+  heuristic     score=0.505 win=0.500 W/D/L=50/1/49
+  fast_minimax  score=0.250 win=0.200 W/D/L=10/5/35
+    as black:  win=0.360 W/D/L=9/0/16
+    as white:  win=0.000 W/D/L=0/1/24
+    combined: win=0.180 W/D/L=9/1/40
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep2000.pth]
+[ 2100/15000] opp=fast_minimax  eps=0.350 | avg_r=-0.180 win%=0.380 | loss=0.0016 q=0.889 gn=0.02 | beta=0.566 | td=0.0968 | W/D/L=661/89/1350 | time=1.4s/game
+[ 2200/15000] opp=random        eps=0.333 | avg_r=-0.190 win%=0.380 | loss=0.0014 q=0.721 gn=0.02 | beta=0.575 | td=0.0850 | W/D/L=699/94/1407 | time=1.4s/game
+[ 2300/15000] opp=fast_minimax  eps=0.317 | avg_r=-0.080 win%=0.430 | loss=0.0012 q=0.932 gn=0.02 | beta=0.583 | td=0.0940 | W/D/L=742/100/1458 | time=1.5s/game
+[ 2400/15000] opp=fast_minimax  eps=0.301 | avg_r=-0.030 win%=0.460 | loss=0.0026 q=0.969 gn=0.04 | beta=0.591 | td=0.1117 | W/D/L=788/105/1507 | time=1.5s/game
+[ 2500/15000] opp=heuristic     eps=0.286 | avg_r=-0.080 win%=0.430 | loss=0.0017 q=0.778 gn=0.02 | beta=0.599 | td=0.1232 | W/D/L=831/111/1558 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.960 win=0.950 W/D/L=95/2/3
+  greedy        score=0.885 win=0.870 W/D/L=87/3/10
+  heuristic     score=0.585 win=0.540 W/D/L=54/9/37
+  fast_minimax  score=0.100 win=0.100 W/D/L=5/0/45
+    as black:  win=0.160 W/D/L=4/0/21
+    as white:  win=0.280 W/D/L=7/0/18
+    combined: win=0.220 W/D/L=11/0/39
+  *** DISCREPANCY: aggregate=5W/45L vs per-color=11W/39L (diff=-6) ***
+      per-color black games: 4W/0D/21L
+      per-color white games: 7W/0D/18L
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 2600/15000] opp=heuristic     eps=0.272 | avg_r=0.030 win%=0.490 | loss=0.0016 q=1.143 gn=0.02 | beta=0.608 | td=0.0992 | W/D/L=880/116/1604 | time=1.5s/game
+[ 2700/15000] opp=heuristic     eps=0.259 | avg_r=-0.140 win%=0.390 | loss=0.0012 q=0.977 gn=0.02 | beta=0.616 | td=0.0920 | W/D/L=919/124/1657 | time=1.5s/game
+[ 2800/15000] opp=random        eps=0.247 | avg_r=-0.200 win%=0.380 | loss=0.0010 q=0.785 gn=0.01 | beta=0.624 | td=0.1044 | W/D/L=957/128/1715 | time=1.5s/game
+[ 2900/15000] opp=fast_minimax  eps=0.234 | avg_r=-0.030 win%=0.470 | loss=0.0011 q=0.760 gn=0.03 | beta=0.632 | td=0.0961 | W/D/L=1004/131/1765 | time=1.5s/game
+[ 3000/15000] opp=heuristic     eps=0.223 | avg_r=-0.170 win%=0.400 | loss=0.0028 q=0.971 gn=0.03 | beta=0.640 | td=0.1140 | W/D/L=1044/134/1822 | time=1.5s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.895 win=0.890 W/D/L=89/1/10
+  greedy        score=0.820 win=0.820 W/D/L=82/0/18
+  heuristic     score=0.595 win=0.590 W/D/L=59/1/40
+  fast_minimax  score=0.340 win=0.340 W/D/L=17/0/33
+    as black:  win=0.520 W/D/L=13/0/12
+    as white:  win=0.160 W/D/L=4/0/21
+    combined: win=0.340 W/D/L=17/0/33
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep3000.pth]
+[ 3100/15000] opp=heuristic     eps=0.212 | avg_r=-0.130 win%=0.420 | loss=0.0012 q=0.879 gn=0.02 | beta=0.649 | td=0.1031 | W/D/L=1086/137/1877 | time=1.5s/game
+[ 3200/15000] opp=heuristic     eps=0.202 | avg_r=-0.150 win%=0.380 | loss=0.0017 q=0.806 gn=0.02 | beta=0.657 | td=0.0852 | W/D/L=1124/146/1930 | time=1.5s/game
+[ 3300/15000] opp=greedy        eps=0.192 | avg_r=-0.250 win%=0.370 | loss=0.0026 q=0.802 gn=0.03 | beta=0.665 | td=0.1203 | W/D/L=1161/147/1992 | time=1.6s/game
+[ 3400/15000] opp=fast_minimax  eps=0.183 | avg_r=-0.020 win%=0.460 | loss=0.0027 q=0.859 gn=0.03 | beta=0.673 | td=0.1020 | W/D/L=1207/153/2040 | time=1.6s/game
+[ 3500/15000] opp=heuristic     eps=0.174 | avg_r=-0.070 win%=0.440 | loss=0.0024 q=0.901 gn=0.03 | beta=0.681 | td=0.1214 | W/D/L=1251/158/2091 | time=1.6s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.965 win=0.960 W/D/L=96/1/3
+  greedy        score=0.885 win=0.880 W/D/L=88/1/11
+  heuristic     score=0.645 win=0.640 W/D/L=64/1/35
+  fast_minimax  score=0.540 win=0.540 W/D/L=27/0/23
+    as black:  win=0.360 W/D/L=9/0/16
+    as white:  win=0.800 W/D/L=20/0/5
+    combined: win=0.580 W/D/L=29/0/21
+  [new best model -> Training/experiments_015\best_model.pth] (score=0.580)
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 3600/15000] opp=fast_minimax  eps=0.165 | avg_r=-0.100 win%=0.430 | loss=0.0024 q=1.033 gn=0.04 | beta=0.689 | td=0.1230 | W/D/L=1294/162/2144 | time=1.6s/game
+[ 3700/15000] opp=heuristic     eps=0.157 | avg_r=0.010 win%=0.480 | loss=0.0013 q=0.941 gn=0.02 | beta=0.698 | td=0.1118 | W/D/L=1342/167/2191 | time=1.6s/game
+[ 3800/15000] opp=greedy        eps=0.149 | avg_r=-0.130 win%=0.420 | loss=0.0028 q=0.996 gn=0.04 | beta=0.706 | td=0.1161 | W/D/L=1384/170/2246 | time=1.6s/game
+[ 3900/15000] opp=fast_minimax  eps=0.142 | avg_r=-0.260 win%=0.360 | loss=0.0009 q=0.916 gn=0.01 | beta=0.714 | td=0.1145 | W/D/L=1420/172/2308 | time=1.6s/game
+[ 4000/15000] opp=greedy        eps=0.135 | avg_r=-0.270 win%=0.330 | loss=0.0018 q=0.855 gn=0.02 | beta=0.723 | td=0.1097 | W/D/L=1453/179/2368 | time=1.6s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.990 win=0.990 W/D/L=99/0/1
+  greedy        score=0.975 win=0.970 W/D/L=97/1/2
+  heuristic     score=0.665 win=0.660 W/D/L=66/1/33
+  fast_minimax  score=0.500 win=0.500 W/D/L=25/0/25
+    as black:  win=0.400 W/D/L=10/1/14
+    as white:  win=0.440 W/D/L=11/0/14
+    combined: win=0.420 W/D/L=21/1/28
+  *** DISCREPANCY: aggregate=25W/25L vs per-color=21W/28L (diff=4) ***
+      per-color black games: 10W/1D/14L
+      per-color white games: 11W/0D/14L
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep4000.pth]
+[ 4100/15000] opp=heuristic     eps=0.129 | avg_r=-0.060 win%=0.450 | loss=0.0014 q=0.954 gn=0.02 | beta=0.731 | td=0.1224 | W/D/L=1498/183/2419 | time=1.6s/game
+[ 4200/15000] opp=fast_minimax  eps=0.122 | avg_r=-0.200 win%=0.370 | loss=0.0015 q=0.866 gn=0.03 | beta=0.739 | td=0.1217 | W/D/L=1535/189/2476 | time=1.6s/game
+[ 4300/15000] opp=fast_minimax  eps=0.116 | avg_r=0.060 win%=0.530 | loss=0.0019 q=0.535 gn=0.02 | beta=0.747 | td=0.1143 | W/D/L=1588/189/2523 | time=1.6s/game
+[ 4400/15000] opp=heuristic     eps=0.111 | avg_r=-0.160 win%=0.410 | loss=0.0007 q=0.757 gn=0.01 | beta=0.756 | td=0.1157 | W/D/L=1629/191/2580 | time=1.6s/game
+[ 4500/15000] opp=random        eps=0.105 | avg_r=-0.150 win%=0.400 | loss=0.0022 q=0.817 gn=0.03 | beta=0.764 | td=0.1184 | W/D/L=1669/196/2635 | time=1.6s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.980 win=0.970 W/D/L=97/2/1
+  greedy        score=0.910 win=0.910 W/D/L=91/0/9
+  heuristic     score=0.515 win=0.480 W/D/L=48/7/45
+  fast_minimax  score=0.320 win=0.320 W/D/L=16/0/34
+    as black:  win=0.080 W/D/L=2/0/23
+    as white:  win=0.600 W/D/L=15/0/10
+    combined: win=0.340 W/D/L=17/0/33
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 4600/15000] opp=fast_minimax  eps=0.100 | avg_r=-0.240 win%=0.360 | loss=0.0028 q=0.844 gn=0.04 | beta=0.772 | td=0.1310 | W/D/L=1705/200/2695 | time=1.6s/game
+[ 4700/15000] opp=random        eps=0.095 | avg_r=-0.310 win%=0.330 | loss=0.0018 q=0.725 gn=0.02 | beta=0.780 | td=0.1374 | W/D/L=1738/203/2759 | time=1.6s/game
+[ 4800/15000] opp=fast_minimax  eps=0.091 | avg_r=-0.250 win%=0.370 | loss=0.0025 q=0.700 gn=0.03 | beta=0.788 | td=0.1362 | W/D/L=1775/204/2821 | time=1.6s/game
+[ 4900/15000] opp=greedy        eps=0.086 | avg_r=-0.210 win%=0.380 | loss=0.0022 q=0.940 gn=0.02 | beta=0.797 | td=0.1361 | W/D/L=1813/207/2880 | time=1.6s/game
+[ 5000/15000] opp=fast_minimax  eps=0.082 | avg_r=-0.310 win%=0.320 | loss=0.0023 q=0.878 gn=0.03 | beta=0.805 | td=0.1176 | W/D/L=1845/212/2943 | time=1.6s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.965 win=0.960 W/D/L=96/1/3
+  greedy        score=0.865 win=0.860 W/D/L=86/1/13
+  heuristic     score=0.535 win=0.520 W/D/L=52/3/45
+  fast_minimax  score=0.600 win=0.600 W/D/L=30/0/20
+    as black:  win=0.440 W/D/L=11/0/14
+    as white:  win=0.520 W/D/L=13/0/12
+    combined: win=0.480 W/D/L=24/0/26
+  *** DISCREPANCY: aggregate=30W/20L vs per-color=24W/26L (diff=6) ***
+      per-color black games: 11W/0D/14L
+      per-color white games: 13W/0D/12L
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+  Recording 3 games vs minimax to Training/experiments_015\results\games/ ...
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep5000.pth]
+[ 5100/15000] opp=greedy        eps=0.078 | avg_r=-0.170 win%=0.410 | loss=0.0025 q=0.856 gn=0.03 | beta=0.813 | td=0.1310 | W/D/L=1886/213/3001 | time=1.6s/game
+[ 5200/15000] opp=heuristic     eps=0.074 | avg_r=-0.270 win%=0.340 | loss=0.0018 q=0.838 gn=0.02 | beta=0.821 | td=0.1301 | W/D/L=1920/218/3062 | time=1.6s/game
+[ 5300/15000] opp=fast_minimax  eps=0.071 | avg_r=-0.300 win%=0.320 | loss=0.0007 q=0.829 gn=0.01 | beta=0.829 | td=0.1478 | W/D/L=1952/224/3124 | time=1.6s/game
+[ 5400/15000] opp=fast_minimax  eps=0.067 | avg_r=-0.280 win%=0.350 | loss=0.0011 q=0.732 gn=0.02 | beta=0.837 | td=0.1161 | W/D/L=1987/226/3187 | time=1.6s/game
+[ 5500/15000] opp=heuristic     eps=0.064 | avg_r=-0.290 win%=0.330 | loss=0.0025 q=0.799 gn=0.03 | beta=0.846 | td=0.1288 | W/D/L=2020/231/3249 | time=1.6s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.940 win=0.940 W/D/L=94/0/6
+  greedy        score=0.905 win=0.890 W/D/L=89/3/8
+  heuristic     score=0.695 win=0.680 W/D/L=68/3/29
+  fast_minimax  score=0.240 win=0.240 W/D/L=12/0/38
+    as black:  win=0.440 W/D/L=11/0/14
+    as white:  win=0.040 W/D/L=1/0/24
+    combined: win=0.240 W/D/L=12/0/38
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 5600/15000] opp=greedy        eps=0.061 | avg_r=-0.360 win%=0.300 | loss=0.0014 q=0.615 gn=0.02 | beta=0.854 | td=0.1343 | W/D/L=2050/235/3315 | time=1.6s/game
+[ 5700/15000] opp=heuristic     eps=0.058 | avg_r=-0.140 win%=0.410 | loss=0.0019 q=0.891 gn=0.02 | beta=0.862 | td=0.1547 | W/D/L=2091/239/3370 | time=1.6s/game
+[ 5800/15000] opp=fast_minimax  eps=0.055 | avg_r=-0.360 win%=0.300 | loss=0.0014 q=0.668 gn=0.02 | beta=0.870 | td=0.1384 | W/D/L=2121/243/3436 | time=1.6s/game
+[ 5900/15000] opp=fast_minimax  eps=0.052 | avg_r=-0.050 win%=0.460 | loss=0.0027 q=0.889 gn=0.04 | beta=0.878 | td=0.1438 | W/D/L=2167/246/3487 | time=1.7s/game
+[ 6000/15000] opp=heuristic     eps=0.050 | avg_r=-0.110 win%=0.430 | loss=0.0034 q=0.623 gn=0.05 | beta=0.887 | td=0.1475 | W/D/L=2210/249/3541 | time=1.7s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.905 win=0.890 W/D/L=89/3/8
+  greedy        score=0.930 win=0.930 W/D/L=93/0/7
+  heuristic     score=0.665 win=0.650 W/D/L=65/3/32
+  fast_minimax  score=0.270 win=0.220 W/D/L=11/5/34
+    as black:  win=0.200 W/D/L=5/3/17
+    as white:  win=0.560 W/D/L=14/0/11
+    combined: win=0.380 W/D/L=19/3/28
+  *** DISCREPANCY: aggregate=11W/34L vs per-color=19W/28L (diff=-8) ***
+      per-color black games: 5W/3D/17L
+      per-color white games: 14W/0D/11L
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+6000      0.905         0.930         0.665         0.270         0.260         0.560         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep6000.pth]
+[ 6100/15000] opp=greedy        eps=0.050 | avg_r=-0.160 win%=0.380 | loss=0.0009 q=0.879 gn=0.01 | beta=0.895 | td=0.1524 | W/D/L=2248/257/3595 | time=1.7s/game
+[ 6200/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.150 win%=0.410 | loss=0.0021 q=0.649 gn=0.02 | beta=0.903 | td=0.1505 | W/D/L=2289/260/3651 | time=1.7s/game
+[ 6300/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.390 win%=0.300 | loss=0.0022 q=0.645 gn=0.02 | beta=0.911 | td=0.1509 | W/D/L=2319/261/3720 | time=1.7s/game
+[ 6400/15000] opp=heuristic     eps=0.050 | avg_r=-0.330 win%=0.300 | loss=0.0020 q=0.710 gn=0.02 | beta=0.919 | td=0.1540 | W/D/L=2349/268/3783 | time=1.7s/game
+[ 6500/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.220 win%=0.370 | loss=0.0005 q=0.721 gn=0.01 | beta=0.928 | td=0.1414 | W/D/L=2386/272/3842 | time=1.7s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.910 win=0.910 W/D/L=91/0/9
+  greedy        score=0.950 win=0.950 W/D/L=95/0/5
+  heuristic     score=0.460 win=0.430 W/D/L=43/6/51
+  fast_minimax  score=0.280 win=0.280 W/D/L=14/0/36
+    as black:  win=0.200 W/D/L=5/0/20
+    as white:  win=0.600 W/D/L=15/0/10
+    combined: win=0.400 W/D/L=20/0/30
+  *** DISCREPANCY: aggregate=14W/36L vs per-color=20W/30L (diff=-6) ***
+      per-color black games: 5W/0D/20L
+      per-color white games: 15W/0D/10L
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+6000      0.905         0.930         0.665         0.270         0.260         0.560         
+6500      0.910         0.950         0.460         0.280         0.200         0.600         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 6600/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.160 win%=0.410 | loss=0.0017 q=0.584 gn=0.02 | beta=0.936 | td=0.1563 | W/D/L=2427/274/3899 | time=1.7s/game
+[ 6700/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.090 win%=0.440 | loss=0.0023 q=0.684 gn=0.03 | beta=0.944 | td=0.1625 | W/D/L=2471/277/3952 | time=1.7s/game
+[ 6800/15000] opp=heuristic     eps=0.050 | avg_r=-0.480 win%=0.240 | loss=0.0023 q=0.709 gn=0.02 | beta=0.952 | td=0.1602 | W/D/L=2495/281/4024 | time=1.7s/game
+[ 6900/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.350 win%=0.300 | loss=0.0018 q=0.742 gn=0.02 | beta=0.960 | td=0.1424 | W/D/L=2525/286/4089 | time=1.7s/game
+[ 7000/15000] opp=greedy        eps=0.050 | avg_r=-0.090 win%=0.430 | loss=0.0016 q=0.511 gn=0.01 | beta=0.969 | td=0.1561 | W/D/L=2568/291/4141 | time=1.7s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.935 win=0.920 W/D/L=92/3/5
+  greedy        score=0.940 win=0.930 W/D/L=93/2/5
+  heuristic     score=0.620 win=0.590 W/D/L=59/6/35
+  fast_minimax  score=0.300 win=0.300 W/D/L=15/0/35
+    as black:  win=0.360 W/D/L=9/0/16
+    as white:  win=0.360 W/D/L=9/0/16
+    combined: win=0.360 W/D/L=18/0/32
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+6000      0.905         0.930         0.665         0.270         0.260         0.560         
+6500      0.910         0.950         0.460         0.280         0.200         0.600         
+7000      0.935         0.940         0.620         0.300         0.360         0.360         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep7000.pth]
+[ 7100/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.110 win%=0.410 | loss=0.0023 q=0.555 gn=0.03 | beta=0.977 | td=0.1545 | W/D/L=2609/298/4193 | time=1.7s/game
+[ 7200/15000] opp=fast_minimax  eps=0.050 | avg_r=0.010 win%=0.480 | loss=0.0011 q=0.646 gn=0.01 | beta=0.985 | td=0.1393 | W/D/L=2657/303/4240 | time=1.7s/game
+[ 7300/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.150 win%=0.420 | loss=0.0016 q=0.517 gn=0.03 | beta=0.993 | td=0.1513 | W/D/L=2699/304/4297 | time=1.7s/game
+[ 7400/15000] opp=heuristic     eps=0.050 | avg_r=-0.220 win%=0.340 | loss=0.0021 q=0.719 gn=0.03 | beta=1.000 | td=0.1543 | W/D/L=2733/314/4353 | time=1.7s/game
+[ 7500/15000] opp=random        eps=0.050 | avg_r=-0.190 win%=0.380 | loss=0.0014 q=0.615 gn=0.01 | beta=1.000 | td=0.1393 | W/D/L=2771/319/4410 | time=1.7s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.920 win=0.910 W/D/L=91/2/7
+  greedy        score=0.900 win=0.890 W/D/L=89/2/9
+  heuristic     score=0.650 win=0.630 W/D/L=63/4/33
+  fast_minimax  score=0.640 win=0.620 W/D/L=31/2/17
+    as black:  win=0.400 W/D/L=10/0/15
+    as white:  win=0.560 W/D/L=14/2/9
+    combined: win=0.480 W/D/L=24/2/24
+  *** DISCREPANCY: aggregate=31W/17L vs per-color=24W/24L (diff=7) ***
+      per-color black games: 10W/0D/15L
+      per-color white games: 14W/2D/9L
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+6000      0.905         0.930         0.665         0.270         0.260         0.560         
+6500      0.910         0.950         0.460         0.280         0.200         0.600         
+7000      0.935         0.940         0.620         0.300         0.360         0.360         
+7500      0.920         0.900         0.650         0.640         0.400         0.600         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 7600/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.080 win%=0.450 | loss=0.0009 q=0.649 gn=0.03 | beta=1.000 | td=0.1407 | W/D/L=2816/321/4463 | time=1.7s/game
+[ 7700/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.090 win%=0.440 | loss=0.0008 q=0.513 gn=0.01 | beta=1.000 | td=0.1397 | W/D/L=2860/324/4516 | time=1.7s/game
+[ 7800/15000] opp=greedy        eps=0.050 | avg_r=-0.080 win%=0.430 | loss=0.0016 q=0.733 gn=0.02 | beta=1.000 | td=0.1357 | W/D/L=2903/330/4567 | time=1.7s/game
+[ 7900/15000] opp=heuristic     eps=0.050 | avg_r=-0.350 win%=0.300 | loss=0.0021 q=0.706 gn=0.02 | beta=1.000 | td=0.1508 | W/D/L=2933/335/4632 | time=1.7s/game
+[ 8000/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.220 win%=0.370 | loss=0.0015 q=0.722 gn=0.02 | beta=1.000 | td=0.1675 | W/D/L=2970/339/4691 | time=1.7s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.945 win=0.940 W/D/L=94/1/5
+  greedy        score=0.825 win=0.800 W/D/L=80/5/15
+  heuristic     score=0.565 win=0.560 W/D/L=56/1/43
+  fast_minimax  score=0.600 win=0.600 W/D/L=30/0/20
+    as black:  win=0.640 W/D/L=16/0/9
+    as white:  win=0.520 W/D/L=13/0/12
+    combined: win=0.580 W/D/L=29/0/21
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+6000      0.905         0.930         0.665         0.270         0.260         0.560         
+6500      0.910         0.950         0.460         0.280         0.200         0.600         
+7000      0.935         0.940         0.620         0.300         0.360         0.360         
+7500      0.920         0.900         0.650         0.640         0.400         0.600         
+8000      0.945         0.825         0.565         0.600         0.640         0.520         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]
+  [checkpoint -> Training/experiments_015\model_checkpoints\model_ep8000.pth]
+[ 8100/15000] opp=heuristic     eps=0.050 | avg_r=-0.280 win%=0.360 | loss=0.0021 q=0.680 gn=0.03 | beta=1.000 | td=0.1417 | W/D/L=3006/339/4755 | time=1.7s/game
+[ 8200/15000] opp=heuristic     eps=0.050 | avg_r=-0.240 win%=0.370 | loss=0.0012 q=0.680 gn=0.01 | beta=1.000 | td=0.1256 | W/D/L=3043/341/4816 | time=1.7s/game
+[ 8300/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.120 win%=0.400 | loss=0.0022 q=0.525 gn=0.03 | beta=1.000 | td=0.1415 | W/D/L=3083/349/4868 | time=1.7s/game
+[ 8400/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.250 win%=0.350 | loss=0.0010 q=0.640 gn=0.02 | beta=1.000 | td=0.1612 | W/D/L=3118/354/4928 | time=1.7s/game
+[ 8500/15000] opp=heuristic     eps=0.050 | avg_r=-0.140 win%=0.420 | loss=0.0012 q=0.596 gn=0.01 | beta=1.000 | td=0.1500 | W/D/L=3160/356/4984 | time=1.7s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.980 win=0.970 W/D/L=97/2/1
+  greedy        score=0.950 win=0.930 W/D/L=93/4/3
+  heuristic     score=0.620 win=0.610 W/D/L=61/2/37
+  fast_minimax  score=0.560 win=0.560 W/D/L=28/0/22
+    as black:  win=0.200 W/D/L=5/0/20
+    as white:  win=0.720 W/D/L=18/0/7
+    combined: win=0.460 W/D/L=23/0/27
+  *** DISCREPANCY: aggregate=28W/22L vs per-color=23W/27L (diff=5) ***
+      per-color black games: 5W/0D/20L
+      per-color white games: 18W/0D/7L
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+6000      0.905         0.930         0.665         0.270         0.260         0.560         
+6500      0.910         0.950         0.460         0.280         0.200         0.600         
+7000      0.935         0.940         0.620         0.300         0.360         0.360         
+7500      0.920         0.900         0.650         0.640         0.400         0.600         
+8000      0.945         0.825         0.565         0.600         0.640         0.520         
+8500      0.980         0.950         0.620         0.560         0.200         0.720         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+[ 8600/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.210 win%=0.370 | loss=0.0014 q=0.810 gn=0.02 | beta=1.000 | td=0.1520 | W/D/L=3197/361/5042 | time=1.7s/game
+[ 8700/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.360 win%=0.300 | loss=0.0009 q=0.672 gn=0.02 | beta=1.000 | td=0.1440 | W/D/L=3227/365/5108 | time=1.7s/game
+[ 8800/15000] opp=heuristic     eps=0.050 | avg_r=-0.290 win%=0.350 | loss=0.0022 q=0.602 gn=0.02 | beta=1.000 | td=0.1389 | W/D/L=3262/366/5172 | time=1.7s/game
+[ 8900/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.030 win%=0.470 | loss=0.0019 q=0.613 gn=0.02 | beta=1.000 | td=0.1482 | W/D/L=3309/369/5222 | time=1.7s/game
+[ 9000/15000] opp=fast_minimax  eps=0.050 | avg_r=-0.390 win%=0.300 | loss=0.0005 q=0.564 gn=0.02 | beta=1.000 | td=0.1479 | W/D/L=3339/370/5291 | time=1.7s/game
+
+-- Evaluation (no exploration) --
+  random        score=0.940 win=0.920 W/D/L=92/4/4
+  greedy        score=0.930 win=0.930 W/D/L=93/0/7
+  heuristic     score=0.600 win=0.590 W/D/L=59/2/39
+  fast_minimax  score=0.510 win=0.500 W/D/L=25/1/24
+    as black:  win=0.720 W/D/L=18/3/4
+    as white:  win=0.600 W/D/L=15/1/9
+    combined: win=0.660 W/D/L=33/4/13
+  *** DISCREPANCY: aggregate=25W/24L vs per-color=33W/13L (diff=-8) ***
+      per-color black games: 18W/3D/4L
+      per-color white games: 15W/1D/9L
+  [new best model -> Training/experiments_015\best_model.pth] (score=0.700)
+
+==============================================================================================
+Episode   random        greedy        heuristic     fast_minimax  fast_minimax_as_blackfast_minimax_as_white
+----------------------------------------------------------------------------------------------
+500       0.940         0.960         0.495         0.400         0.360         0.240         
+1000      0.915         0.850         0.550         0.470         0.400         0.380         
+1500      0.925         0.875         0.480         0.130         0.300         0.000         
+2000      0.945         0.980         0.505         0.250         0.360         0.020         
+2500      0.960         0.885         0.585         0.100         0.160         0.280         
+3000      0.895         0.820         0.595         0.340         0.520         0.160         
+3500      0.965         0.885         0.645         0.540         0.360         0.800         
+4000      0.990         0.975         0.665         0.500         0.420         0.440         
+4500      0.980         0.910         0.515         0.320         0.080         0.600         
+5000      0.965         0.865         0.535         0.600         0.440         0.520         
+5500      0.940         0.905         0.695         0.240         0.440         0.040         
+6000      0.905         0.930         0.665         0.270         0.260         0.560         
+6500      0.910         0.950         0.460         0.280         0.200         0.600         
+7000      0.935         0.940         0.620         0.300         0.360         0.360         
+7500      0.920         0.900         0.650         0.640         0.400         0.600         
+8000      0.945         0.825         0.565         0.600         0.640         0.520         
+8500      0.980         0.950         0.620         0.560         0.200         0.720         
+9000      0.940         0.930         0.600         0.510         0.780         0.620         
+==============================================================================================
+
+Plot saved to Training/experiments_015\results\..\eval_winrate_vs_episodes.png
+
+  [saved -> Training/experiments_015\results\latest.pth]

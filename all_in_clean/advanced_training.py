@@ -136,6 +136,7 @@ def _parse_args() -> argparse.Namespace:
     tg.add_argument("--learning_starts",     type=int,   default=1_000)
     tg.add_argument("--heuristic_weight",    type=float, default=0.2)
     tg.add_argument("--use_per",             action="store_true", default=True)
+    tg.add_argument("--no_use_per", action="store_false", dest="use_per")
     tg.add_argument("--per_alpha",           type=float, default=0.6)
     tg.add_argument("--per_beta_start",      type=float, default=0.4)
     tg.add_argument("--per_beta_frames",     type=int,   default=100_000)
